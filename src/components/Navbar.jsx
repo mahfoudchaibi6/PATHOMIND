@@ -38,7 +38,7 @@ export default function Navbar() {
       <ul className="hidden lg:flex gap-8 list-none">
         {links.map((l) => (
           <li key={l.href}>
-            
+            <a
               href={l.href}
               className="font-mono text-xs font-medium text-white/50 tracking-widest uppercase transition-colors duration-200 hover:text-white/90 relative group"
             >
@@ -50,7 +50,7 @@ export default function Navbar() {
       </ul>
 
       {/* Desktop CTA */}
-      
+      <a
         href="#contact"
         className="hidden lg:block font-mono text-xs font-semibold tracking-widest uppercase text-white border border-white/28 px-5 py-2 rounded-sm transition-all duration-200 hover:bg-white/10 hover:border-white/55"
       >
@@ -73,24 +73,58 @@ export default function Navbar() {
 
       {/* Mobile menu — fond blanc, texte foncé */}
       {open && (
-        <div className="absolute top-full left-0 right-0 bg-white border-b border-gray-100 shadow-xl py-6 px-6 flex flex-col gap-1 lg:hidden">
+        <div
+          className="absolute top-full left-0 right-0 flex flex-col gap-1 lg:hidden"
+          style={{
+            background: '#ffffff',
+            borderBottom: '1px solid #e5e7eb',
+            boxShadow: '0 10px 40px rgba(0,0,0,0.15)',
+            padding: '1.5rem',
+          }}
+        >
           {links.map((l) => (
-            
+            <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="flex items-center gap-3 py-3 px-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all duration-150"
-              style={{ fontFamily: 'inherit', letterSpacing: '.02em' }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                padding: '0.75rem 1rem',
+                borderRadius: '8px',
+                fontSize: '0.875rem',
+                fontWeight: '500',
+                color: '#1e3a5f',
+                textDecoration: 'none',
+                letterSpacing: '0.02em',
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = '#eff6ff'}
+              onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#1a5cd4', flexShrink: 0 }} />
               {l.label}
             </a>
           ))}
-          <div className="mt-4 pt-4 border-t border-gray-100">
-            
+          <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid #e5e7eb' }}>
+            <a
               href="#contact"
               onClick={() => setOpen(false)}
-              className="flex items-center justify-center w-full py-3 px-6 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '100%',
+                padding: '0.75rem 1.5rem',
+                background: '#1a5cd4',
+                color: '#ffffff',
+                fontSize: '0.8rem',
+                fontWeight: '600',
+                borderRadius: '6px',
+                textDecoration: 'none',
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
+              }}
             >
               Demander une démo
             </a>
