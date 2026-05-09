@@ -1,9 +1,9 @@
 import HistoBackground from '../components/HistoBackground'
 const CHIFFRES = [
   { n: '1/250 000', unit: 'Densité critique', desc: 'Ratio pathologiste/habitant en Afrique subsaharienne, contre 1/5 000 en Europe' },
-  { n: '70%', unit: 'Cancers détectés trop tard', desc: 'Des cas de cancer diagnostiqués à un stade avancé, faute d\'un diagnostic histologique précoce' },
+  { n: 'Trop tard', unit: 'Cancers détectés tardivement', desc: 'De nombreux cancers sont diagnostiqués à un stade avancé, faute d\'un accès rapide au diagnostic histologique' },
   { n: '×2', unit: 'Projection 2040', desc: 'Le fardeau oncologique africain devrait doubler d\'ici 2040 selon les projections OMS-AFRO' },
-  { n: '37', unit: 'Wilayas sans labo dédié', desc: 'En Algérie, la majorité des territoires n\'ont pas accès à un service d\'anatomopathologie fonctionnel' },
+  { n: 'Plusieurs', unit: 'Régions sans labo dédié', desc: 'De nombreuses régions algériennes n\'ont pas encore accès à un service d\'anatomopathologie de proximité' },
 ]
 
 export default function ChiffresCles() {
