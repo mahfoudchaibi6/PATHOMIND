@@ -22,25 +22,31 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 lg:px-16 transition-all duration-300 ${
-        scrolled
-          ? 'bg-ink/93 backdrop-blur-2xl border-b border-white/7 h-16'
-          : 'bg-transparent border-b border-transparent h-20'
+        scrolled ? 'h-16' : 'h-20'
       }`}
-      style={{ backdropFilter: scrolled ? 'blur(24px) saturate(1.4)' : undefined }}
+      style={{
+        background: scrolled ? 'rgba(6,13,26,0.97)' : 'transparent',
+        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.08)' : '1px solid transparent',
+        backdropFilter: scrolled ? 'blur(24px) saturate(1.4)' : undefined,
+        boxShadow: scrolled ? '0 4px 30px rgba(0,0,0,0.3)' : undefined,
+      }}
     >
-      {/* Logo */}
+      {/* Logo — toujours blanc */}
       <a href="#" className="flex items-center gap-3 font-serif text-xl font-medium text-white tracking-tight">
         <Logomark />
         PathoMind
       </a>
 
-      {/* Desktop links */}
+      {/* Desktop links — toujours blanc */}
       <ul className="hidden lg:flex gap-8 list-none">
         {links.map((l) => (
           <li key={l.href}>
             <a
               href={l.href}
-              className="font-mono text-xs font-medium text-white/50 tracking-widest uppercase transition-colors duration-200 hover:text-white/90 relative group"
+              className="font-mono text-xs font-medium tracking-widest uppercase transition-colors duration-200 relative group"
+              style={{ color: 'rgba(255,255,255,0.7)' }}
+              onMouseEnter={e => e.currentTarget.style.color = '#fff'}
+              onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}
             >
               {l.label}
               <span className="absolute -bottom-1 left-0 w-0 h-px bg-sky transition-all duration-300 group-hover:w-full" />
@@ -49,15 +55,15 @@ export default function Navbar() {
         ))}
       </ul>
 
-      {/* Desktop CTA */}
+      {/* Desktop CTA — toujours blanc */}
       <a
         href="#contact"
-        className="hidden lg:block font-mono text-xs font-semibold tracking-widest uppercase text-white border border-white/28 px-5 py-2 rounded-sm transition-all duration-200 hover:bg-white/10 hover:border-white/55"
+        className="hidden lg:block font-mono text-xs font-semibold tracking-widest uppercase text-white border border-white/40 px-5 py-2 rounded-sm transition-all duration-200 hover:bg-white/15 hover:border-white/70"
       >
         Demander une démo
       </a>
 
-      {/* Mobile hamburger */}
+      {/* Mobile hamburger — toujours blanc */}
       <button
         className="lg:hidden text-white hover:text-white/80 p-2"
         onClick={() => setOpen(!open)}
@@ -98,6 +104,7 @@ export default function Navbar() {
                 color: '#1e3a5f',
                 textDecoration: 'none',
                 letterSpacing: '0.02em',
+                transition: 'background 0.15s',
               }}
               onMouseEnter={e => e.currentTarget.style.background = '#eff6ff'}
               onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
