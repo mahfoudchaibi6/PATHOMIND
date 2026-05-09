@@ -21,7 +21,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-16 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 lg:px-16 transition-all duration-300 ${
         scrolled
           ? 'bg-ink/93 backdrop-blur-2xl border-b border-white/7 h-16'
           : 'bg-transparent border-b border-transparent h-20'
@@ -38,7 +38,7 @@ export default function Navbar() {
       <ul className="hidden lg:flex gap-8 list-none">
         {links.map((l) => (
           <li key={l.href}>
-            <a
+            
               href={l.href}
               className="font-mono text-xs font-medium text-white/50 tracking-widest uppercase transition-colors duration-200 hover:text-white/90 relative group"
             >
@@ -49,8 +49,8 @@ export default function Navbar() {
         ))}
       </ul>
 
-      {/* CTA */}
-      <a
+      {/* Desktop CTA */}
+      
         href="#contact"
         className="hidden lg:block font-mono text-xs font-semibold tracking-widest uppercase text-white border border-white/28 px-5 py-2 rounded-sm transition-all duration-200 hover:bg-white/10 hover:border-white/55"
       >
@@ -59,7 +59,7 @@ export default function Navbar() {
 
       {/* Mobile hamburger */}
       <button
-        className="lg:hidden text-white/60 hover:text-white"
+        className="lg:hidden text-white hover:text-white/80 p-2"
         onClick={() => setOpen(!open)}
         aria-label="Menu"
       >
@@ -71,26 +71,30 @@ export default function Navbar() {
         </svg>
       </button>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — fond blanc, texte foncé */}
       {open && (
-        <div className="absolute top-full left-0 right-0 bg-ink/98 border-b border-white/7 py-6 px-8 flex flex-col gap-4 lg:hidden">
+        <div className="absolute top-full left-0 right-0 bg-white border-b border-gray-100 shadow-xl py-6 px-6 flex flex-col gap-1 lg:hidden">
           {links.map((l) => (
-            <a
+            
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="font-mono text-sm text-white/55 tracking-widest uppercase hover:text-white transition-colors"
+              className="flex items-center gap-3 py-3 px-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all duration-150"
+              style={{ fontFamily: 'inherit', letterSpacing: '.02em' }}
             >
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />
               {l.label}
             </a>
           ))}
-          <a
-            href="#contact"
-            onClick={() => setOpen(false)}
-            className="btn-primary mt-2 self-start"
-          >
-            Demander une démo
-          </a>
+          <div className="mt-4 pt-4 border-t border-gray-100">
+            
+              href="#contact"
+              onClick={() => setOpen(false)}
+              className="flex items-center justify-center w-full py-3 px-6 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Demander une démo
+            </a>
+          </div>
         </div>
       )}
     </nav>
