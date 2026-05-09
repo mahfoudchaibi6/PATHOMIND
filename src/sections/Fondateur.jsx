@@ -11,16 +11,15 @@ export default function Fondateur() {
 
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-24 items-start">
 
-          {/* Left — Identity */}
+          {/* Left */}
           <div className="reveal delay-1">
-            {/* Avatar */}
+            {/* Photo */}
             <div className="relative w-36 h-36 mb-8">
-              <div
-                className="w-full h-full rounded-full flex items-center justify-center"
-                style={{ background: 'linear-gradient(135deg,#060d1a 0%,#1a5cd4 100%)' }}
-              >
-                <span className="font-serif text-white font-medium" style={{ fontSize: '2.2rem' }}>MC</span>
-              </div>
+              <img
+                src="/photo.jpg"
+                alt="Dr. Mahfoud Chaibi"
+                className="w-full h-full rounded-full object-cover"
+              />
               <div className="absolute inset-[-4px] rounded-full border border-border" />
             </div>
 
@@ -69,7 +68,6 @@ export default function Fondateur() {
 
           {/* Right — Bio */}
           <div className="reveal delay-2">
-            {/* Intro serif */}
             <p
               className="font-serif font-medium italic text-ink leading-relaxed mb-10 pb-10 border-b border-border"
               style={{ fontSize: '1.35rem', letterSpacing: '-.01em' }}
@@ -81,7 +79,6 @@ export default function Fondateur() {
             </p>
 
             <div className="flex flex-col gap-8 mb-8">
-
               <BioBlock label="Expertise médicale">
                 Le Dr. Mahfoud Chaibi est anatomopathologiste, spécialisé dans la pathologie digitale et l'application de l'intelligence artificielle à l'analyse des lames histologiques. Sa pratique clinique quotidienne lui a permis de mesurer avec précision les lacunes de l'infrastructure diagnostique actuelle — délais de rendu, absence d'outils de téléexpertise structurée, formations sans support numérique — et d'y répondre par une solution conçue de l'intérieur, par un praticien, pour des praticiens.
               </BioBlock>
@@ -89,11 +86,10 @@ export default function Fondateur() {
               <BioBlock label="Crédibilité scientifique">
                 Ses travaux de recherche portent sur l'une des questions les plus difficiles de la lymphopathologie moderne :{' '}
                 <strong className="text-text font-medium">peut-on prédire, dès l'analyse histologique initiale, le comportement clinique d'un lymphome B diffus à grandes cellules ?</strong>{' '}
-                Ses deux algorithmes d'IA, développés et entraînés sur des cohortes de patients DLBCL, ont démontré des résultats prometteurs à la fois pour la classification moléculaire et pour la prédiction de rechute — deux enjeux directement liés à la survie des patients. Ces travaux ont fait l'objet de{' '}
+                Ses deux algorithmes d'IA ont démontré des résultats prometteurs pour la classification moléculaire et la prédiction de rechute. Ces travaux ont fait l'objet de{' '}
                 <strong className="text-text font-medium">publications scientifiques</strong>{' '}
                 et positionnent PathoMind dans une démarche rigoureusement fondée sur la preuve clinique.
               </BioBlock>
-
             </div>
 
             {/* AI algorithms */}
@@ -151,7 +147,7 @@ export default function Fondateur() {
                 className="font-serif italic text-white/80 leading-relaxed relative z-10 mb-5"
                 style={{ fontSize: '1.05rem' }}
               >
-                J'ai développé ces algorithmes en me posant une question simple : si un patient DLBCL est suivi dans un hôpital de wilaya, sans accès à la biologie moléculaire ni à un hématopathologiste expert, comment peut-on l'aider à recevoir le bon traitement dès le départ ? La réponse est dans la lame — et l'IA peut l'y trouver. C'est exactement ce que PathoMind veut mettre à la portée de chaque anatomopathologiste algérien et africain.
+                J'ai développé ces algorithmes en me posant une question simple : si un patient DLBCL est suivi dans un hôpital de wilaya, sans accès à la biologie moléculaire ni à un hématopathologiste expert, comment peut-on l'aider à recevoir le bon traitement dès le départ ? La réponse est dans la lame — et l'IA peut l'y trouver.
               </p>
               <div
                 className="pt-5 border-t font-mono text-white/28"
