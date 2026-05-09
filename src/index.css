@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    font-family: 'Sora', system-ui, sans-serif;
+    color: #2a3550;
+    background: #ffffff;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply flex items-center gap-2 font-mono text-xs font-medium tracking-widest uppercase text-blue-2;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply block w-6 h-px bg-blue-2 flex-shrink-0;
+  }
+
+  .eyebrow-light {
+    @apply flex items-center gap-2 font-mono text-xs font-medium tracking-widest uppercase text-sky;
+  }
+  .eyebrow-light::before {
+    content: '';
+    @apply block w-6 h-px bg-sky flex-shrink-0;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-blue-2 text-white text-xs font-semibold tracking-wider uppercase
+           px-8 py-3 rounded-sm border-none cursor-pointer
+           transition-all duration-200
+           hover:bg-blue-3 hover:-translate-y-0.5;
+    box-shadow: 0 4px 24px rgba(26, 92, 212, 0.35);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 10px 40px rgba(26, 92, 212, 0.45);
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 text-white/50 text-xs font-medium tracking-wider uppercase
+           px-7 py-3 rounded-sm border border-white/15
+           cursor-pointer transition-all duration-200 bg-transparent
+           hover:text-white/90 hover:border-white/40;
+  }
+
+  .btn-white {
+    @apply bg-white text-blue-2 text-xs font-semibold tracking-wider uppercase
+           px-8 py-3 rounded-sm border-none cursor-pointer
+           transition-all duration-200 whitespace-nowrap
+           hover:opacity-90 hover:-translate-y-0.5;
+  }
+
+  .section-white  { @apply bg-white; }
+  .section-off    { @apply bg-offwhite; }
+  .section-dark   { @apply bg-ink; }
+
+  .feat-card {
+    @apply bg-white border border-border rounded-xl p-8 relative overflow-hidden
+           transition-all duration-300
+           hover:-translate-y-2 hover:shadow-2xl hover:border-blue-2/20;
+  }
+  .feat-card::after {
+    content: '';
+    @apply absolute top-0 left-0 right-0 h-0.5
+           bg-gradient-to-r from-blue to-sky
+           scale-x-0 origin-left transition-transform duration-300;
+  }
+  .feat-card:hover::after {
+    @apply scale-x-100;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #6baef8, #3a7ff5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-grid-lines {
+    background-image:
+      linear-gradient(rgba(255,255,255,.026) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.026) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .cta-grid-lines {
+    background-image:
+      linear-gradient(rgba(255,255,255,.038) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.038) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+}
+
+/* Scan line animation */
+@keyframes scan {
+  from { top: 0; }
+  to   { top: 100%; }
+}
+.animate-scan {
+  animation: scan 3s linear infinite;
+}
+
+/* Breathe animation for cells */
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.04); }
+}
+.animate-breathe { animation: breathe 4s ease-in-out infinite; }
+
+/* AI box pulse */
+@keyframes scanpulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(58,127,245,.10); }
+  50%       { box-shadow: 0 0 0 8px rgba(58,127,245,.05); }
+}
+.animate-scanpulse { animation: scanpulse 3s ease-in-out infinite; }
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+.delay-1 { transition-delay: .05s; }
+.delay-2 { transition-delay: .12s; }
+.delay-3 { transition-delay: .19s; }
+.delay-4 { transition-delay: .26s; }
+.delay-5 { transition-delay: .33s; }
+.delay-6 { transition-delay: .40s; }
