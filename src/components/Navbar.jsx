@@ -21,9 +21,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 lg:px-16 transition-all duration-300 ${
-        scrolled ? 'h-16' : 'h-20'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 lg:px-16 transition-all duration-300 ${scrolled ? 'h-16' : 'h-20'}`}
       style={{
         background: scrolled ? 'rgba(6,13,26,0.97)' : 'transparent',
         borderBottom: scrolled ? '1px solid rgba(255,255,255,0.08)' : '1px solid transparent',
@@ -31,13 +29,16 @@ export default function Navbar() {
         boxShadow: scrolled ? '0 4px 30px rgba(0,0,0,0.3)' : undefined,
       }}
     >
-      {/* Logo — toujours blanc */}
-      <a href="#" className="flex items-center gap-3 font-serif text-xl font-medium text-white tracking-tight">
-        <Logomark />
-        PathoMind
+      {/* Logo */}
+      <a href="#" className="flex items-center gap-3">
+        <img
+          src="/logo.png"
+          alt="PathoMind"
+          style={{ height: '38px', width: 'auto', objectFit: 'contain' }}
+        />
       </a>
 
-      {/* Desktop links — toujours blanc */}
+      {/* Desktop links */}
       <ul className="hidden lg:flex gap-8 list-none">
         {links.map((l) => (
           <li key={l.href}>
@@ -55,7 +56,7 @@ export default function Navbar() {
         ))}
       </ul>
 
-      {/* Desktop CTA — toujours blanc */}
+      {/* Desktop CTA */}
       <a
         href="#contact"
         className="hidden lg:block font-mono text-xs font-semibold tracking-widest uppercase text-white border border-white/40 px-5 py-2 rounded-sm transition-all duration-200 hover:bg-white/15 hover:border-white/70"
@@ -63,7 +64,7 @@ export default function Navbar() {
         Demander une démo
       </a>
 
-      {/* Mobile hamburger — toujours blanc */}
+      {/* Mobile hamburger */}
       <button
         className="lg:hidden text-white hover:text-white/80 p-2"
         onClick={() => setOpen(!open)}
@@ -77,7 +78,7 @@ export default function Navbar() {
         </svg>
       </button>
 
-      {/* Mobile menu — fond blanc, texte foncé */}
+      {/* Mobile menu */}
       {open && (
         <div
           className="absolute top-full left-0 right-0 flex flex-col gap-1 lg:hidden"
@@ -88,23 +89,21 @@ export default function Navbar() {
             padding: '1.5rem',
           }}
         >
+          {/* Logo mobile menu */}
+          <div className="flex justify-center mb-4 pb-4" style={{ borderBottom: '1px solid #e5e7eb' }}>
+            <img src="/logo.png" alt="PathoMind" style={{ height: '32px', width: 'auto' }} />
+          </div>
+
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-                padding: '0.75rem 1rem',
-                borderRadius: '8px',
-                fontSize: '0.875rem',
-                fontWeight: '500',
-                color: '#1e3a5f',
-                textDecoration: 'none',
-                letterSpacing: '0.02em',
-                transition: 'background 0.15s',
+                display: 'flex', alignItems: 'center', gap: '0.75rem',
+                padding: '0.75rem 1rem', borderRadius: '8px',
+                fontSize: '0.875rem', fontWeight: '500', color: '#1e3a5f',
+                textDecoration: 'none', letterSpacing: '0.02em',
               }}
               onMouseEnter={e => e.currentTarget.style.background = '#eff6ff'}
               onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
@@ -118,19 +117,11 @@ export default function Navbar() {
               href="#contact"
               onClick={() => setOpen(false)}
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '100%',
-                padding: '0.75rem 1.5rem',
-                background: '#1a5cd4',
-                color: '#ffffff',
-                fontSize: '0.8rem',
-                fontWeight: '600',
-                borderRadius: '6px',
-                textDecoration: 'none',
-                letterSpacing: '0.06em',
-                textTransform: 'uppercase',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                width: '100%', padding: '0.75rem 1.5rem',
+                background: '#1a5cd4', color: '#ffffff',
+                fontSize: '0.8rem', fontWeight: '600', borderRadius: '6px',
+                textDecoration: 'none', letterSpacing: '0.06em', textTransform: 'uppercase',
               }}
             >
               Demander une démo
@@ -139,14 +130,5 @@ export default function Navbar() {
         </div>
       )}
     </nav>
-  )
-}
-
-function Logomark() {
-  return (
-    <div className="w-8 h-8 rounded-lg bg-blue-2 flex items-center justify-center relative overflow-hidden flex-shrink-0">
-      <div className="absolute w-[18px] h-[18px] rounded-full border-2 border-white/90" />
-      <div className="absolute w-[7px] h-[7px] rounded-full bg-white" />
-    </div>
   )
 }
