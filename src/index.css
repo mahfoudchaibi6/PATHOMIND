@@ -140,3 +140,183 @@
 .delay-4 { transition-delay: .26s; }
 .delay-5 { transition-delay: .33s; }
 .delay-6 { transition-delay: .40s; }
+/* ── MOBILE-FIRST OVERRIDES ── */
+/* Ajout à la fin de src/index.css */
+
+@media (max-width: 768px) {
+
+  /* Sections — padding réduit */
+  .section, [class*="py-32"] {
+    padding-top: 3.5rem !important;
+    padding-bottom: 3.5rem !important;
+  }
+  [class*="px-16"] {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+
+  /* Typographie — tailles réduites */
+  .font-serif, h1, h2, h3 {
+    letter-spacing: -.02em !important;
+  }
+
+  /* Section headers */
+  .section-header {
+    margin-bottom: 2.5rem !important;
+  }
+
+  /* Grilles — tout en colonne */
+  .grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Gaps réduits */
+  [class*="gap-24"] { gap: 2rem !important; }
+  [class*="gap-20"] { gap: 1.5rem !important; }
+  [class*="gap-16"] { gap: 1.25rem !important; }
+
+  /* Features grid — 2 colonnes sur mobile */
+  .features-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  /* Feat cards — plus compactes */
+  .feat-card {
+    padding: 1.2rem !important;
+  }
+
+  /* Hero metrics */
+  .hero-metrics, [class*="flex gap-10"] {
+    gap: 1.5rem !important;
+  }
+
+  /* Chiffres band — 2 colonnes */
+  .chiffres-inner {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .chiffre-item {
+    padding: 1.5rem 1rem !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,.07) !important;
+  }
+
+  /* Workflow — scroll horizontal */
+  .workflow-track {
+    overflow-x: auto !important;
+    padding-bottom: 1rem !important;
+  }
+  .wf-steps {
+    min-width: 600px !important;
+  }
+
+  /* Tableaux de bord plateforme */
+  .platform-mods {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Benefits grid hopitaux — 2 colonnes */
+  .benefits-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1px !important;
+  }
+
+  /* Fondateur avatar */
+  .founder-avatar, [class*="w-36 h-36"] {
+    width: 100px !important;
+    height: 100px !important;
+  }
+
+  /* Quote panel */
+  .quote-panel, .bottom-statement {
+    padding: 1.5rem !important;
+  }
+
+  /* CTA form */
+  .cta-form {
+    flex-direction: column !important;
+  }
+  .cta-input {
+    min-width: unset !important;
+    width: 100% !important;
+  }
+
+  /* Footer */
+  .footer-top {
+    flex-direction: column !important;
+    gap: 2rem !important;
+  }
+  .footer-bottom {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+  }
+  .footer-badges {
+    flex-wrap: wrap !important;
+  }
+
+  /* Strip hopitaux — colonne */
+  .hosp-strip {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Cases grid — 1 colonne */
+  .cases-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* AI layout */
+  .ai-layout, .ai-caps {
+    gap: 0.5rem !important;
+  }
+  .ai-cap {
+    font-size: .62rem !important;
+    padding: .22rem .55rem !important;
+  }
+
+  /* Geo section */
+  .geo-grid, .whynow-grid, .teach-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* Pillar items */
+  .pillar-item, .prob-item, .wf-step {
+    padding: 1rem 0 !important;
+  }
+
+  /* Stat cards */
+  .stat-card {
+    padding: 1.5rem !important;
+  }
+  .stat-n {
+    font-size: 2rem !important;
+  }
+
+  /* Feature rows */
+  .feat-row {
+    grid-template-columns: 48px 1fr !important;
+  }
+  .feat-row-body {
+    padding: 1.2rem 1rem !important;
+  }
+
+  /* Teach cases */
+  .teach-case {
+    flex-direction: column !important;
+    gap: .4rem !important;
+  }
+}
+
+/* Très petit écran */
+@media (max-width: 380px) {
+  .features-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .chiffres-inner {
+    grid-template-columns: 1fr !important;
+  }
+  .benefits-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
