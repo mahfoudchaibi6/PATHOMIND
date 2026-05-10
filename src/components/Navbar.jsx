@@ -21,7 +21,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 lg:px-16 transition-all duration-300 ${scrolled ? 'h-16' : 'h-20'}`}
+      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 lg:px-16 transition-all duration-300 ${scrolled ? 'h-20' : 'h-24'}`}
       style={{
         background: scrolled ? 'rgba(6,13,26,0.97)' : 'transparent',
         borderBottom: scrolled ? '1px solid rgba(255,255,255,0.08)' : '1px solid transparent',
@@ -30,11 +30,16 @@ export default function Navbar() {
       }}
     >
       {/* Logo */}
-      <a href="#" className="flex items-center gap-3">
+      <a href="#" className="flex items-center">
         <img
           src="/logo.png"
           alt="PathoMind"
-          style={{ height: '38px', width: 'auto', objectFit: 'contain' }}
+          style={{
+            height: '70px',
+            width: 'auto',
+            objectFit: 'contain',
+            transition: 'height 0.3s',
+          }}
         />
       </a>
 
@@ -89,9 +94,9 @@ export default function Navbar() {
             padding: '1.5rem',
           }}
         >
-          {/* Logo mobile menu */}
+          {/* Logo dans menu mobile */}
           <div className="flex justify-center mb-4 pb-4" style={{ borderBottom: '1px solid #e5e7eb' }}>
-            <img src="/logo.png" alt="PathoMind" style={{ height: '32px', width: 'auto' }} />
+            <img src="/logo.png" alt="PathoMind" style={{ height: '50px', width: 'auto' }} />
           </div>
 
           {links.map((l) => (
@@ -112,6 +117,7 @@ export default function Navbar() {
               {l.label}
             </a>
           ))}
+
           <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid #e5e7eb' }}>
             <a
               href="#contact"
