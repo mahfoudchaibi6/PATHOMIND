@@ -320,3 +320,130 @@
     grid-template-columns: 1fr !important;
   }
 }
+/* ══════════════════════════════════════════════
+   PathoMind — Palette Marine + Violet (Option 3)
+   Remplace les variables de couleur dans index.css
+   ══════════════════════════════════════════════ */
+
+/* Copiez-collez TOUT ce bloc à la FIN de votre index.css */
+
+:root {
+  --ink:    #080d1a;
+  --blue:   #1246a8;
+  --blue2:  #1a5cd4;
+  --blue3:  #3a7ff5;
+  --purple: #4c1d95;
+  --purple2:#6d28d9;
+  --purple3:#7c3aed;
+  --violet: #a78bfa;
+  --ice:    #ede9fe;
+  --frost:  #f5f3ff;
+}
+
+/* ── Accents violets sur les eyebrows ── */
+.eyebrow::before          { background: #7c3aed !important; }
+.eyebrow                  { color: #7c3aed !important; }
+.eyebrow-light::before    { background: #a78bfa !important; }
+.eyebrow-light            { color: #a78bfa !important; }
+
+/* ── Bouton primary — bleu marine (inchangé, sérieux) ── */
+.btn-primary              { background: #1a5cd4 !important; }
+.btn-primary:hover        { background: #3a7ff5 !important; }
+
+/* ── Feature cards — barre top violette ── */
+.feat-card::after {
+  background: linear-gradient(90deg, #7c3aed, #a78bfa) !important;
+}
+
+/* ── Stat card — barre gauche violette ── */
+.stat-card::before        { background: #7c3aed !important; }
+
+/* ── Section sombres — accent violet ── */
+.section-dark .eyebrow-light,
+.section-dark .t-eyebrow-light { color: #a78bfa !important; }
+
+/* ── Hero badge ── */
+#hero .hero-tag {
+  background: rgba(76,29,149,.3) !important;
+  border-color: rgba(167,139,250,.25) !important;
+}
+#hero .hero-tag .w-1\.5 { background: #a78bfa !important; }
+#hero em.text-sky        { color: #a78bfa !important; }
+
+/* ── Métriques hero ── */
+#hero .font-mono.text-white\/38 { color: rgba(167,139,250,.55) !important; }
+
+/* ── Hero divider ── */
+#hero .w-10.h-px { background: rgba(167,139,250,.4) !important; }
+
+/* ── Visionneuse HES — cadre violet ── */
+.ai-overlay, [style*="border: 1.5px solid #3a7ff5"] {
+  border-color: #7c3aed !important;
+}
+
+/* ── Bande chiffres clés ── */
+.chiffres-band, [style*="background: '#1a2540'"] {
+  background: #0e0a1f !important;
+}
+.chiffre-unit { color: #a78bfa !important; }
+
+/* ── Barres de progression IA ── */
+.perf-fill, .vf-fill,
+[style*="background: var(--blue3)"],
+[style*="background:#3a7ff5"] {
+  background: linear-gradient(90deg, #7c3aed, #a78bfa) !important;
+}
+
+/* ── CTA section — fond violet foncé ── */
+#contact {
+  background: #1e1b4b !important;
+}
+#contact .btn-white {
+  background: #a78bfa !important;
+  color: #fff !important;
+}
+#contact .btn-white:hover {
+  background: #c4b5fd !important;
+}
+
+/* ── Pillar numbers & badges ── */
+.pillar-no         { color: #7c3aed !important; border-color: rgba(124,58,237,.25) !important; }
+.feat-badge        { color: #7c3aed !important; background: #f5f3ff !important; border-color: #ede9fe !important; }
+.result-badge      { color: #7c3aed !important; background: #f5f3ff !important; border-color: #ede9fe !important; }
+.ai-phase-label    { color: #a78bfa !important; }
+.case-tag          { color: #7c3aed !important; background: #f5f3ff !important; border-color: #ede9fe !important; }
+
+/* ── Fond histologique — violet ── */
+.histo-bg svg ellipse,
+.histo-bg svg circle,
+.histo-bg svg path,
+.histo-bg svg line {
+  stroke: #7c3aed !important;
+}
+
+/* ── Navigation — underline violet ── */
+.nav-links a::after,
+nav a span[class*="bg-sky"] {
+  background: #a78bfa !important;
+}
+
+/* ── Pub chips fondateur ── */
+.pub-chip .w-1\.5.bg-blue-2 { background: #7c3aed !important; }
+
+/* ── Footer badges ── */
+.bio-block-label { color: #a78bfa !important; }
+.bio-block-label span { background: #a78bfa !important; }
+
+/* ── Scrollbar accent ── */
+::-webkit-scrollbar-thumb { background: #7c3aed !important; }
+
+/* ── Liens et accents texte ── */
+.text-blue-2, [class*="text-blue-2"] { color: #7c3aed !important; }
+.bg-blue-2, [class*="bg-blue-2"]     { background: #1a5cd4 !important; }
+.border-blue-2                        { border-color: #7c3aed !important; }
+
+/* ── Quote panel fondateur ── */
+.vq-mark, .quote-mark { color: rgba(124,58,237,.28) !important; }
+
+/* ── AI caps hover ── */
+.ai-cap:hover { border-color: rgba(167,139,250,.4) !important; color: #a78bfa !important; }

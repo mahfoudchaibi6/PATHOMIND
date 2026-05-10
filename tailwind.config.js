@@ -10,7 +10,7 @@ export default {
       },
       colors: {
         ink: {
-          DEFAULT: '#060d1a',
+          DEFAULT: '#080d1a',
           2: '#1a2540',
           3: '#2d3f60',
         },
@@ -19,35 +19,20 @@ export default {
           2: '#1a5cd4',
           3: '#3a7ff5',
         },
-        sky: '#6baef8',
-        ice: '#d6e8ff',
-        frost: '#eef4ff',
+        purple: {
+          DEFAULT: '#4c1d95',
+          2: '#6d28d9',
+          3: '#7c3aed',
+          4: '#a78bfa',
+          5: '#c4b5fd',
+        },
+        sky: '#a78bfa',
+        ice: '#ede9fe',
+        frost: '#f5f3ff',
         offwhite: '#f7f9fc',
         border: '#dce4f0',
         muted: '#7a8fae',
         text: '#2a3550',
-      },
-      letterSpacing: {
-        widest2: '.18em',
-      },
-      animation: {
-        breathe: 'breathe 4s ease-in-out infinite',
-        scan: 'scan 3s linear infinite',
-        scanpulse: 'scanpulse 3s ease-in-out infinite',
-      },
-      keyframes: {
-        breathe: {
-          '0%, 100%': { transform: 'scale(1)' },
-          '50%': { transform: 'scale(1.04)' },
-        },
-        scan: {
-          from: { top: '0%' },
-          to: { top: '100%' },
-        },
-        scanpulse: {
-          '0%, 100%': { boxShadow: '0 0 0 4px rgba(58,127,245,0.1)' },
-          '50%': { boxShadow: '0 0 0 8px rgba(58,127,245,0.05)' },
-        },
       },
     },
   },
