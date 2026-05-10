@@ -62,7 +62,7 @@ export default function Hero() {
           <h1
             className="font-serif font-medium text-white mb-0"
             style={{
-              fontSize: 'clamp(2.6rem, 4.8vw, 4.4rem)',
+              fontSize: 'clamp(1.7rem, 7vw, 4.4rem)',
               lineHeight: 1.07,
               letterSpacing: '-.03em',
             }}
