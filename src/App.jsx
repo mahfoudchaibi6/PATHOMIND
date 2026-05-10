@@ -1,4 +1,5 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import SplashScreen from './components/SplashScreen'
 import Navbar from './components/Navbar'
 import Hero from './sections/Hero'
 import ChiffresCles from './sections/ChiffresCles'
@@ -12,8 +13,10 @@ import CTA from './sections/CTA'
 import Footer from './sections/Footer'
 
 export default function App() {
-  // Scroll reveal — runs once after mount
+  const [splashDone, setSplashDone] = useState(false)
+
   useEffect(() => {
+    if (!splashDone) return
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -25,23 +28,26 @@ export default function App() {
     const els = document.querySelectorAll('.reveal')
     els.forEach((el) => observer.observe(el))
     return () => observer.disconnect()
-  }, [])
+  }, [splashDone])
 
   return (
     <>
-      <Navbar />
-      <main>
-        <Hero />
-        <ChiffresCles />
-        <Probleme />
-        <Solution />
-        <Hopitaux />
-        <PourPathologistes />
-        <IASection />
-        <Fondateur />
-        <CTA />
-      </main>
-      <Footer />
+      {!splashDone && <SplashScreen onComplete={() => setSplashDone(true)} />}
+      <div style={{ opacity: splashDone ? 1 : 0, transition: 'opacity .8s ease' }}>
+        <Navbar />
+        <main>
+          <Hero />
+          <ChiffresCles />
+          <Probleme />
+          <Solution />
+          <Hopitaux />
+          <PourPathologistes />
+          <IASection />
+          <Fondateur />
+          <CTA />
+        </main>
+        <Footer />
+      </div>
     </>
   )
 }
