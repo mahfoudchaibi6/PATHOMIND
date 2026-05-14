@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 
 export default function SplashScreen({ onComplete }) {
-  const [phase, setPhase] = useState('enter') // enter | visible | exit
+  const [phase, setPhase] = useState('enter')
 
   useEffect(() => {
     const t1 = setTimeout(() => setPhase('visible'), 100)
-    const t2 = setTimeout(() => setPhase('exit'), 2800)
-    const t3 = setTimeout(() => onComplete(), 3500)
+    const t2 = setTimeout(() => setPhase('exit'), 3200)
+    const t3 = setTimeout(() => onComplete(), 3900)
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3) }
   }, [])
 
@@ -20,173 +20,199 @@ export default function SplashScreen({ onComplete }) {
         transition: 'opacity .7s ease',
         opacity: phase === 'exit' ? 0 : phase === 'visible' ? 1 : 0,
         pointerEvents: phase === 'exit' ? 'none' : 'all',
+        overflow: 'hidden',
       }}
     >
-      {/* Neural network SVG */}
-      <div style={{ position: 'relative', width: 280, height: 200, marginBottom: '2rem' }}>
-        <svg
-          viewBox="0 0 280 200"
-          width="280" height="200"
-          style={{ position: 'absolute', inset: 0 }}
-        >
-          <defs>
-            <filter id="glow">
-              <feGaussianBlur stdDeviation="2" result="blur"/>
-              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-          </defs>
+      <style>{`
+        @keyframes logoEntry {
+          0%   { opacity:0; transform:scale(.5) translateY(30px);
+                 filter:drop-shadow(0 0 0px rgba(124,58,237,0)); }
+          60%  { opacity:1; transform:scale(1.06) translateY(-6px);
+                 filter:drop-shadow(0 0 80px rgba(167,139,250,1)); }
+          100% { opacity:1; transform:scale(1) translateY(0);
+                 filter:drop-shadow(0 0 40px rgba(124,58,237,.7)); }
+        }
+        @keyframes orbBreath {
+          0%,100% { transform:translate(-50%,-50%) scale(1); }
+          50%     { transform:translate(-50%,-50%) scale(1.2); }
+        }
+        @keyframes ringPulse {
+          0%,100% { transform:scale(1); opacity:.35; }
+          50%     { transform:scale(1.08); opacity:.75; }
+        }
+        @keyframes ringPulse2 {
+          0%,100% { transform:scale(1); opacity:.2; }
+          50%     { transform:scale(1.12); opacity:.5; }
+        }
+        @keyframes scanLogo {
+          0%   { top:calc(50% - 200px); opacity:0; }
+          8%   { opacity:.9; }
+          92%  { opacity:.9; }
+          100% { top:calc(50% + 200px); opacity:0; }
+        }
+        @keyframes orbit {
+          0%   { opacity:0; transform:rotate(var(--start)) translateX(var(--r)) scale(0); }
+          10%  { opacity:.9; transform:rotate(calc(var(--start) + 36deg)) translateX(var(--r)) scale(1); }
+          90%  { opacity:.9; }
+          100% { opacity:0; transform:rotate(calc(var(--start) + 360deg)) translateX(var(--r)) scale(0); }
+        }
+        @keyframes fadeUp {
+          from { opacity:0; transform:translateY(14px); }
+          to   { opacity:1; transform:none; }
+        }
+        @keyframes fillBar {
+          0%  { width:0%; }
+          20% { width:18%; }
+          55% { width:65%; }
+          85% { width:88%; }
+          100%{ width:100%; }
+        }
+        @keyframes dotBounce {
+          0%,100% { transform:scale(1); opacity:.4; }
+          50%     { transform:scale(1.7); opacity:1; }
+        }
+      `}</style>
 
-          {/* ── Edges ── */}
-          {EDGES.map((e, i) => (
-            <line
-              key={i}
-              x1={e.x1} y1={e.y1} x2={e.x2} y2={e.y2}
-              stroke="#7c3aed"
-              strokeWidth=".9"
-              opacity=".35"
-              strokeDasharray="4 4"
-              style={{ animation: `dash ${1.2 + (i % 4) * .2}s linear infinite` }}
-            />
-          ))}
+      {/* Orbe de fond */}
+      <div style={{
+        position: 'absolute', borderRadius: '50%',
+        width: '70vw', height: '70vw',
+        maxWidth: 700, maxHeight: 700,
+        background: 'rgba(124,58,237,.16)',
+        filter: 'blur(100px)',
+        top: '50%', left: '50%',
+        animation: 'orbBreath 3.5s ease-in-out infinite',
+        pointerEvents: 'none',
+      }}/>
+      <div style={{
+        position: 'absolute', borderRadius: '50%',
+        width: '40vw', height: '40vw',
+        maxWidth: 400, maxHeight: 400,
+        background: 'rgba(167,139,250,.1)',
+        filter: 'blur(60px)',
+        top: '35%', left: '60%',
+        animation: 'orbBreath 4s .5s ease-in-out infinite',
+        pointerEvents: 'none',
+      }}/>
 
-          {/* ── Nodes ── */}
-          {NODES.map((n, i) => (
-            <g key={i} filter={n.output ? 'url(#glow)' : undefined}>
-              <circle
-                cx={n.x} cy={n.y}
-                r={n.output ? 10 : n.hidden ? 7 : 6}
-                fill={n.output ? '#a78bfa' : n.hidden ? '#7c3aed' : '#4c1d95'}
-                opacity={n.output ? 1 : .85}
-                style={{
-                  animation: `nodePulse ${2 + (i % 3) * .4}s ease-in-out infinite`,
-                  animationDelay: `${i * .18}s`,
-                }}
-              />
-              {n.output && (
-                <circle cx={n.x} cy={n.y} r="16"
-                  fill="none" stroke="#a78bfa" strokeWidth=".8" opacity=".3"
-                  style={{ animation: 'ringPulse 2s ease-in-out infinite' }}
-                />
-              )}
-            </g>
-          ))}
+      {/* Zone logo — occupe tout l'écran */}
+      <div style={{
+        position: 'relative',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        width: '80vmin', height: '80vmin',
+        maxWidth: 600, maxHeight: 600,
+      }}>
+        {/* Anneau 1 */}
+        <div style={{
+          position: 'absolute',
+          width: '105%', height: '105%',
+          borderRadius: '50%',
+          border: '1px solid rgba(167,139,250,.25)',
+          animation: 'ringPulse 2.5s 1.2s ease-in-out infinite',
+        }}/>
+        {/* Anneau 2 */}
+        <div style={{
+          position: 'absolute',
+          width: '120%', height: '120%',
+          borderRadius: '50%',
+          border: '1px solid rgba(124,58,237,.12)',
+          animation: 'ringPulse2 2.8s 1.4s ease-in-out infinite',
+        }}/>
 
-          {/* ── Signal particles ── */}
-          {PARTICLES.map((p, i) => (
-            <circle key={i} r="2.5" fill="#c4b5fd" opacity=".9">
-              <animateMotion
-                dur={`${p.dur}s`}
-                repeatCount="indefinite"
-                begin={`${p.delay}s`}
-                path={p.path}
-              />
-            </circle>
-          ))}
-        </svg>
-      </div>
+        {/* Scan line */}
+        <div style={{
+          position: 'absolute',
+          left: '50%', transform: 'translateX(-50%)',
+          width: '75%', height: 2,
+          background: 'linear-gradient(90deg, transparent, #a78bfa, transparent)',
+          animation: 'scanLogo 2.2s 1s ease-in-out infinite',
+          borderRadius: 1,
+        }}/>
 
-      {/* Logo */}
-      <div style={{ textAlign: 'center' }}>
+        {/* Particules orbitales */}
+        {[
+          { size: 7, dur: 3,   delay: 1.2, start: '0deg',   r: '52%' },
+          { size: 5, dur: 3.8, delay: 1.5, start: '120deg', r: '52%' },
+          { size: 6, dur: 2.9, delay: 1.8, start: '240deg', r: '52%' },
+          { size: 4, dur: 4.2, delay: 2.1, start: '60deg',  r: '46%' },
+          { size: 3, dur: 3.5, delay: 2.4, start: '180deg', r: '46%' },
+        ].map((p, i) => (
+          <div key={i} style={{
+            position: 'absolute',
+            width: p.size, height: p.size,
+            borderRadius: '50%',
+            background: '#a78bfa',
+            '--start': p.start,
+            '--r': p.r,
+            '--dur': `${p.dur}s`,
+            animation: `orbit ${p.dur}s ${p.delay}s linear infinite`,
+          }}/>
+        ))}
+
+        {/* Logo — grand format */}
         <img
           src="/logo.png"
           alt="PathoMind"
-          style={{ height: '52px', width: 'auto', marginBottom: '1rem' }}
-          onError={e => { e.target.style.display = 'none' }}
+          style={{
+            width: '100%', height: '100%',
+            objectFit: 'contain',
+            animation: 'logoEntry 1.3s cubic-bezier(.22,.68,0,1.2) forwards',
+            opacity: 0,
+            position: 'relative', zIndex: 2,
+          }}
         />
+      </div>
+
+      {/* Texte sous le logo */}
+      <div style={{ textAlign: 'center', marginTop: '2rem', zIndex: 2 }}>
         <div style={{
           fontFamily: '"JetBrains Mono", monospace',
-          fontSize: '.62rem', letterSpacing: '.2em',
-          textTransform: 'uppercase', color: 'rgba(167,139,250,.6)',
-          marginBottom: '1.2rem',
+          fontSize: 'clamp(.6rem, 2vw, .8rem)',
+          letterSpacing: '.25em',
+          textTransform: 'uppercase',
+          color: 'rgba(167,139,250,.7)',
+          animation: 'fadeUp 1s 1.2s ease forwards',
+          opacity: 0,
         }}>
           IA · Pathologie Digitale · Algérie
         </div>
 
-        {/* Progress bar */}
+        {/* Barre de progression */}
         <div style={{
-          width: 160, height: 1,
+          width: 'clamp(120px, 30vw, 200px)',
+          height: 1,
           background: 'rgba(124,58,237,.2)',
-          borderRadius: 1, margin: '0 auto',
+          borderRadius: 1,
+          margin: '1rem auto 0',
           overflow: 'hidden',
+          animation: 'fadeUp 1s 1.3s ease forwards',
+          opacity: 0,
         }}>
           <div style={{
             height: '100%',
-            background: 'linear-gradient(90deg, #7c3aed, #a78bfa)',
-            borderRadius: 1,
-            animation: 'progressBar 2.6s ease forwards',
+            background: 'linear-gradient(90deg, #7c3aed, #a78bfa, #c4b5fd)',
+            animation: 'fillBar 2.8s 1.4s ease forwards',
             width: '0%',
-          }} />
+          }}/>
+        </div>
+
+        {/* Points */}
+        <div style={{
+          display: 'flex', gap: '.4rem',
+          justifyContent: 'center',
+          marginTop: '.8rem',
+          animation: 'fadeUp 1s 1.5s ease forwards',
+          opacity: 0,
+        }}>
+          {[0, .18, .36].map((d, i) => (
+            <div key={i} style={{
+              width: 5, height: 5, borderRadius: '50%',
+              background: '#7c3aed',
+              animation: `dotBounce .8s ${d}s ease-in-out infinite`,
+            }}/>
+          ))}
         </div>
       </div>
-
-      <style>{`
-        @keyframes nodePulse {
-          0%, 100% { opacity: .4; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.15); }
-        }
-        @keyframes ringPulse {
-          0%, 100% { opacity: .15; transform: scale(1); }
-          50% { opacity: .5; transform: scale(1.2); }
-        }
-        @keyframes dash {
-          to { stroke-dashoffset: -16; }
-        }
-        @keyframes progressBar {
-          0%   { width: 0%; }
-          20%  { width: 15%; }
-          60%  { width: 65%; }
-          85%  { width: 88%; }
-          100% { width: 100%; }
-        }
-      `}</style>
     </div>
   )
 }
-
-/* ── Layout data ── */
-const NODES = [
-  // Input layer (x=40)
-  { x: 40,  y: 50,  hidden: false, output: false },
-  { x: 40,  y: 90,  hidden: false, output: false },
-  { x: 40,  y: 130, hidden: false, output: false },
-  { x: 40,  y: 170, hidden: false, output: false },
-  // Hidden layer 1 (x=100)
-  { x: 100, y: 60,  hidden: true,  output: false },
-  { x: 100, y: 100, hidden: true,  output: false },
-  { x: 100, y: 140, hidden: true,  output: false },
-  // Hidden layer 2 (x=160)
-  { x: 160, y: 70,  hidden: true,  output: false },
-  { x: 160, y: 110, hidden: true,  output: false },
-  { x: 160, y: 150, hidden: true,  output: false },
-  // Hidden layer 3 (x=220)
-  { x: 220, y: 80,  hidden: true,  output: false },
-  { x: 220, y: 120, hidden: true,  output: false },
-  // Output (x=270)
-  { x: 265, y: 100, hidden: false, output: true },
-]
-
-const EDGES = [
-  // Input → H1
-  {x1:40,y1:50, x2:100,y2:60},  {x1:40,y1:50, x2:100,y2:100},
-  {x1:40,y1:90, x2:100,y2:60},  {x1:40,y1:90, x2:100,y2:100}, {x1:40,y1:90,x2:100,y2:140},
-  {x1:40,y1:130,x2:100,y2:100}, {x1:40,y1:130,x2:100,y2:140},
-  {x1:40,y1:170,x2:100,y2:100}, {x1:40,y1:170,x2:100,y2:140},
-  // H1 → H2
-  {x1:100,y1:60, x2:160,y2:70},  {x1:100,y1:60, x2:160,y2:110},
-  {x1:100,y1:100,x2:160,y2:70},  {x1:100,y1:100,x2:160,y2:110},{x1:100,y1:100,x2:160,y2:150},
-  {x1:100,y1:140,x2:160,y2:110}, {x1:100,y1:140,x2:160,y2:150},
-  // H2 → H3
-  {x1:160,y1:70, x2:220,y2:80},  {x1:160,y1:70, x2:220,y2:120},
-  {x1:160,y1:110,x2:220,y2:80},  {x1:160,y1:110,x2:220,y2:120},
-  {x1:160,y1:150,x2:220,y2:80},  {x1:160,y1:150,x2:220,y2:120},
-  // H3 → Output
-  {x1:220,y1:80, x2:255,y2:100},
-  {x1:220,y1:120,x2:255,y2:100},
-]
-
-const PARTICLES = [
-  { path: 'M40,90 L100,60 L160,70 L220,80 L265,100', dur: 1.8, delay: 0 },
-  { path: 'M40,130 L100,100 L160,110 L220,120 L265,100', dur: 2.0, delay: .4 },
-  { path: 'M40,50 L100,100 L160,150 L220,80 L265,100', dur: 2.2, delay: .8 },
-  { path: 'M40,170 L100,140 L160,70 L220,120 L265,100', dur: 1.9, delay: 1.2 },
-]
