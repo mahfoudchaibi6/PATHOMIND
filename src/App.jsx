@@ -4,10 +4,12 @@ import Navbar from './components/Navbar'
 import Hero from './sections/Hero'
 import ChiffresCles from './sections/ChiffresCles'
 import Probleme from './sections/Probleme'
+import Vision from './sections/Vision'
 import Solution from './sections/Solution'
 import Hopitaux from './sections/Hopitaux'
 import PourPathologistes from './sections/PourPathologistes'
 import IASection from './sections/IASection'
+import Impact from './sections/Impact'
 import Fondateur from './sections/Fondateur'
 import CTA from './sections/CTA'
 import Footer from './sections/Footer'
@@ -39,10 +41,12 @@ export default function App() {
           <Hero />
           <ChiffresCles />
           <Probleme />
+          <Vision />
           <Solution />
           <Hopitaux />
           <PourPathologistes />
           <IASection />
+          <Impact />
           <Fondateur />
           <CTA />
         </main>
