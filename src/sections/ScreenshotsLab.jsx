@@ -10,11 +10,11 @@ const VUES = [
     desc: "Vue d'ensemble de l'activité du laboratoire : dossiers en cours, retards, cas à valider.",
   },
   {
-    key: 'dossier',
-    label: 'Dossier patient',
-    url: 'lab.pathomind.org/dossiers',
-    srcs: ['/screenshots/lab-dossier.png'],
-    desc: 'Toute la traçabilité du prélèvement au bloc et à la lame, sur un seul écran.',
+    key: 'facturation',
+    label: 'Facturation',
+    url: 'lab.pathomind.org/caisse',
+    srcs: ['/screenshots/lab-facturation.png', '/screenshots/4_caisse_facturation.png'],
+    desc: 'Caisse du jour intégrée : encaissements, factures impayées, reçus et export CSV.',
   },
   {
     key: 'cr',
