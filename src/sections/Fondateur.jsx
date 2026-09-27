@@ -1,6 +1,6 @@
 export default function Fondateur() {
   return (
-    <section id="fondateur" className="section-white py-28 px-16 border-t border-border">
+    <section id="fondateur" className="section-white py-32 px-6 lg:px-16 border-t border-border">
       <div className="max-w-[1200px] mx-auto">
 
         {/* Eyebrow */}

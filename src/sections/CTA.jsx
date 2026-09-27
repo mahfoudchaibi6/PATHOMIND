@@ -31,7 +31,7 @@ export default function CTA() {
   }
 
   return (
-    <section id="contact" className="relative overflow-hidden py-28 px-6 lg:px-16"
+    <section id="contact" className="relative overflow-hidden py-32 px-6 lg:px-16"
       style={{ background: '#1e1b4b' }}>
       <div className="absolute inset-0" style={{
         background: 'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(124,58,237,.2) 0%, transparent 70%)',

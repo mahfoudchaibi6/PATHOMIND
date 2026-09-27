@@ -3,13 +3,9 @@ import SplashScreen from './components/SplashScreen'
 import Navbar from './components/Navbar'
 import Hero from './sections/Hero'
 import ChiffresCles from './sections/ChiffresCles'
-import Probleme from './sections/Probleme'
-import Vision from './sections/Vision'
-import Solution from './sections/Solution'
-import Hopitaux from './sections/Hopitaux'
-import PourPathologistes from './sections/PourPathologistes'
-import IASection from './sections/IASection'
-import Impact from './sections/Impact'
+import Produits from './sections/Produits'
+import ScreenshotsLab from './sections/ScreenshotsLab'
+import Consulting from './sections/Consulting'
 import Fondateur from './sections/Fondateur'
 import CTA from './sections/CTA'
 import Footer from './sections/Footer'
@@ -25,7 +21,7 @@ export default function App() {
           if (entry.isIntersecting) entry.target.classList.add('in')
         })
       },
-      { threshold: 0.09 }
+      { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
     )
     const els = document.querySelectorAll('.reveal')
     els.forEach((el) => observer.observe(el))
@@ -39,14 +35,10 @@ export default function App() {
         <Navbar />
         <main>
           <Hero />
+          <Produits />
+          <ScreenshotsLab />
+          <Consulting />
           <ChiffresCles />
-          <Probleme />
-          <Vision />
-          <Solution />
-          <Hopitaux />
-          <PourPathologistes />
-          <IASection />
-          <Impact />
           <Fondateur />
           <CTA />
         </main>

@@ -1,183 +1,149 @@
+const ICONS = {
+  lab: (
+    <>
+      <path d="M9 3h6M10 3v6.5L4.8 18.2A1.8 1.8 0 0 0 6.3 21h11.4a1.8 1.8 0 0 0 1.5-2.8L14 9.5V3"/>
+      <path d="M7.5 15h9"/>
+    </>
+  ),
+  view: (
+    <>
+      <rect x="3" y="4" width="18" height="13" rx="2"/>
+      <path d="M8 21h8M12 17v4"/>
+      <circle cx="12" cy="10.5" r="3"/>
+      <path d="m14.2 12.7 2.3 2.3"/>
+    </>
+  ),
+  ai: (
+    <>
+      <rect x="6" y="6" width="12" height="12" rx="2"/>
+      <rect x="9.5" y="9.5" width="5" height="5" rx="1"/>
+      <path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>
+    </>
+  ),
+}
+
+const BADGES = {
+  green:  { color: '#15803d', bg: '#f0fdf4', border: '#bbf7d0', dot: '#22c55e' },
+  violet: { color: '#6d28d9', bg: '#f5f3ff', border: '#ddd6fe', dot: '#7c3aed' },
+  blue:   { color: '#1d4ed8', bg: '#eff6ff', border: '#bfdbfe', dot: '#3b82f6' },
+}
+
+const PRODUITS = [
+  {
+    key: 'lab',
+    name: 'PathoMind Lab',
+    tag: "LIS d'anatomopathologie",
+    badge: { label: 'Disponible maintenant', tone: 'green' },
+    desc: "Le système d'information de laboratoire qui accompagne chaque dossier, du prélèvement au compte-rendu signé.",
+    features: [
+      'Dossiers patients & prescripteurs',
+      'Traçabilité prélèvements → blocs → lames',
+      'Worklist pathologiste',
+      'Éditeur de compte-rendu avec modèles',
+      'Export PDF automatique',
+    ],
+    cta: 'Demander une démo',
+    primary: true,
+  },
+  {
+    key: 'view',
+    name: 'PathoMind View',
+    tag: 'Pathologie digitale & téléexpertise',
+    badge: { label: 'En déploiement', tone: 'violet' },
+    desc: 'La lame entière dans le navigateur, partagée en toute sécurité entre établissements.',
+    features: [
+      'Visionneuse WSI haute résolution',
+      'Annotations collaboratives',
+      'Téléexpertise inter-établissements',
+      'Compatible SVS · NDPI · MRXS',
+    ],
+    cta: 'Rejoindre le programme pilote',
+  },
+  {
+    key: 'ai',
+    name: 'PathoMind AI',
+    tag: 'IA clinique oncologique',
+    badge: { label: 'En validation', tone: 'blue' },
+    desc: "Des algorithmes d'aide au diagnostic pour gagner en précision et en temps sur les cas oncologiques.",
+    features: [
+      'Segmentation tumorale',
+      'Quantification Ki-67 & HER2',
+      'Détection des mitoses',
+      'Priorisation des cas urgents',
+    ],
+    cta: 'Suivre la validation',
+  },
+]
+
+function Badge({ label, tone }) {
+  const b = BADGES[tone]
+  return (
+    <span className="inline-flex items-center gap-2 font-mono rounded-full px-3 py-1.5"
+      style={{ fontSize: '.62rem', letterSpacing: '.06em', color: b.color, background: b.bg, border: `1px solid ${b.border}` }}>
+      <span className="w-1.5 h-1.5 rounded-full" style={{ background: b.dot }}/>
+      {label}
+    </span>
+  )
+}
+
 export default function Produits() {
   return (
-    <section id="produits" className="py-28 px-6 lg:px-16" style={{ background: '#06080f' }}>
-      <div className="max-w-[1200px] mx-auto">
+    <section id="produits" className="pm-section bg-white">
+      <div className="max-w-[1240px] mx-auto px-6 lg:px-12">
 
-        {/* Eyebrow */}
-        <div className="reveal flex items-center gap-2 mb-5 font-mono uppercase tracking-widest" style={{ fontSize: '.68rem', color: '#a78bfa' }}>
-          <span className="block w-5 h-px" style={{ background: '#a78bfa' }}/>
-          Nos produits
+        <div className="max-w-[680px] mb-24">
+          <div className="reveal pm-eyebrow">Nos produits</div>
+          <h2 className="reveal pm-h2 text-ink mt-6">
+            Une suite, trois produits.<br/>
+            <em className="italic" style={{ color: '#7c3aed' }}>Un seul workflow.</em>
+          </h2>
+          <p className="reveal pm-lead mt-8" style={{ color: '#5b6b86' }}>
+            Chaque produit fonctionne seul et s'intègre naturellement aux autres — du laboratoire à l'IA clinique.
+          </p>
         </div>
 
-        <h2 className="reveal font-serif font-medium text-white leading-tight mb-4"
-          style={{ fontSize: 'clamp(1.8rem,3vw,2.6rem)', letterSpacing: '-.025em', maxWidth: 640 }}>
-          Deux produits. Une vision.<br/>
-          <em className="italic" style={{ color: '#a78bfa' }}>L'écosystème médical algérien digitalisé.</em>
-        </h2>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {PRODUITS.map((p, i) => (
+            <article key={p.key}
+              className="reveal pm-product-card flex flex-col rounded-2xl p-10"
+              style={{
+                transitionDelay: `${i * 0.1}s`,
+                background: p.primary ? 'linear-gradient(180deg, #faf8ff 0%, #ffffff 60%)' : '#ffffff',
+                border: `1px solid ${p.primary ? '#ddd6fe' : '#e8ecf4'}`,
+              }}>
 
-        <p className="reveal font-light leading-relaxed mb-16"
-          style={{ fontSize: '.92rem', color: 'rgba(255,255,255,.5)', maxWidth: 560 }}>
-          PathoMind développe une suite de logiciels médicaux conçus pour les laboratoires et hôpitaux algériens — simples à déployer, adaptés au terrain, souverains.
-        </p>
-
-        {/* ── DEUX PRODUITS PHARES ── */}
-        <div className="reveal grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-
-          {/* ── PathoMind Lab ── */}
-          <div className="rounded-2xl overflow-hidden flex flex-col"
-            style={{ background: '#0d1120', border: '1px solid rgba(167,139,250,.2)', boxShadow: '0 20px 60px rgba(0,0,0,.4)' }}>
-
-            {/* Header */}
-            <div className="px-8 pt-8 pb-6" style={{ borderBottom: '1px solid rgba(255,255,255,.06)' }}>
-              <div className="flex items-start justify-between mb-5">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center text-xl"
-                  style={{ background: 'rgba(124,58,237,.2)', border: '1px solid rgba(167,139,250,.25)' }}>
-                  🗂️
+              <div className="flex items-start justify-between gap-4 mb-10">
+                <div className="w-14 h-14 rounded-xl flex items-center justify-center"
+                  style={{ background: '#f5f3ff', border: '1px solid #ede9fe', color: '#7c3aed' }}>
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    {ICONS[p.key]}
+                  </svg>
                 </div>
-                <div className="flex items-center gap-1.5 font-mono px-2.5 py-1 rounded-full"
-                  style={{ fontSize: '.58rem', color: '#4ade80', background: 'rgba(74,222,128,.1)', border: '1px solid rgba(74,222,128,.2)' }}>
-                  <div className="w-1.5 h-1.5 rounded-full bg-green-400"/>
-                  Produit disponible
-                </div>
+                <Badge {...p.badge}/>
               </div>
 
-              <div className="font-mono uppercase tracking-widest mb-1" style={{ fontSize: '.6rem', color: '#8b5cf6' }}>Produit 01</div>
-              <h3 className="font-serif text-white font-medium mb-2" style={{ fontSize: '1.5rem', letterSpacing: '-.02em' }}>PathoMind Lab</h3>
-              <p className="font-light leading-relaxed" style={{ fontSize: '.82rem', color: 'rgba(255,255,255,.5)' }}>
-                Le système d'information de laboratoire d'anatomopathologie conçu pour les laboratoires privés algériens — simple, complet et opérationnel immédiatement.
-              </p>
-            </div>
+              <div className="font-mono uppercase mb-3" style={{ fontSize: '.62rem', letterSpacing: '.18em', color: '#8b93a7' }}>{p.tag}</div>
+              <h3 className="font-serif font-medium text-ink mb-5" style={{ fontSize: '1.75rem', letterSpacing: '-.025em' }}>{p.name}</h3>
+              <p className="font-light mb-10" style={{ fontSize: '.88rem', lineHeight: 1.85, color: '#5b6b86' }}>{p.desc}</p>
 
-            {/* Workflow visuel */}
-            <div className="px-8 py-6" style={{ borderBottom: '1px solid rgba(255,255,255,.06)' }}>
-              <div className="font-mono uppercase tracking-widest mb-4" style={{ fontSize: '.58rem', color: 'rgba(255,255,255,.25)' }}>
-                Workflow complet
-              </div>
-              <div className="flex items-center gap-1 flex-wrap">
-                {['Dossier', 'Prélèvement', 'Macroscopie', 'Blocs', 'Lames', 'Worklist', 'Compte-rendu', 'PDF'].map((step, i, arr) => (
-                  <div key={step} className="flex items-center gap-1">
-                    <div className="font-mono px-2.5 py-1 rounded"
-                      style={{ fontSize: '.6rem', color: '#c4b5fd', background: 'rgba(124,58,237,.15)', border: '1px solid rgba(167,139,250,.15)' }}>
-                      {step}
-                    </div>
-                    {i < arr.length - 1 && (
-                      <span style={{ color: 'rgba(167,139,250,.3)', fontSize: '.7rem' }}>→</span>
-                    )}
-                  </div>
+              <ul className="flex flex-col gap-4 mb-12 flex-1 list-none">
+                {p.features.map((f) => (
+                  <li key={f} className="flex items-start gap-3" style={{ fontSize: '.84rem', lineHeight: 1.6, color: '#2a3550' }}>
+                    <svg className="flex-shrink-0 mt-1" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#7c3aed" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="m3.5 8.5 3 3 6-7"/>
+                    </svg>
+                    {f}
+                  </li>
                 ))}
-              </div>
-            </div>
+              </ul>
 
-            {/* Features */}
-            <div className="px-8 py-6 flex-1">
-              <div className="grid grid-cols-1 gap-2.5">
-                {[
-                  { icon: '👤', text: 'Gestion patients & prescripteurs' },
-                  { icon: '🧫', text: 'Suivi prélèvements → blocs → lames' },
-                  { icon: '📝', text: 'Éditeur de CR avec modèles' },
-                  { icon: '📄', text: 'Export PDF automatique' },
-                  { icon: '📋', text: 'Worklist pathologiste' },
-                  { icon: '☁️', text: 'Hébergé en Algérie — données souveraines' },
-                ].map((f) => (
-                  <div key={f.text} className="flex items-center gap-2.5">
-                    <span style={{ fontSize: '.85rem' }}>{f.icon}</span>
-                    <span className="font-light" style={{ fontSize: '.78rem', color: 'rgba(255,255,255,.55)' }}>{f.text}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* CTA */}
-            <div className="px-8 pb-8">
-              <a href="#contact"
-                className="flex items-center justify-center gap-2 w-full font-mono font-semibold uppercase tracking-wider text-white rounded-lg transition-all duration-200"
-                style={{ fontSize: '.75rem', background: '#7c3aed', padding: '.9rem', letterSpacing: '.08em', boxShadow: '0 4px 20px rgba(124,58,237,.35)' }}
-                onMouseEnter={e => e.currentTarget.style.background='#6d28d9'}
-                onMouseLeave={e => e.currentTarget.style.background='#7c3aed'}>
-                Demander une démo PathoMind Lab
-                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+              <a href="#contact" className={p.primary ? 'pm-btn justify-center' : 'pm-btn-light justify-center'}>
+                {p.cta}
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
               </a>
-            </div>
-          </div>
-
-          {/* ── PathoMind WSI ── */}
-          <div className="rounded-2xl overflow-hidden flex flex-col"
-            style={{ background: '#0a0d18', border: '1px solid rgba(255,255,255,.08)' }}>
-
-            {/* Header */}
-            <div className="px-8 pt-8 pb-6" style={{ borderBottom: '1px solid rgba(255,255,255,.06)' }}>
-              <div className="flex items-start justify-between mb-5">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center text-xl"
-                  style={{ background: 'rgba(26,92,212,.2)', border: '1px solid rgba(107,174,248,.2)' }}>
-                  🔬
-                </div>
-                <div className="flex items-center gap-1.5 font-mono px-2.5 py-1 rounded-full"
-                  style={{ fontSize: '.58rem', color: '#a78bfa', background: 'rgba(124,58,237,.1)', border: '1px solid rgba(167,139,250,.2)' }}>
-                  <div className="w-1.5 h-1.5 rounded-full bg-violet-400"/>
-                  En déploiement
-                </div>
-              </div>
-
-              <div className="font-mono uppercase tracking-widest mb-1" style={{ fontSize: '.6rem', color: '#8b5cf6' }}>Produit 02</div>
-              <h3 className="font-serif text-white font-medium mb-2" style={{ fontSize: '1.5rem', letterSpacing: '-.02em' }}>PathoMind WSI</h3>
-              <p className="font-light leading-relaxed" style={{ fontSize: '.82rem', color: 'rgba(255,255,255,.5)' }}>
-                La plateforme de pathologie digitale — visionneuse de lames entières, téléexpertise sécurisée et intelligence artificielle clinique pour l'oncologie.
-              </p>
-            </div>
-
-            {/* Modules */}
-            <div className="px-8 py-6 flex-1">
-              <div className="font-mono uppercase tracking-widest mb-4" style={{ fontSize: '.58rem', color: 'rgba(255,255,255,.25)' }}>
-                Modules
-              </div>
-              <div className="grid grid-cols-1 gap-2.5">
-                {[
-                  { icon: '🖥️', text: 'Visionneuse WSI haute résolution' },
-                  { icon: '📡', text: 'Téléexpertise inter-établissements' },
-                  { icon: '✍️', text: 'Annotations collaboratives' },
-                  { icon: '🤖', text: 'IA — segmentation tumorale (oncologie)' },
-                  { icon: '🎓', text: 'Formation médicale & résidanat digital' },
-                  { icon: '🏥', text: 'Réseau multi-sites & CHU' },
-                ].map((f) => (
-                  <div key={f.text} className="flex items-center gap-2.5">
-                    <span style={{ fontSize: '.85rem' }}>{f.icon}</span>
-                    <span className="font-light" style={{ fontSize: '.78rem', color: 'rgba(255,255,255,.55)' }}>{f.text}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* CTA */}
-            <div className="px-8 pb-8">
-              <a href="#contact"
-                className="flex items-center justify-center gap-2 w-full font-mono font-semibold uppercase tracking-wider rounded-lg transition-all duration-200"
-                style={{ fontSize: '.75rem', color: 'rgba(255,255,255,.6)', padding: '.9rem', letterSpacing: '.08em', border: '1px solid rgba(255,255,255,.15)', background: 'transparent' }}
-                onMouseEnter={e => { e.currentTarget.style.color='#fff'; e.currentTarget.style.borderColor='rgba(255,255,255,.4)' }}
-                onMouseLeave={e => { e.currentTarget.style.color='rgba(255,255,255,.6)'; e.currentTarget.style.borderColor='rgba(255,255,255,.15)' }}>
-                En savoir plus sur PathoMind WSI
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* ── BANDE SERVICES ── */}
-        <div className="reveal grid grid-cols-1 lg:grid-cols-3 gap-4">
-          {[
-            { icon: '🔧', title: 'Intégration & déploiement', desc: 'Installation sur site, configuration sur mesure et formation des équipes médicales.' },
-            { icon: '🛟', title: 'Support technique local', desc: 'Équipe basée en Algérie — réponse rapide, assistance en français et en arabe.' },
-            { icon: '📋', title: 'Conformité & souveraineté', desc: 'Données hébergées en Algérie, conformes aux exigences du Ministère de la Santé.' },
-          ].map((s) => (
-            <div key={s.title} className="rounded-xl p-6 flex gap-4 items-start"
-              style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.06)' }}>
-              <span style={{ fontSize: '1.1rem', flexShrink: 0 }}>{s.icon}</span>
-              <div>
-                <div className="font-semibold text-white mb-1" style={{ fontSize: '.85rem' }}>{s.title}</div>
-                <div className="font-light leading-relaxed" style={{ fontSize: '.75rem', color: 'rgba(255,255,255,.38)' }}>{s.desc}</div>
-              </div>
-            </div>
+            </article>
           ))}
         </div>
-
       </div>
     </section>
   )
