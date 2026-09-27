@@ -92,7 +92,6 @@ export default function CTA() {
             <div className="flex flex-col gap-3">
               {[
                 { icon: '📧', val: 'pathomind2026@hotmail.com', href: 'mailto:pathomind2026@hotmail.com' },
-                { icon: '📞', val: '+33 7 59 10 14 52', href: 'tel:+33759101452' },
                 { icon: '📍', val: 'Algeria Venture · Dounia Parc, Dély Ibrahim 16000', href: 'https://www.google.com/maps/place//data=!4m2!3m1!1s0x128fafea06d2f2f7:0xc85fa3b9927e5616' },
               ].map((c) => (
                 <a key={c.val} href={c.href} target={c.href.startsWith('http') ? '_blank' : undefined}

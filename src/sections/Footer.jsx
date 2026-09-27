@@ -20,7 +20,6 @@ const COLS = [
 
 const CONTACT = [
   { label: 'pathomind2026@hotmail.com', href: 'mailto:pathomind2026@hotmail.com' },
-  { label: '+33 7 59 10 14 52', href: 'tel:+33759101452' },
   {
     label: 'Algeria Venture · Dounia Parc\nDély Ibrahim 16000, Alger',
     href: 'https://www.google.com/maps/place//data=!4m2!3m1!1s0x128fafea06d2f2f7:0xc85fa3b9927e5616',
