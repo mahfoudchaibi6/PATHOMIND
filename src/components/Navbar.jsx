@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 const LINKS = [
   { href: '#produits', label: 'Produits' },
@@ -10,6 +10,22 @@ const LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const bar = useRef(null)
+
+  // Barre de progression de lecture (mise à jour hors rendu React, via rAF)
+  useEffect(() => {
+    let raf = 0
+    const update = () => {
+      raf = 0
+      const max = document.documentElement.scrollHeight - window.innerHeight
+      if (bar.current) bar.current.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`
+    }
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update) }
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); cancelAnimationFrame(raf) }
+  }, [])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -20,6 +36,7 @@ export default function Navbar() {
 
   return (
     <>
+      <div ref={bar} className="pm-progress" aria-hidden="true"/>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'h-16' : 'h-24'}`}
         style={{

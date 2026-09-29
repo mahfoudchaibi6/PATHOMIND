@@ -1,4 +1,17 @@
 import HistoBackground from '../components/HistoBackground'
+import CountUp from '../components/CountUp'
+
+// Découpe un texte en mots animés ; `start` continue la numérotation d'un bloc à l'autre
+function Words({ text, start = 0 }) {
+  return text.split(' ').map((w, i) => (
+    <span key={i}>
+      <span className="pm-word" style={{ '--i': start + i }}>{w}</span>{' '}
+    </span>
+  ))
+}
+
+const L1 = 'La suite logicielle médicale conçue en Algérie.'
+const L2 = 'Par des médecins. Pour des médecins.'
 
 const METRICS = [
   { n: '3', l: 'Produits dans la suite' },
@@ -14,6 +27,10 @@ export default function Hero() {
       <div className="absolute inset-0 pointer-events-none" style={{
         background: 'radial-gradient(ellipse 70% 55% at 50% 0%, rgba(124,58,237,.28) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 85% 90%, rgba(167,139,250,.08) 0%, transparent 70%)',
       }}/>
+      <div className="pm-drift absolute pointer-events-none" aria-hidden="true" style={{
+        left: '15%', top: '-10%', width: '70%', height: '70%', filter: 'blur(40px)',
+        background: 'radial-gradient(closest-side, rgba(124,58,237,.22), transparent)',
+      }}/>
       <div className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none"
         style={{ background: 'linear-gradient(to bottom, transparent, #080d1a)' }}/>
 
@@ -26,10 +43,10 @@ export default function Hero() {
           </span>
         </div>
 
-        <h1 className="reveal font-serif font-medium text-white"
+        <h1 className="reveal pm-words font-serif font-medium text-white"
           style={{ fontSize: 'clamp(2.2rem, 5vw, 4.4rem)', lineHeight: 1.12, letterSpacing: '-.035em', transitionDelay: '.08s' }}>
-          La suite logicielle médicale conçue en Algérie.<br className="hidden md:block"/>{' '}
-          <em className="italic" style={{ color: '#a78bfa' }}>Par des médecins. Pour des médecins.</em>
+          <Words text={L1}/><br className="hidden md:block"/>
+          <em className="italic" style={{ color: '#a78bfa' }}><Words text={L2} start={L1.split(' ').length}/></em>
         </h1>
 
         <p className="reveal font-light mx-auto mt-10"
@@ -49,7 +66,7 @@ export default function Hero() {
           style={{ maxWidth: 760, borderTop: '1px solid rgba(255,255,255,.08)', transitionDelay: '.32s' }}>
           {METRICS.map((m) => (
             <div key={m.l}>
-              <div className="font-serif text-white font-medium leading-none" style={{ fontSize: 'clamp(1.8rem,3vw,2.5rem)' }}>{m.n}</div>
+              <div className="font-serif text-white font-medium leading-none" style={{ fontSize: 'clamp(1.8rem,3vw,2.5rem)' }}><CountUp value={m.n}/></div>
               <div className="font-mono uppercase mt-3" style={{ fontSize: '.64rem', letterSpacing: '.16em', color: 'rgba(167,139,250,.65)', lineHeight: 1.6 }}>{m.l}</div>
             </div>
           ))}

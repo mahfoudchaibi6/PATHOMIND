@@ -127,11 +127,16 @@ export default function ScreenshotsLab() {
             <div className="w-[52px]"/>
           </div>
           <div className="relative w-full bg-white" style={{ aspectRatio: '16 / 9' }}>
-            <Capture key={vue.key} vue={vue}/>
+            {/* Toutes les vues restent montées : fondu enchaîné, images déjà chargées */}
+            {VUES.map((v, i) => (
+              <div key={v.key} className="pm-fade absolute inset-0" data-active={i === active} aria-hidden={i !== active}>
+                <Capture vue={v}/>
+              </div>
+            ))}
           </div>
         </div>
 
-        <p className="text-center font-light mt-10 mx-auto max-w-[520px]"
+        <p key={vue.key} className="pm-caption text-center font-light mt-10 mx-auto max-w-[520px]"
           style={{ fontSize: '.88rem', lineHeight: 1.9, color: 'rgba(255,255,255,.5)' }}>
           {vue.desc}
         </p>

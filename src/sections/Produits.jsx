@@ -90,18 +90,13 @@ export default function Produits() {
             return (
               <article key={p.key} className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
 
-                <div className={`reveal lg:col-span-7 ${reversed ? 'lg:order-2' : ''}`}>
+                <div className={`reveal ${reversed ? 'reveal-right lg:order-2' : 'reveal-left'} lg:col-span-7`}>
                   <img
                     src={p.img}
                     alt={`${p.name} — ${p.tag}`}
                     loading="lazy"
                     onError={p.fallback ? (e) => { e.currentTarget.onerror = null; e.currentTarget.src = p.fallback } : undefined}
-                    className="w-full h-auto block"
-                    style={{
-                      borderRadius: 16,
-                      border: '1px solid #ece8f7',
-                      boxShadow: '0 1px 2px rgba(15,23,42,.04), 0 24px 48px -12px rgba(46,16,101,.18), 0 48px 96px -24px rgba(15,23,42,.14)',
-                    }}
+                    className="pm-shot w-full h-auto block"
                   />
                 </div>
 
