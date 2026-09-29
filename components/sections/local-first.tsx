@@ -2,6 +2,7 @@ import { DatabaseBackup, History, KeyRound, Server, Share2, WifiOff } from 'luci
 import { Card, CardDescription, CardIcon, CardTitle } from '@/components/ui/card'
 import { SectionHeader } from '@/components/section-header'
 import { Reveal } from '@/components/motion/reveal'
+import { LocalDiagram } from '@/components/sections/local-diagram'
 
 const POINTS = [
   {
@@ -35,56 +36,6 @@ const POINTS = [
     text: 'Avec Share, seul le cas que vous décidez de partager sort du laboratoire.',
   },
 ]
-
-const NODES = ['Réception', 'Technique', 'Pathologistes', 'Secrétariat & caisse']
-
-function LocalDiagram() {
-  return (
-    <div className="glass relative p-6 sm:p-8" role="img" aria-label="Schéma : postes du laboratoire reliés à un serveur PathoMind local ; le partage d’un cas vers PathoMind Share est optionnel.">
-      <div className="relative rounded-2xl border border-dashed border-white/15 p-5 pt-9 sm:p-8 sm:pt-11">
-        <span className="absolute left-5 top-3.5 font-mono text-[0.65rem] uppercase tracking-[0.16em] text-slate-500">
-          Réseau local du laboratoire
-        </span>
-
-        {/* Liaisons */}
-        <svg aria-hidden className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-          {[
-            [24, 24],
-            [76, 24],
-            [24, 80],
-            [76, 80],
-          ].map(([x, y]) => (
-            <line key={`${x}-${y}`} x1="50" y1="52" x2={x} y2={y} stroke="rgba(167,139,250,.35)" strokeWidth="0.35" vectorEffect="non-scaling-stroke" />
-          ))}
-        </svg>
-
-        <div className="relative grid grid-cols-2 gap-x-10 gap-y-28 sm:gap-x-20">
-          {NODES.map((n) => (
-            <div key={n} className="rounded-xl border border-white/10 bg-ink-900 px-3 py-3 text-center text-xs text-slate-300 sm:text-sm">
-              {n}
-            </div>
-          ))}
-        </div>
-
-        <div className="absolute left-1/2 top-[52%] -translate-x-1/2 -translate-y-1/2">
-          <div className="flex items-center gap-2.5 rounded-xl border border-brand-400/30 bg-ink-900 px-4 py-3 shadow-glow">
-            <Server className="size-4 text-brand-300" aria-hidden />
-            <span className="whitespace-nowrap text-xs font-medium text-white sm:text-sm">Serveur PathoMind</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Sortie optionnelle */}
-      <div className="flex flex-col items-center">
-        <div aria-hidden className="h-8 w-px border-l border-dashed border-cyan-accent-400/40" />
-        <div className="flex items-center gap-2.5 rounded-xl border border-cyan-accent-400/25 bg-cyan-accent-400/[0.06] px-4 py-2.5 text-xs text-slate-300 sm:text-sm">
-          <Share2 className="size-4 text-cyan-accent-300" aria-hidden />
-          Partage d’un cas via Share, <span className="text-slate-500">sur décision du pathologiste</span>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 export function LocalFirst() {
   return (

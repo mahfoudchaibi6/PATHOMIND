@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import { ArrowRight, CheckCircle2, FileCheck2 } from 'lucide-react'
+import { CheckCircle2, FileCheck2 } from 'lucide-react'
+import { DemoCta } from '@/components/demo-cta'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { BrowserFrame } from '@/components/browser-frame'
@@ -53,12 +54,7 @@ export function Hero() {
           </In>
 
           <In delay={0.18} className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button asChild size="lg" className="w-full sm:w-auto">
-              <a href="#contact">
-                Demander une démo
-                <ArrowRight />
-              </a>
-            </Button>
+            <DemoCta className="w-full sm:w-auto" />
             <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
               <a href="#produits">Découvrir la suite</a>
             </Button>

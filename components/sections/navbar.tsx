@@ -5,6 +5,7 @@ import { AnimatePresence } from 'motion/react'
 import * as m from 'motion/react-m'
 import { Menu, X } from 'lucide-react'
 import { Logo } from '@/components/logo'
+import { DemoCta } from '@/components/demo-cta'
 import { Button } from '@/components/ui/button'
 import { NAV } from '@/lib/content'
 import { cn } from '@/lib/utils'
@@ -55,9 +56,7 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <Button asChild size="sm" className="hidden sm:inline-flex">
-            <a href="#contact">Demander une démo</a>
-          </Button>
+          <DemoCta size="sm" className="hidden sm:inline-flex" />
           <button
             type="button"
             className="inline-flex size-10 items-center justify-center rounded-lg text-slate-200 hover:bg-white/5 lg:hidden"
