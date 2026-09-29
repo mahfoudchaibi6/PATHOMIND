@@ -24,12 +24,12 @@ export function Products() {
 
   return (
     <section id="produits" className="section">
-      <div className="container">
+      <div className="shell">
         <SectionHeader
           eyebrow="La suite PathoMind"
           title={
             <>
-              Trois produits, <span className="accent">un seul workflow.</span>
+              Trois produits, <span className="hl">un seul workflow.</span>
             </>
           }
           lead="Chaque module fonctionne seul et s’intègre aux autres. Commencez par la gestion du laboratoire, ajoutez la lame numérique et la télépathologie à votre rythme."

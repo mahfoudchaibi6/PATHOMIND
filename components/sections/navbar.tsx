@@ -36,7 +36,7 @@ export function Navbar() {
           : 'border-b border-transparent'
       )}
     >
-      <nav className="container flex h-16 items-center justify-between md:h-[72px]" aria-label="Navigation principale">
+      <nav className="shell flex h-16 items-center justify-between md:h-[72px]" aria-label="Navigation principale">
         <a href="#top" aria-label="PathoMind, retour en haut de page" onClick={() => setOpen(false)}>
           <Logo />
         </a>
@@ -81,7 +81,7 @@ export function Navbar() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
           >
-            <ul className="container flex flex-col gap-1 pt-6">
+            <ul className="shell flex flex-col gap-1 pt-6">
               {NAV.map((l, i) => (
                 <m.li
                   key={l.href}
@@ -99,7 +99,7 @@ export function Navbar() {
                 </m.li>
               ))}
             </ul>
-            <div className="container mt-8">
+            <div className="shell mt-8">
               <Button asChild size="lg" className="w-full">
                 <a href="#contact" onClick={() => setOpen(false)}>
                   Demander une démo

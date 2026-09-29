@@ -76,9 +76,9 @@ function LocalDiagram() {
 
       {/* Sortie optionnelle */}
       <div className="flex flex-col items-center">
-        <div aria-hidden className="h-8 w-px border-l border-dashed border-accent-400/40" />
-        <div className="flex items-center gap-2.5 rounded-xl border border-accent-400/25 bg-accent-400/[0.06] px-4 py-2.5 text-xs text-slate-300 sm:text-sm">
-          <Share2 className="size-4 text-accent-300" aria-hidden />
+        <div aria-hidden className="h-8 w-px border-l border-dashed border-cyan-accent-400/40" />
+        <div className="flex items-center gap-2.5 rounded-xl border border-cyan-accent-400/25 bg-cyan-accent-400/[0.06] px-4 py-2.5 text-xs text-slate-300 sm:text-sm">
+          <Share2 className="size-4 text-cyan-accent-300" aria-hidden />
           Partage d’un cas via Share, <span className="text-slate-500">sur décision du pathologiste</span>
         </div>
       </div>
@@ -93,13 +93,13 @@ export function LocalFirst() {
         aria-hidden
         className="pointer-events-none absolute left-[-12rem] top-1/3 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(closest-side,rgba(124,58,237,.14),transparent)] blur-2xl"
       />
-      <div className="container relative">
+      <div className="shell relative">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <SectionHeader
             eyebrow="Local-first"
             title={
               <>
-                Vos données restent <span className="accent">sous votre contrôle.</span>
+                Vos données restent <span className="hl">sous votre contrôle.</span>
               </>
             }
             lead="Les données de vos patients sont sensibles. PathoMind est conçu pour fonctionner au plus près du laboratoire, sans dépendance à un cloud étranger."

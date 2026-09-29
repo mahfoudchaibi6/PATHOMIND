@@ -11,7 +11,7 @@ const ITEMS = [
 export function TrustBar() {
   return (
     <section aria-label="Engagements PathoMind" className="border-y border-white/[0.06] bg-ink-900/60">
-      <div className="container grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-4">
+      <div className="shell grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-4">
         {ITEMS.map(({ icon: Icon, title, text }, i) => (
           <Reveal key={title} delay={i * 0.05} className="flex gap-3.5 py-7 lg:px-6 lg:first:pl-0">
             <Icon className="mt-0.5 size-5 shrink-0 text-brand-400" aria-hidden />

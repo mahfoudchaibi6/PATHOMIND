@@ -105,13 +105,13 @@ export function DemoForm() {
         aria-hidden
         className="pointer-events-none absolute left-1/2 top-0 h-[36rem] w-[60rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(124,58,237,.18),transparent)] blur-2xl"
       />
-      <div className="container relative grid gap-12 lg:grid-cols-12 lg:gap-16">
+      <div className="shell relative grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <SectionHeader
             eyebrow="Demande de démo"
             title={
               <>
-                Voyons PathoMind <span className="accent">dans votre laboratoire.</span>
+                Voyons PathoMind <span className="hl">dans votre laboratoire.</span>
               </>
             }
             lead="Une démonstration adaptée à votre organisation : laboratoire privé, service hospitalier, clinique ou partenaire IT."

@@ -3,7 +3,7 @@ import { ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 export const fieldClass =
-  'w-full rounded-[10px] border border-white/10 bg-white/[0.04] px-3.5 text-sm text-white placeholder:text-slate-500 transition-colors hover:border-white/20 focus-visible:border-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/30 focus-visible:ring-offset-0 aria-[invalid=true]:border-rose-400/60'
+  'w-full rounded-[10px] border border-white/10 bg-white/[0.04] px-3.5 text-sm text-white placeholder:text-slate-500 transition-colors hover:border-white/20 focus-visible:border-brand-400 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-400/30 focus-visible:ring-offset-0 aria-[invalid=true]:border-rose-400/60'
 
 export const Input = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
   ({ className, ...props }, ref) => <input ref={ref} className={cn(fieldClass, 'h-11', className)} {...props} />

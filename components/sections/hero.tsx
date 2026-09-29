@@ -29,7 +29,7 @@ export function Hero() {
         className="pointer-events-none absolute right-[-10rem] top-[26rem] h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(closest-side,rgba(34,211,238,.10),transparent)] blur-2xl"
       />
 
-      <div className="container relative">
+      <div className="shell relative">
         <div className="mx-auto max-w-3xl text-center">
           <In>
             <Badge tone="rollout" className="normal-case tracking-normal">
@@ -41,7 +41,7 @@ export function Hero() {
           <In delay={0.06}>
             <h1 className="mt-7 text-balance text-4xl font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl md:text-6xl">
               Votre laboratoire ACP,{' '}
-              <span className="accent">de la réception à la validation.</span>
+              <span className="hl">de la réception à la validation.</span>
             </h1>
           </In>
 
@@ -68,7 +68,7 @@ export function Hero() {
             <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate-400">
               {POINTS.map((p) => (
                 <li key={p} className="flex items-center gap-2">
-                  <CheckCircle2 className="size-4 text-accent-400/80" aria-hidden />
+                  <CheckCircle2 className="size-4 text-cyan-accent-400/80" aria-hidden />
                   {p}
                 </li>
               ))}
@@ -80,7 +80,7 @@ export function Hero() {
         <In delay={0.3} className="relative mx-auto mt-16 max-w-5xl md:mt-20">
           <div
             aria-hidden
-            className="absolute -inset-x-8 -inset-y-6 rounded-[2rem] bg-gradient-to-b from-brand-600/20 via-brand-600/5 to-transparent blur-2xl"
+            className="absolute -inset-x-8 -inset-y-6 rounded-[2rem] bg-linear-to-b from-brand-600/20 via-brand-600/5 to-transparent blur-2xl"
           />
           <BrowserFrame className="relative">
             <Image

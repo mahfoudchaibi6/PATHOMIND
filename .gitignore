@@ -6,3 +6,6 @@ next-env.d.ts
 *.tsbuildinfo
 .env*.local
 _archive-vite/
+tests/.results/
+tests/__captures__/
+playwright-report/

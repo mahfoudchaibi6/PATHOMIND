@@ -39,13 +39,13 @@ const REASONS = [
 export function Why() {
   return (
     <section id="pourquoi" className="section border-t border-white/[0.06] bg-ink-900/40">
-      <div className="container">
+      <div className="shell">
         <SectionHeader
           align="center"
           eyebrow="Pourquoi PathoMind"
           title={
             <>
-              Un outil de laboratoire, <span className="accent">pas une promesse.</span>
+              Un outil de laboratoire, <span className="hl">pas une promesse.</span>
             </>
           }
           lead="Nous préférons un logiciel fiable, utilisé chaque jour, à des fonctionnalités spectaculaires."

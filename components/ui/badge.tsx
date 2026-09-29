@@ -9,7 +9,7 @@ const badgeVariants = cva(
       tone: {
         available: 'border-emerald-400/25 bg-emerald-400/10 text-emerald-300',
         rollout: 'border-brand-400/25 bg-brand-400/10 text-brand-300',
-        info: 'border-accent-400/25 bg-accent-400/10 text-accent-300',
+        info: 'border-cyan-accent-400/25 bg-cyan-accent-400/10 text-cyan-accent-300',
         neutral: 'border-white/10 bg-white/5 text-slate-300',
       },
     },
@@ -20,7 +20,7 @@ const badgeVariants = cva(
 const dotColor = {
   available: 'bg-emerald-400',
   rollout: 'bg-brand-400',
-  info: 'bg-accent-400',
+  info: 'bg-cyan-accent-400',
   neutral: 'bg-slate-400',
 } as const
 

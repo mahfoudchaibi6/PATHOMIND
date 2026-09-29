@@ -24,7 +24,7 @@ const COLS = [
 export function Footer() {
   return (
     <footer className="border-t border-white/[0.06] bg-ink-950">
-      <div className="container py-16">
+      <div className="shell py-16">
         <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr_1.4fr]">
           <div>
             <Logo />

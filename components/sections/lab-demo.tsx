@@ -17,14 +17,14 @@ export function LabDemo() {
 
   return (
     <section id="demo-lab" className="section bg-paper">
-      <div className="container">
+      <div className="shell">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <SectionHeader
             light
             eyebrow="Aperçu · PathoMind Lab"
             title={
               <>
-                Une interface claire, <span className="accent accent-dark">pensée pour l’équipe.</span>
+                Une interface claire, <span className="hl hl-dark">pensée pour l’équipe.</span>
               </>
             }
             lead="Captures réelles du logiciel, sur un jeu de données fictif."

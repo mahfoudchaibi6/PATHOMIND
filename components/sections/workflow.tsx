@@ -14,7 +14,7 @@ export function Workflow() {
 
   return (
     <section id="workflow" className="section bg-paper text-slate-700">
-      <div className="container grid gap-14 lg:grid-cols-12 lg:gap-16">
+      <div className="shell grid gap-14 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <div className="lg:sticky lg:top-32">
             <SectionHeader
@@ -22,7 +22,7 @@ export function Workflow() {
               eyebrow="Workflow ACP"
               title={
                 <>
-                  Chaque prélèvement suivi, <span className="accent accent-dark">étape par étape.</span>
+                  Chaque prélèvement suivi, <span className="hl hl-dark">étape par étape.</span>
                 </>
               }
               lead="PathoMind suit l’organisation réelle d’un laboratoire d’anatomie et cytologie pathologiques. Rien n’est perdu entre la réception et la validation."
@@ -45,7 +45,7 @@ export function Workflow() {
           <m.div
             aria-hidden
             style={{ scaleY: progress }}
-            className="absolute bottom-6 left-[19px] top-6 w-px origin-top bg-gradient-to-b from-brand-600 via-brand-500 to-accent-500"
+            className="absolute bottom-6 left-[19px] top-6 w-px origin-top bg-linear-to-b from-brand-600 via-brand-500 to-cyan-accent-500"
           />
 
           {WORKFLOW.map((step, i) => (

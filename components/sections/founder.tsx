@@ -10,7 +10,7 @@ const RESEARCH = [
 export function Founder() {
   return (
     <section id="fondateur" className="section bg-white text-slate-700">
-      <div className="container grid gap-12 lg:grid-cols-12 lg:gap-16">
+      <div className="shell grid gap-12 lg:grid-cols-12 lg:gap-16">
         <Reveal className="lg:col-span-4">
           <div className="mx-auto max-w-[320px] lg:mx-0">
             <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-soft">
