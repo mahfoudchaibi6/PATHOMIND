@@ -24,3 +24,19 @@ test('FAQ : ouverture d’une question', async ({ page }) => {
   await expect(q).toHaveAttribute('aria-expanded', 'true')
   await expect(page.getByText('Il ne pose pas de diagnostic')).toBeVisible()
 })
+
+test('vidéo Lab : chargée seulement à l’approche, puis lue', async ({ page }) => {
+  const videoRequests: string[] = []
+  page.on('request', (r) => r.url().includes('/videos/') && videoRequests.push(r.url()))
+  await page.goto('/', { waitUntil: 'networkidle' })
+  expect(videoRequests).toHaveLength(0)
+
+  const video = page.locator('#demo-lab video')
+  await expect(video).toHaveAttribute('poster', '/products/pathomind-lab.png')
+  await expect(video).toHaveAttribute('preload', 'metadata')
+  await video.scrollIntoViewIfNeeded()
+  await expect.poll(() => videoRequests.length).toBeGreaterThan(0)
+  await expect
+    .poll(() => video.evaluate((v: HTMLVideoElement) => !v.paused && v.currentTime > 0 && v.muted), { timeout: 10_000 })
+    .toBe(true)
+})

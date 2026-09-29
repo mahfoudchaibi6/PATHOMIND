@@ -10,10 +10,20 @@ import { Reveal, EASE } from '@/components/motion/reveal'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { LAB_SCREENS } from '@/lib/content'
+import { Safari } from '@/components/ui/safari'
+import { LabVideo } from '@/components/lab-video'
+
+const VIDEO_TAB = {
+  key: 'video',
+  label: 'Visite vidéo',
+  caption: 'Le parcours complet d’un dossier en 1 min 48 : réception, macroscopie, blocs et lames, compte-rendu, PDF et facturation.',
+}
+const TABS = [VIDEO_TAB, ...LAB_SCREENS]
 
 export function LabDemo() {
-  const [active, setActive] = useState(LAB_SCREENS[0].key)
-  const screen = LAB_SCREENS.find((s) => s.key === active)!
+  const [active, setActive] = useState(VIDEO_TAB.key)
+  const tab = TABS.find((s) => s.key === active)!
+  const screen = LAB_SCREENS.find((s) => s.key === active)
 
   return (
     <section id="demo-lab" className="section bg-paper">
@@ -27,7 +37,7 @@ export function LabDemo() {
                 Une interface claire, <span className="hl hl-dark">pensée pour l’équipe.</span>
               </>
             }
-            lead="Captures réelles du logiciel, sur un jeu de données fictif."
+            lead="Vidéo et captures réelles du logiciel, sur un jeu de données fictif."
           />
           <Reveal>
             <Button asChild variant="outline">
@@ -45,7 +55,7 @@ export function LabDemo() {
               aria-label="Écrans PathoMind Lab"
               className="-mx-5 flex h-auto w-auto justify-start gap-2 overflow-x-auto rounded-none bg-transparent px-5 py-1 [scrollbar-width:none] lg:mx-0 lg:w-full lg:flex-col lg:items-stretch lg:overflow-visible lg:px-0 [&::-webkit-scrollbar]:hidden"
             >
-              {LAB_SCREENS.map((s) => (
+              {TABS.map((s) => (
                 <TabsTrigger
                   key={s.key}
                   value={s.key}
@@ -56,38 +66,37 @@ export function LabDemo() {
                 </TabsTrigger>
               ))}
             </TabsList>
-            <p className="mt-4 text-sm leading-relaxed text-slate-500 lg:hidden">{screen.caption}</p>
+            <p className="mt-4 text-sm leading-relaxed text-slate-500 lg:hidden">{tab.caption}</p>
           </Reveal>
 
           <Reveal delay={0.08} className="min-w-0 lg:col-span-8">
             <TabsContent value={active} forceMount>
-              <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-[0_30px_80px_-30px_rgba(15,23,42,.35)]">
-                <div className="flex h-8 items-center gap-1.5 border-b border-slate-100 bg-slate-50 px-3.5" aria-hidden>
-                  <span className="size-2.5 rounded-full bg-slate-200" />
-                  <span className="size-2.5 rounded-full bg-slate-200" />
-                  <span className="size-2.5 rounded-full bg-slate-200" />
-                </div>
-                <div className="relative aspect-[16/9] bg-slate-50">
+              <Safari url="lab.pathomind.local" className="drop-shadow-[0_30px_50px_rgba(15,23,42,.22)]">
+                {active === VIDEO_TAB.key ? (
+                  <LabVideo />
+                ) : (
                   <AnimatePresence initial={false}>
-                    <m.div
-                      key={screen.key}
-                      className="absolute inset-0"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.35, ease: EASE }}
-                    >
-                      <Image
-                        src={screen.src}
-                        alt={screen.alt}
-                        fill
-                        sizes="(min-width: 1024px) 780px, 100vw"
-                        className="object-cover object-top"
-                      />
-                    </m.div>
+                    {screen && (
+                      <m.div
+                        key={screen.key}
+                        className="absolute inset-0 bg-slate-50"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.35, ease: EASE }}
+                      >
+                        <Image
+                          src={screen.src}
+                          alt={screen.alt}
+                          fill
+                          sizes="(min-width: 1024px) 780px, 100vw"
+                          className="object-cover object-top"
+                        />
+                      </m.div>
+                    )}
                   </AnimatePresence>
-                </div>
-              </div>
+                )}
+              </Safari>
             </TabsContent>
           </Reveal>
         </Tabs>
