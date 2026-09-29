@@ -1,0 +1,244 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+/* Variante dark: pilotée par classe (jamais par le thème système) */
+@custom-variant dark (&:is(.dark *));
+
+/* ───────────────────────── Tokens shadcn/ui (thème sombre PathoMind) ───────────────────────── */
+:root {
+  --radius: 0.75rem;
+  --background: #070b16;
+  --foreground: #e2e8f0;
+  --card: rgb(255 255 255 / 0.03);
+  --card-foreground: #e2e8f0;
+  --popover: #0b1224;
+  --popover-foreground: #e2e8f0;
+  --primary: #7c3aed;
+  --primary-foreground: #ffffff;
+  --secondary: rgb(255 255 255 / 0.04);
+  --secondary-foreground: #f1f5f9;
+  --muted: #111a33;
+  --muted-foreground: #94a3b8;
+  --accent: rgb(255 255 255 / 0.06);
+  --accent-foreground: #ffffff;
+  --destructive: #fb7185;
+  --border: rgb(255 255 255 / 0.08);
+  --input: rgb(255 255 255 / 0.1);
+  --ring: #a78bfa;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-serif: var(--font-serif), Georgia, serif;
+  --font-mono: var(--font-mono), ui-monospace, monospace;
+  --animate-shimmer-slide: shimmer-slide var(--speed) ease-in-out infinite alternate;
+  --animate-spin-around: spin-around calc(var(--speed) * 2) infinite linear;
+  @keyframes shimmer-slide {
+  to {
+    transform: translate(calc(100cqw - 100%), 0);
+    }
+  }
+  @keyframes spin-around {
+  0% {
+    transform: translateZ(0) rotate(0);
+    }
+  15%, 35% {
+    transform: translateZ(0) rotate(90deg);
+    }
+  65%, 85% {
+    transform: translateZ(0) rotate(270deg);
+    }
+  100% {
+    transform: translateZ(0) rotate(360deg);
+    }
+  }
+}
+
+/* ───────────────────────── Design system PathoMind ───────────────────────── */
+@theme {
+  /* Noir médical / bleu nuit */
+  --color-ink-950: #070b16;
+  --color-ink-900: #0b1224;
+  --color-ink-800: #111a33;
+  --color-ink-700: #1a2544;
+
+  /* Violet PathoMind */
+  --color-brand-50: #f5f3ff;
+  --color-brand-100: #ede9fe;
+  --color-brand-200: #ddd6fe;
+  --color-brand-300: #c4b5fd;
+  --color-brand-400: #a78bfa;
+  --color-brand-500: #8b5cf6;
+  --color-brand-600: #7c3aed;
+  --color-brand-700: #6d28d9;
+  --color-brand-800: #5b21b6;
+
+  /* Cyan d'accent — usage ponctuel */
+  --color-cyan-accent-300: #67e8f9;
+  --color-cyan-accent-400: #22d3ee;
+  --color-cyan-accent-500: #06b6d4;
+
+  --color-paper: #f7f8fc;
+
+  --shadow-glow: 0 0 0 1px rgba(167, 139, 250, 0.18), 0 20px 60px -20px rgba(124, 58, 237, 0.45);
+  --shadow-product: 0 1px 2px rgba(7, 11, 22, 0.06), 0 30px 80px -24px rgba(7, 11, 22, 0.55);
+  --shadow-soft: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -12px rgba(15, 23, 42, 0.12);
+
+  --animate-drift: drift 22s ease-in-out infinite;
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes drift {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(2%, -3%, 0) scale(1.06);
+    }
+  }
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 16px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-ink-950 font-sans text-slate-200;
+  }
+
+  ::selection {
+    @apply bg-brand-600/40 text-white;
+  }
+
+  :focus-visible {
+    @apply outline-hidden ring-2 ring-brand-400 ring-offset-2 ring-offset-ink-950;
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Conteneur de page */
+@utility shell {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (width >= 48rem) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility section {
+  @apply relative py-24 md:py-32;
+}
+
+@utility eyebrow {
+  @apply inline-flex items-center gap-2 font-mono text-[0.7rem] font-medium tracking-[0.18em] text-brand-300 uppercase;
+  &::before {
+    content: '';
+    @apply block h-px w-6 bg-current opacity-60;
+  }
+}
+@utility eyebrow-dark {
+  @apply text-brand-700;
+}
+
+@utility h2 {
+  @apply text-3xl font-semibold tracking-tight text-balance text-white sm:text-4xl md:text-[2.75rem] md:leading-[1.1];
+}
+@utility h2-dark {
+  @apply text-ink-950;
+}
+@utility lead {
+  @apply text-base leading-relaxed text-pretty text-slate-400 md:text-lg;
+}
+@utility lead-dark {
+  @apply text-slate-600;
+}
+
+/* Accent typographique serif */
+@utility hl {
+  @apply font-serif font-normal text-brand-300 italic;
+}
+@utility hl-dark {
+  @apply text-brand-700;
+}
+
+/* Card glassmorphism légère */
+@utility glass {
+  @apply rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-md;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
+}
+@utility glass-hover {
+  @apply transition-[transform,border-color,background-color,box-shadow] duration-300 ease-out hover:-translate-y-0.5 hover:border-brand-400/30 hover:bg-white/[0.05] hover:shadow-glow;
+}
+
+/* Fond : grille fine masquée */
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%);
+}
