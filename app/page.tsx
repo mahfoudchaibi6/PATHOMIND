@@ -7,6 +7,7 @@ import { LocalFirst } from '@/components/sections/local-first'
 import { LabDemo } from '@/components/sections/lab-demo'
 import { Why } from '@/components/sections/why'
 import { Founder } from '@/components/sections/founder'
+import { Faq } from '@/components/sections/faq'
 import { DemoForm } from '@/components/sections/demo-form'
 import { Footer } from '@/components/sections/footer'
 
@@ -23,6 +24,7 @@ export default function Home() {
         <LabDemo />
         <Why />
         <Founder />
+        <Faq />
         <DemoForm />
       </main>
       <Footer />

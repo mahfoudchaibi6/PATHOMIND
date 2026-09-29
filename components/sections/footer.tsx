@@ -16,6 +16,7 @@ const COLS = [
       { label: 'Workflow ACP', href: '#workflow' },
       { label: 'Données sous contrôle', href: '#donnees' },
       { label: 'Fondateur', href: '#fondateur' },
+      { label: 'Questions fréquentes', href: '#faq' },
       { label: 'Demander une démo', href: '#contact' },
     ],
   },

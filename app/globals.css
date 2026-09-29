@@ -1,6 +1,9 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+/* Variante dark: pilotée par classe (jamais par le thème système) */
+@custom-variant dark (&:is(.dark *));
+
 /* ───────────────────────── Tokens shadcn/ui (thème sombre PathoMind) ───────────────────────── */
 :root {
   --radius: 0.75rem;

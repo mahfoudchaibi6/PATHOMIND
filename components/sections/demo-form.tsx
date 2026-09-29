@@ -5,7 +5,10 @@ import { AnimatePresence } from 'motion/react'
 import * as m from 'motion/react-m'
 import { AlertCircle, CheckCircle2, Clock, Loader2, Mail, MapPin, Send, ShieldAlert } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Input, Label, Select, Textarea } from '@/components/ui/input'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { Label } from '@/components/ui/label'
+import { NativeSelect } from '@/components/ui/field'
 import { SectionHeader } from '@/components/section-header'
 import { Reveal } from '@/components/motion/reveal'
 import { SITE } from '@/lib/content'
@@ -180,26 +183,26 @@ export function DemoForm() {
                     </div>
                     <div>
                       <Label htmlFor="f-orgType">Type d’établissement *</Label>
-                      <Select {...aria('orgType')} value={form.orgType} onChange={set('orgType')}>
+                      <NativeSelect {...aria('orgType')} value={form.orgType} onChange={set('orgType')}>
                         <option value="">Sélectionner</option>
                         <option>Laboratoire ACP privé</option>
                         <option>Service ACP hospitalier / CHU</option>
                         <option>Clinique</option>
                         <option>Partenaire healthcare IT</option>
                         <option>Institution / autre</option>
-                      </Select>
+                      </NativeSelect>
                       {err('orgType')}
                     </div>
                     <div className="sm:col-span-2">
                       <Label htmlFor="f-product">Produit qui vous intéresse</Label>
-                      <Select id="f-product" value={form.product} onChange={set('product')}>
+                      <NativeSelect id="f-product" value={form.product} onChange={set('product')}>
                         <option value="">Non précisé</option>
                         <option>PathoMind Lab</option>
                         <option>PathoMind Viewer</option>
                         <option>PathoMind Share</option>
                         <option>Suite complète</option>
                         <option>Accompagnement / intégration</option>
-                      </Select>
+                      </NativeSelect>
                     </div>
                     <div className="sm:col-span-2">
                       <Label htmlFor="f-message">Votre besoin</Label>

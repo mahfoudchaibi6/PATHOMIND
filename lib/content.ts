@@ -170,3 +170,34 @@ export const LAB_SCREENS = [
     alt: 'Écran de connexion PathoMind Lab',
   },
 ]
+
+export const FAQ = [
+  {
+    q: 'PathoMind est-il un dispositif médical certifié ?',
+    a: 'Non. PathoMind est un logiciel d’organisation et de gestion du laboratoire. Il ne pose pas de diagnostic et ne se substitue pas au jugement du pathologiste.',
+  },
+  {
+    q: 'Où sont stockées les données de nos patients ?',
+    a: 'Sur le serveur de votre laboratoire ou sur l’infrastructure que vous choisissez. Aucune donnée n’est transmise à un service tiers sans décision de votre établissement.',
+  },
+  {
+    q: 'Faut-il une connexion internet permanente ?',
+    a: 'Non pour PathoMind Lab, qui fonctionne sur le réseau local. Une connexion n’est utile que pour la télépathologie avec Share et, si vous l’autorisez, pour la maintenance à distance.',
+  },
+  {
+    q: 'Pouvons-nous reprendre nos modèles de comptes-rendus ?',
+    a: 'Oui. Le paramétrage initial comprend la reprise de vos modèles, de vos actes et de votre organisation par rôle.',
+  },
+  {
+    q: 'Comment se passent le déploiement et la formation ?',
+    a: 'Après un audit de vos flux, nous établissons un calendrier adapté à votre volume d’activité et au nombre de postes. Les équipes sont formées par rôle, sur site ou à distance.',
+  },
+  {
+    q: 'PathoMind Viewer est-il compatible avec notre scanner de lames ?',
+    a: 'Viewer est en cours de déploiement. La compatibilité est vérifiée au cas par cas : indiquez le modèle de votre scanner dans votre demande de démo.',
+  },
+  {
+    q: 'Quel est le prix ?',
+    a: 'La tarification dépend de la taille de l’établissement et des modules choisis. Nous vous transmettons une proposition détaillée après la démonstration.',
+  },
+]

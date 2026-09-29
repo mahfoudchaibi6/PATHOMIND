@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Instrument_Serif, JetBrains_Mono } from 'next/font/google'
 import { MotionProvider } from '@/components/motion/motion-provider'
-import { SITE } from '@/lib/content'
+import { FAQ, SITE } from '@/lib/content'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
@@ -69,6 +69,14 @@ const jsonLd = {
       operatingSystem: 'Web',
       description: 'Système de gestion de laboratoire d’anatomie et cytologie pathologiques.',
       publisher: { '@type': 'Organization', name: 'PathoMind' },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: FAQ.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: { '@type': 'Answer', text: a },
+      })),
     },
   ],
 }

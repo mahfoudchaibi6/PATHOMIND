@@ -1,6 +1,6 @@
 import { test, expect, type Page } from '@playwright/test'
 
-const SECTIONS = ['top', 'produits', 'workflow', 'donnees', 'demo-lab', 'pourquoi', 'fondateur', 'contact']
+const SECTIONS = ['top', 'produits', 'workflow', 'donnees', 'demo-lab', 'pourquoi', 'fondateur', 'faq', 'contact']
 
 /** Fait défiler toute la page pour déclencher les apparitions au scroll. */
 async function revealAll(page: Page) {

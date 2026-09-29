@@ -2,11 +2,11 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { AnimatePresence } from 'motion/react'
 import * as m from 'motion/react-m'
 import { ArrowRight, Check, FlaskConical, Microscope, Share2 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { SectionHeader } from '@/components/section-header'
 import { Reveal, EASE } from '@/components/motion/reveal'
 import { PRODUCTS, type ProductKey } from '@/lib/content'
@@ -35,59 +35,46 @@ export function Products() {
           lead="Chaque module fonctionne seul et s’intègre aux autres. Commencez par la gestion du laboratoire, ajoutez la lame numérique et la télépathologie à votre rythme."
         />
 
-        {/* Onglets */}
-        <Reveal delay={0.1} className="mt-12">
-          <div
-            role="tablist"
-            aria-label="Produits PathoMind"
-            className="grid grid-cols-3 gap-2 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-1.5 sm:inline-grid"
-          >
-            {PRODUCTS.map((p) => {
-              const Icon = ICONS[p.key]
-              const selected = p.key === active
-              return (
-                <button
-                  key={p.key}
-                  role="tab"
-                  id={`tab-${p.key}`}
-                  aria-selected={selected}
-                  aria-controls={`panel-${p.key}`}
-                  onClick={() => setActive(p.key)}
-                  className={cn(
-                    'relative flex items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors sm:px-5',
-                    selected ? 'text-white' : 'text-slate-400 hover:text-slate-200'
-                  )}
-                >
-                  {selected && (
-                    <m.span
-                      layoutId="product-tab"
-                      className="absolute inset-0 rounded-xl border border-brand-400/25 bg-brand-500/15"
-                      transition={{ duration: 0.35, ease: EASE }}
-                    />
-                  )}
-                  <Icon className="relative size-4" aria-hidden />
-                  <span className="relative">
-                    <span className="hidden sm:inline">PathoMind </span>
-                    {p.short}
-                  </span>
-                </button>
-              )
-            })}
-          </div>
-        </Reveal>
+        <Tabs value={active} onValueChange={(v) => setActive(v as ProductKey)} className="mt-12 gap-0">
+          <Reveal delay={0.1}>
+            <TabsList
+              aria-label="Produits PathoMind"
+              className="grid h-auto w-full grid-cols-3 gap-2 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-1.5 sm:inline-grid sm:w-auto"
+            >
+              {PRODUCTS.map((p) => {
+                const Icon = ICONS[p.key]
+                const selected = p.key === active
+                return (
+                  <TabsTrigger
+                    key={p.key}
+                    value={p.key}
+                    className="relative h-auto rounded-xl border-0 px-3 py-2.5 text-slate-400 hover:text-slate-200 data-[state=active]:bg-transparent data-[state=active]:text-white data-[state=active]:shadow-none sm:px-5"
+                  >
+                    {selected && (
+                      <m.span
+                        layoutId="product-tab"
+                        className="absolute inset-0 rounded-xl border border-brand-400/25 bg-brand-500/15"
+                        transition={{ duration: 0.35, ease: EASE }}
+                      />
+                    )}
+                    <Icon className="relative size-4" aria-hidden />
+                    <span className="relative">
+                      <span className="hidden sm:inline">PathoMind </span>
+                      {p.short}
+                    </span>
+                  </TabsTrigger>
+                )
+              })}
+            </TabsList>
+          </Reveal>
 
-        {/* Panneau produit */}
-        <div className="mt-10 min-h-[560px] lg:min-h-[520px]">
-          <AnimatePresence mode="wait" initial={false}>
+          {/* Panneau produit : transition douce à chaque changement */}
+          <TabsContent value={product.key} className="mt-10 min-h-[560px] lg:min-h-[520px]">
             <m.div
               key={product.key}
-              role="tabpanel"
-              id={`panel-${product.key}`}
-              aria-labelledby={`tab-${product.key}`}
               className="grid items-center gap-10 lg:grid-cols-12 lg:gap-14"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.4, ease: EASE }}
             >
               <div className="lg:col-span-5">
@@ -135,8 +122,8 @@ export function Products() {
                 )}
               </div>
             </m.div>
-          </AnimatePresence>
-        </div>
+          </TabsContent>
+        </Tabs>
       </div>
     </section>
   )
