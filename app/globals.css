@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 226 52% 6%;
+    --foreground: 220 33% 93%;
+    --border: 224 30% 18%;
+    --input: 224 30% 22%;
+    --ring: 262 83% 58%;
+    --primary: 262 83% 58%;
+    --primary-foreground: 0 0% 100%;
+    --muted: 224 40% 13%;
+    --muted-foreground: 215 20% 65%;
+    --radius: 0.75rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-ink-950 font-sans text-slate-200;
+  }
+
+  ::selection {
+    @apply bg-brand-600/40 text-white;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-400 ring-offset-2 ring-offset-ink-950;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Structure de section */
+  .section {
+    @apply relative py-24 md:py-32;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 font-mono text-[0.7rem] font-medium uppercase tracking-[0.18em] text-brand-300;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply block h-px w-6 bg-current opacity-60;
+  }
+  .eyebrow-dark {
+    @apply text-brand-700;
+  }
+
+  .h2 {
+    @apply text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-[2.75rem] md:leading-[1.1];
+  }
+  .h2-dark {
+    @apply text-ink-950;
+  }
+  .lead {
+    @apply text-pretty text-base leading-relaxed text-slate-400 md:text-lg;
+  }
+  .lead-dark {
+    @apply text-slate-600;
+  }
+
+  /* Accent typographique serif */
+  .accent {
+    @apply font-serif font-normal italic text-brand-300;
+  }
+  .accent-dark {
+    @apply text-brand-700;
+  }
+
+  /* Card glassmorphism légère */
+  .glass {
+    @apply rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-md;
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
+  }
+  .glass-hover {
+    @apply transition-[transform,border-color,background-color,box-shadow] duration-300 ease-out hover:-translate-y-0.5 hover:border-brand-400/30 hover:bg-white/[0.05] hover:shadow-glow;
+  }
+
+  /* Fond : grille fine masquée */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%);
+  }
+}
