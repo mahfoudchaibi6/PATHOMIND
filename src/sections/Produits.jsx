@@ -25,7 +25,7 @@ const PRODUITS = [
       'Éditeur de comptes-rendus avec modèles',
       'Export PDF automatique',
     ],
-    visual: { kind: 'browser', url: 'lab.pathomind.org/dashboard', srcs: ['/screenshots/2_tableau_de_bord.png'] },
+    visual: { kind: 'browser', url: 'lab.pathomind.org/tableau-de-bord', srcs: ['/screenshots/lab-tableau-de-bord.png'] },
     cta: 'Demander une démo',
     primary: true,
   },

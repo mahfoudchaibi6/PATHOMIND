@@ -73,7 +73,7 @@ export default function ProductVisual({ kind = 'browser', url, srcs, alt }) {
         <div className="relative transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)] group-hover:-translate-y-1.5">
           {kind === 'browser' ? (
             <BrowserFrame dark url={url}>
-              <div style={{ aspectRatio: '16 / 9.4' }}><SmartImage dark srcs={srcs} alt={alt}/></div>
+              <div style={{ aspectRatio: '16 / 10' }}><SmartImage dark srcs={srcs} alt={alt}/></div>
             </BrowserFrame>
           ) : (
             <div className="rounded-[14px] overflow-hidden"

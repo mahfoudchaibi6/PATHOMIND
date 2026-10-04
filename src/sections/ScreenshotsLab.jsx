@@ -6,25 +6,25 @@ import { EASE, scaleIn } from '../lib/animations'
 
 const VUES = [
   {
-    key: 'dashboard',
-    label: 'Tableau de bord',
-    url: 'lab.pathomind.org/dashboard',
-    srcs: ['/screenshots/2_tableau_de_bord.png'],
-    desc: "Vue d'ensemble de l'activité du laboratoire : dossiers en cours, retards, cas à valider.",
-  },
-  {
-    key: 'facturation',
-    label: 'Facturation',
-    url: 'lab.pathomind.org/caisse',
-    srcs: ['/screenshots/4_caisse_facturation.png'],
-    desc: 'Caisse du jour intégrée : encaissements, factures impayées, reçus et export CSV.',
+    key: 'accueil',
+    label: 'Accueil',
+    url: 'lab.pathomind.org/accueil',
+    srcs: ['/screenshots/lab-accueil.png'],
+    desc: "L'espace du pathologiste : dossiers reçus, urgences et comptes-rendus à valider, priorisés dès l'ouverture.",
   },
   {
     key: 'cr',
     label: 'Compte-rendu',
-    url: 'lab.pathomind.org/compte-rendu',
-    srcs: ['/screenshots/3_compte_rendu_valide.png'],
-    desc: 'Éditeur structuré avec modèles, validation et export PDF en un clic.',
+    url: 'lab.pathomind.org/dossiers/compte-rendu',
+    srcs: ['/screenshots/lab-compte-rendu.png'],
+    desc: 'Rédaction guidée à partir de modèles, champs à compléter signalés, contrôle avant validation et export PDF.',
+  },
+  {
+    key: 'dashboard',
+    label: 'Tableau de bord',
+    url: 'lab.pathomind.org/tableau-de-bord',
+    srcs: ['/screenshots/lab-tableau-de-bord.png'],
+    desc: "Activité, production, délai moyen de rendu et finances du laboratoire, en temps réel.",
   },
 ]
 
@@ -73,7 +73,7 @@ export default function ScreenshotsLab() {
             style={{ background: 'radial-gradient(50% 50% at 50% 60%, rgba(124,58,237,.35), transparent 75%)', filter: 'blur(40px)' }}/>
           <div className="relative">
             <BrowserFrame dark url={vue.url}>
-              <div className="relative w-full bg-white" style={{ aspectRatio: '16 / 9' }}>
+              <div className="relative w-full bg-white" style={{ aspectRatio: '16 / 10' }}>
                 {/* Toutes les vues restent montées : images préchargées, fondu enchaîné */}
                 {VUES.map((v, i) => (
                   <motion.div key={v.key} className="absolute inset-0" aria-hidden={i !== active}
