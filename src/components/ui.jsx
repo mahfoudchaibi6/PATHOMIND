@@ -1,6 +1,11 @@
 import { motion } from 'framer-motion'
 import { fadeInUp, inView, staggerContainer } from '../lib/animations'
 
+// Flèche « lien externe »
+export function External() {
+  return <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 3h7v7M13 3 4 12"/></svg>
+}
+
 export function Arrow({ size = 14 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

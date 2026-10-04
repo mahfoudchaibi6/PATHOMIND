@@ -2,12 +2,14 @@ import { motion } from 'framer-motion'
 import { Stagger } from '../components/ui'
 import { fadeInUp } from '../lib/animations'
 import Logo from '../components/Logo'
+import { LAB_URL } from '../lib/links'
 
 const COLS = [
   {
     title: 'Produits',
     links: [
       { label: 'PathoMind Lab', href: '#produits' },
+      { label: 'Démo PathoMind Lab ↗', href: LAB_URL, external: true },
       { label: 'PathoMind Viewer', href: '#produits' },
       { label: 'PathoMind Share', href: '#produits' },
     ],

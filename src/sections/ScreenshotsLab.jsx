@@ -1,28 +1,29 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { BrowserFrame, SmartImage } from '../components/DeviceFrame'
-import { Reveal, SectionHeading } from '../components/ui'
+import { External, Reveal, SectionHeading } from '../components/ui'
+import { LAB_HOST, LAB_URL } from '../lib/links'
 import { EASE, scaleIn } from '../lib/animations'
 
 const VUES = [
   {
     key: 'accueil',
     label: 'Accueil',
-    url: 'lab.pathomind.org/accueil',
+    url: `${LAB_HOST}/accueil`,
     srcs: ['/screenshots/lab-accueil.png'],
     desc: "L'espace du pathologiste : dossiers reçus, urgences et comptes-rendus à valider, priorisés dès l'ouverture.",
   },
   {
     key: 'cr',
     label: 'Compte-rendu',
-    url: 'lab.pathomind.org/dossiers/compte-rendu',
+    url: `${LAB_HOST}/dossiers/compte-rendu`,
     srcs: ['/screenshots/lab-compte-rendu.png'],
     desc: 'Rédaction guidée à partir de modèles, champs à compléter signalés, contrôle avant validation et export PDF.',
   },
   {
     key: 'dashboard',
     label: 'Tableau de bord',
-    url: 'lab.pathomind.org/tableau-de-bord',
+    url: `${LAB_HOST}/tableau-de-bord`,
     srcs: ['/screenshots/lab-tableau-de-bord.png'],
     desc: "Activité, production, délai moyen de rendu et finances du laboratoire, en temps réel.",
   },
@@ -99,6 +100,15 @@ export default function ScreenshotsLab() {
             </motion.p>
           </AnimatePresence>
         </div>
+
+        <Reveal className="flex flex-col items-center gap-4 mt-10">
+          <a href={LAB_URL} target="_blank" rel="noopener noreferrer" className="pm-btn">
+            Essayer PathoMind Lab en ligne <External/>
+          </a>
+          <span className="pm-mono" style={{ fontSize: '.7rem', letterSpacing: '.12em', color: 'rgba(255,255,255,.4)' }}>
+            {LAB_HOST} · démo sur invitation
+          </span>
+        </Reveal>
       </div>
     </section>
   )

@@ -1,7 +1,8 @@
 import { Fragment } from 'react'
 import { motion } from 'framer-motion'
 import ProductVisual from '../components/DeviceFrame'
-import { Arrow, SectionHeading, Stagger } from '../components/ui'
+import { Arrow, External, SectionHeading, Stagger } from '../components/ui'
+import { LAB_HOST, LAB_URL } from '../lib/links'
 import { EASE, fadeInLeft, fadeInRight, fadeInUp, inView } from '../lib/animations'
 
 const BADGES = {
@@ -25,8 +26,9 @@ const PRODUITS = [
       'Éditeur de comptes-rendus avec modèles',
       'Export PDF automatique',
     ],
-    visual: { kind: 'browser', url: 'lab.pathomind.org/tableau-de-bord', srcs: ['/screenshots/lab-tableau-de-bord.png'] },
-    cta: 'Demander une démo',
+    visual: { kind: 'browser', url: `${LAB_HOST}/tableau-de-bord`, srcs: ['/screenshots/lab-tableau-de-bord.png'] },
+    cta: 'Accéder à la démo',
+    href: LAB_URL,
     primary: true,
   },
   {
@@ -153,10 +155,19 @@ export default function Produits() {
                     {p.features.map((f) => <Feature key={f}>{f}</Feature>)}
                   </motion.ul>
 
-                  <motion.div variants={fadeInUp} className="mt-10">
-                    <a href="#contact" className={p.primary ? 'pm-btn' : 'pm-btn-ghost'}>
-                      {p.cta} <Arrow size={13}/>
-                    </a>
+                  <motion.div variants={fadeInUp} className="mt-10 flex flex-wrap items-center gap-3">
+                    {p.href ? (
+                      <>
+                        <a href={p.href} target="_blank" rel="noopener noreferrer" className="pm-btn">
+                          {p.cta} <External/>
+                        </a>
+                        <a href="#contact" className="pm-btn-ghost">Nous contacter</a>
+                      </>
+                    ) : (
+                      <a href="#contact" className={p.primary ? 'pm-btn' : 'pm-btn-ghost'}>
+                        {p.cta} <Arrow size={13}/>
+                      </a>
+                    )}
                   </motion.div>
                 </Stagger>
               </article>
