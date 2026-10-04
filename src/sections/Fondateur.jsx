@@ -1,179 +1,120 @@
+import { motion } from 'framer-motion'
+import { Reveal, Stagger } from '../components/ui'
+import { fadeInLeft, fadeInUp } from '../lib/animations'
+
+const EXPERTISES = [
+  'Pathologie digitale',
+  "IA appliquée à l'histologie",
+  'Classification des lymphomes',
+  'Prédiction de rechute DLBCL',
+  'Modernisation diagnostique en Afrique',
+]
+
+const ALGOS = [
+  {
+    num: 'Algo. I',
+    title: 'Classification morphologique des DLBCL par deep learning',
+    desc: "Modèle entraîné sur lames WSI pour classifier automatiquement les sous-types morphologiques de lymphome B diffus à grandes cellules, une tâche traditionnellement réservée à des centres experts disposant d'un panel immunohistochimique complet.",
+  },
+  {
+    num: 'Algo. II',
+    title: 'Prédiction de rechute chez les patients DLBCL',
+    desc: "Algorithme de prédiction du risque de rechute à partir des caractéristiques histologiques numériques, permettant d'identifier dès le diagnostic initial les patients nécessitant une intensification thérapeutique, sans recourir à des examens génomiques coûteux.",
+  },
+]
+
+const muted = '#5a6478'
+
+function Label({ children }) {
+  return <div className="pm-mono uppercase mb-4" style={{ fontSize: '.68rem', letterSpacing: '.18em', color: '#7c3aed' }}>{children}</div>
+}
+
 export default function Fondateur() {
   return (
-    <section id="fondateur" className="section-white py-32 px-6 lg:px-16 border-t border-border">
-      <div className="max-w-[1200px] mx-auto">
+    <section id="fondateur" className="pm-section bg-white" style={{ color: '#0a0f1e' }}>
+      <div className="pm-container">
+        <Reveal className="mb-16 md:mb-20"><span className="pm-eyebrow">Le fondateur</span></Reveal>
 
-        {/* Eyebrow */}
-        <div className="flex items-center gap-2 mb-16 reveal" style={{ fontFamily: 'var(--font-mono)', fontSize: '.7rem', letterSpacing: '.18em', textTransform: 'uppercase', color: '#7a8fae' }}>
-          <span className="block w-5 h-px bg-border flex-shrink-0" />
-          <span className="font-mono text-muted">Le fondateur</span>
-        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-16 lg:gap-24 items-start">
 
-        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-24 items-start">
-
-          {/* Left */}
-          <div className="reveal delay-1">
-            {/* Photo */}
-            <div className="relative w-36 h-36 mb-8">
-              <img
-                src="/photo.jpg"
-                alt="Dr. Mahfoud Chaibi"
-                className="w-full h-full rounded-full object-cover"
-              />
-              <div className="absolute inset-[-4px] rounded-full border border-border" />
+          {/* Profil */}
+          <Reveal variants={fadeInLeft} className="lg:sticky lg:top-28">
+            <div className="relative w-36 h-36">
+              <div aria-hidden="true" className="absolute -inset-1.5 rounded-full" style={{ background: 'conic-gradient(from 140deg, #7c3aed, #c4b5fd, #ede9fe, #7c3aed)' }}/>
+              <div aria-hidden="true" className="absolute -inset-0.5 rounded-full bg-white"/>
+              <img src="/photo.jpg" alt="Dr. Mahfoud Chaibi" className="relative w-full h-full rounded-full object-cover"/>
             </div>
 
-            <h3 className="font-serif text-ink leading-snug mb-1" style={{ fontSize: '1.5rem', letterSpacing: '-.02em' }}>
-              Dr. Mahfoud<br />Chaibi
-            </h3>
-            <div className="text-blue-2 font-medium leading-relaxed mb-6" style={{ fontSize: '.8rem' }}>
-              Anatomopathologiste<br />
-              Pathologie digitale & IA appliquée à l'histologie
-            </div>
-
-            <div className="flex flex-col gap-2 mb-8">
-              {[
-                'Pathologie digitale',
-                "IA appliquée à l'histologie",
-                'Classification des lymphomes',
-                'Prédiction de rechute DLBCL',
-                'Modernisation diagnostique en Afrique',
-              ].map((tag) => (
-                <div key={tag} className="flex items-center gap-2 text-muted" style={{ fontSize: '.75rem' }}>
-                  <div className="w-1 h-1 rounded-full bg-blue-2 flex-shrink-0" />
-                  {tag}
-                </div>
-              ))}
-            </div>
-
-            <div className="h-px bg-border mb-6" />
-
-            <p className="font-mono uppercase tracking-widest text-muted mb-3" style={{ fontSize: '.6rem' }}>Travaux publiés</p>
-            <div className="flex flex-col gap-2">
-              {[
-                'Classification IA des DLBCL sur lames WSI',
-                'Prédiction de rechute DLBCL par deep learning',
-              ].map((pub) => (
-                <div
-                  key={pub}
-                  className="flex items-start gap-2 px-3 py-2.5 bg-offwhite border border-border rounded-md font-mono transition-all duration-200 hover:bg-frost hover:border-blue-2/20 cursor-default"
-                  style={{ fontSize: '.6rem' }}
-                >
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-2 flex-shrink-0 mt-1" />
-                  <span className="text-text leading-snug">{pub}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right — Bio */}
-          <div className="reveal delay-2">
-            <p
-              className="font-serif font-medium italic text-ink leading-relaxed mb-10 pb-10 border-b border-border"
-              style={{ fontSize: '1.35rem', letterSpacing: '-.01em' }}
-            >
-              PathoMind ne naît pas d'une idée de startup —
-              il naît d'une <span className="not-italic text-blue-2">frustration clinique</span> et d'une conviction :
-              l'anatomopathologie africaine mérite les mêmes outils
-              que celle pratiquée à Paris ou à Boston.
+            <h3 className="pm-display mt-8" style={{ fontSize: '1.9rem', lineHeight: 1.15 }}>Dr. Mahfoud Chaibi</h3>
+            <p className="mt-2" style={{ fontSize: '.9375rem', lineHeight: 1.6, color: '#6d28d9', fontWeight: 500 }}>
+              Anatomopathologiste · Fondateur
             </p>
 
-            <div className="flex flex-col gap-8 mb-8">
-              <BioBlock label="Expertise médicale">
-                Le Dr. Mahfoud Chaibi est anatomopathologiste, spécialisé dans la pathologie digitale et l'application de l'intelligence artificielle à l'analyse des lames histologiques. Sa pratique clinique quotidienne lui a permis de mesurer avec précision les lacunes de l'infrastructure diagnostique actuelle — délais de rendu, absence d'outils de téléexpertise structurée, formations sans support numérique — et d'y répondre par une solution conçue de l'intérieur, par un praticien, pour des praticiens.
-              </BioBlock>
+            <ul className="flex flex-wrap gap-2 mt-7 list-none">
+              {EXPERTISES.map((t) => (
+                <li key={t} className="rounded-full px-3 py-1" style={{ fontSize: '.8rem', lineHeight: 1.6, color: '#3d4558', background: '#f7f6fb', border: '1px solid #ecebf3' }}>{t}</li>
+              ))}
+            </ul>
+          </Reveal>
 
-              <BioBlock label="Crédibilité scientifique">
-                Ses travaux de recherche portent sur l'une des questions les plus difficiles de la lymphopathologie moderne :{' '}
-                <strong className="text-text font-medium">peut-on prédire, dès l'analyse histologique initiale, le comportement clinique d'un lymphome B diffus à grandes cellules ?</strong>{' '}
-                Ses deux algorithmes d'IA ont démontré des résultats prometteurs pour la classification moléculaire et la prédiction de rechute. Ces travaux ont fait l'objet de{' '}
-                <strong className="text-text font-medium">publications scientifiques</strong>{' '}
-                et positionnent PathoMind dans une démarche rigoureusement fondée sur la preuve clinique.
-              </BioBlock>
-            </div>
+          {/* Bio */}
+          <Stagger>
+            <motion.blockquote variants={fadeInUp} className="pm-display italic"
+              style={{ fontSize: 'clamp(1.6rem, 2.6vw, 2.15rem)', lineHeight: 1.35, letterSpacing: '-.02em', color: '#0a0f1e' }}>
+              « PathoMind ne naît pas d'une idée de startup, mais d'une <span className="pm-gradient-text-dark">frustration clinique</span> :
+              l'anatomopathologie africaine mérite les mêmes outils qu'à Paris ou à Boston. »
+            </motion.blockquote>
 
-            {/* AI algorithms */}
-            <div
-              className="mb-8 rounded-r-xl"
-              style={{ borderLeft: '3px solid #1a5cd4', paddingLeft: '1.8rem', background: 'var(--offwhite)' }}
-            >
-              <div className="py-7 pr-7">
-                <p className="font-mono uppercase tracking-widest text-blue-2 mb-5" style={{ fontSize: '.6rem' }}>
-                  Algorithmes IA développés · DLBCL
+            <motion.div variants={fadeInUp} className="pm-divider my-14"/>
+
+            <motion.div variants={fadeInUp} className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12">
+              <div>
+                <Label>Expertise médicale</Label>
+                <p style={{ fontSize: '1rem', lineHeight: 1.8, color: muted }}>
+                  Anatomopathologiste spécialisé en pathologie digitale et en IA appliquée aux lames histologiques, le Dr. Chaibi a mesuré au quotidien les lacunes de l'infrastructure diagnostique : délais de rendu, absence de téléexpertise structurée, formations sans support numérique. PathoMind y répond de l'intérieur, par un praticien, pour des praticiens.
                 </p>
-                <div className="flex flex-col gap-5">
-                  {[
-                    {
-                      num: 'Algo. I',
-                      title: 'Classification morphologique des DLBCL par deep learning',
-                      desc: "Modèle entraîné sur lames WSI pour classifier automatiquement les sous-types morphologiques de lymphome B diffus à grandes cellules — une tâche traditionnellement réservée à des centres experts disposant d'un panel immunohistochimique complet.",
-                    },
-                    {
-                      num: 'Algo. II',
-                      title: 'Prédiction de rechute chez les patients DLBCL',
-                      desc: "Algorithme de prédiction du risque de rechute à partir des caractéristiques histologiques numériques, permettant d'identifier dès le diagnostic initial les patients nécessitant une intensification thérapeutique — sans recourir à des examens génomiques coûteux.",
-                    },
-                  ].map((algo) => (
-                    <div key={algo.num} className="flex gap-5 pb-5 border-b border-border last:border-0 last:pb-0">
-                      <span className="font-mono text-blue-2 font-medium flex-shrink-0 pt-0.5" style={{ fontSize: '.65rem' }}>
-                        {algo.num}
+              </div>
+              <div>
+                <Label>Crédibilité scientifique</Label>
+                <p style={{ fontSize: '1rem', lineHeight: 1.8, color: muted }}>
+                  Ses recherches portent sur une question clé de la lymphopathologie : <strong style={{ color: '#1f2638', fontWeight: 500 }}>peut-on prédire, dès l'analyse histologique initiale, le comportement d'un lymphome B diffus à grandes cellules ?</strong> Ces travaux ont fait l'objet de publications scientifiques.
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="mt-14">
+              <Label>Algorithmes IA développés · DLBCL</Label>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {ALGOS.map((a) => (
+                  <motion.div key={a.num} whileHover={{ scale: 1.02 }} transition={{ type: 'spring', stiffness: 300, damping: 24 }}
+                    className="pm-card-light p-7">
+                    <div className="flex items-center justify-between">
+                      <span className="pm-mono" style={{ fontSize: '.72rem', letterSpacing: '.12em', color: '#7c3aed' }}>{a.num}</span>
+                      <span className="pm-mono inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5"
+                        style={{ fontSize: '.64rem', lineHeight: 1.7, color: '#6d28d9', background: '#f5f3ff', border: '1px solid #ede9fe' }}>
+                        <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#7c3aed' }}/>Publié
                       </span>
-                      <div>
-                        <div className="text-sm font-semibold text-ink mb-1.5">{algo.title}</div>
-                        <div className="font-light text-muted leading-relaxed mb-2" style={{ fontSize: '.78rem' }}>{algo.desc}</div>
-                        <div
-                          className="inline-flex items-center gap-1.5 font-mono text-blue-2 bg-frost border border-ice px-2 py-0.5 rounded-sm"
-                          style={{ fontSize: '.6rem', letterSpacing: '.05em' }}
-                        >
-                          <div className="w-1.5 h-1.5 rounded-full bg-blue-2" />
-                          Résultats prometteurs · Publié
-                        </div>
-                      </div>
                     </div>
-                  ))}
-                </div>
+                    <h4 className="mt-5" style={{ fontSize: '1.05rem', lineHeight: 1.45, fontWeight: 600, color: '#0a0f1e' }}>{a.title}</h4>
+                    <p className="mt-3" style={{ fontSize: '.9rem', lineHeight: 1.75, color: muted }}>{a.desc}</p>
+                  </motion.div>
+                ))}
               </div>
-            </div>
+            </motion.div>
 
-            {/* Quote */}
-            <div className="rounded-xl p-8 relative overflow-hidden" style={{ background: '#060d1a' }}>
-              <div
-                className="absolute top-2 left-6 font-serif leading-none select-none pointer-events-none"
-                style={{ fontSize: '5rem', lineHeight: '.8', color: 'rgba(26,92,212,.25)' }}
-              >
-                "
-              </div>
-              <p
-                className="font-serif italic text-white/80 leading-relaxed relative z-10 mb-5"
-                style={{ fontSize: '1.05rem' }}
-              >
-                J'ai développé ces algorithmes en me posant une question simple : si un patient DLBCL est suivi dans un hôpital de wilaya, sans accès à la biologie moléculaire ni à un hématopathologiste expert, comment peut-on l'aider à recevoir le bon traitement dès le départ ? La réponse est dans la lame — et l'IA peut l'y trouver.
-              </p>
-              <div
-                className="pt-5 border-t font-mono text-white/28"
-                style={{ borderColor: 'rgba(255,255,255,.07)', fontSize: '.6rem', letterSpacing: '.06em' }}
-              >
-                Dr. Mahfoud Chaibi · Fondateur, PathoMind
-              </div>
-            </div>
-
-          </div>
+            <motion.figure variants={fadeInUp} className="relative mt-14 rounded-2xl p-9 md:p-11 overflow-hidden" style={{ background: '#050810' }}>
+              <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 80% at 100% 0%, rgba(124,58,237,.25), transparent 70%)' }}/>
+              <div aria-hidden="true" className="absolute top-4 left-7 pm-display select-none" style={{ fontSize: '6rem', lineHeight: 1, color: 'rgba(167,139,250,.18)' }}>“</div>
+              <blockquote className="relative pm-display italic" style={{ fontSize: '1.2rem', lineHeight: 1.7, color: 'rgba(255,255,255,.85)' }}>
+                Si un patient DLBCL est suivi dans un hôpital de wilaya, sans accès à la biologie moléculaire ni à un hématopathologiste expert, comment l'aider à recevoir le bon traitement dès le départ ? La réponse est dans la lame, et l'IA peut l'y trouver.
+              </blockquote>
+              <figcaption className="relative pm-mono mt-7 pt-6" style={{ fontSize: '.7rem', letterSpacing: '.12em', color: 'rgba(255,255,255,.4)', borderTop: '1px solid rgba(255,255,255,.08)' }}>
+                DR. MAHFOUD CHAIBI · FONDATEUR, PATHOMIND
+              </figcaption>
+            </motion.figure>
+          </Stagger>
         </div>
       </div>
     </section>
-  )
-}
-
-function BioBlock({ label, children }) {
-  return (
-    <div>
-      <div className="flex items-center gap-2 mb-3">
-        <span className="block w-4 h-px bg-sky" />
-        <span className="font-mono text-sky uppercase tracking-widest" style={{ fontSize: '.62rem', letterSpacing: '.14em' }}>
-          {label}
-        </span>
-      </div>
-      <p className="font-light text-muted leading-relaxed" style={{ fontSize: '.9rem' }}>{children}</p>
-    </div>
   )
 }

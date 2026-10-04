@@ -14,7 +14,7 @@ export default function SplashScreen({ onComplete }) {
     <div
       style={{
         position: 'fixed', inset: 0, zIndex: 9999,
-        background: '#080d1a',
+        background: '#050810',
         display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'center',
         transition: 'opacity .7s ease',

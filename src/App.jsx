@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { MotionConfig } from 'framer-motion'
 import SplashScreen from './components/SplashScreen'
 import Navbar from './components/Navbar'
 import Hero from './sections/Hero'
@@ -13,28 +14,13 @@ import Footer from './sections/Footer'
 export default function App() {
   const [splashDone, setSplashDone] = useState(false)
 
-  useEffect(() => {
-    if (!splashDone) return
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add('in')
-        })
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
-    )
-    const els = document.querySelectorAll('.reveal')
-    els.forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
-  }, [splashDone])
-
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       {!splashDone && <SplashScreen onComplete={() => setSplashDone(true)} />}
       <div style={{ opacity: splashDone ? 1 : 0, transition: 'opacity .8s ease' }}>
-        <Navbar />
+        <Navbar ready={splashDone} />
         <main>
-          <Hero />
+          <Hero ready={splashDone} />
           <Produits />
           <ScreenshotsLab />
           <Consulting />
@@ -44,6 +30,6 @@ export default function App() {
         </main>
         <Footer />
       </div>
-    </>
+    </MotionConfig>
   )
 }

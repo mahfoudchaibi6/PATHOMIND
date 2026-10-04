@@ -5,12 +5,12 @@ export default {
     extend: {
       fontFamily: {
         serif: ['"Playfair Display"', 'Georgia', 'serif'],
-        sans: ['Sora', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       colors: {
         ink: {
-          DEFAULT: '#080d1a',
+          DEFAULT: '#0a0f1e',
           2: '#1a2540',
           3: '#2d3f60',
         },
