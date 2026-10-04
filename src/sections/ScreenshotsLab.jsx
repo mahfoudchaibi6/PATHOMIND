@@ -33,12 +33,11 @@ export default function ScreenshotsLab() {
   const vue = VUES[active]
 
   return (
-    <section id="solutions" className="pm-section relative overflow-hidden" style={{ background: '#050810' }}>
+    <section id="solutions" className="pm-section relative overflow-hidden" style={{ background: 'transparent' }}>
       <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px pm-divider-dark"/>
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{
         background: 'radial-gradient(ellipse 55% 45% at 50% 85%, rgba(124,58,237,.2) 0%, transparent 70%)',
       }}/>
-      <div aria-hidden="true" className="absolute inset-0 pm-grid-bg opacity-60 pointer-events-none"/>
 
       <div className="relative pm-container">
         <SectionHeading center dark

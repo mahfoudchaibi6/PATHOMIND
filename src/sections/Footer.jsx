@@ -36,7 +36,7 @@ const COLS = [
 
 export default function Footer() {
   return (
-    <footer className="relative" style={{ background: '#030508' }}>
+    <footer className="relative" style={{ background: 'linear-gradient(180deg, rgba(3,5,8,.7), #030508 60%)' }}>
       <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px"
         style={{ background: 'linear-gradient(90deg, transparent, #7c3aed 30%, #a78bfa 50%, #7c3aed 70%, transparent)' }}/>
       <div aria-hidden="true" className="absolute inset-x-0 top-0 h-40 pointer-events-none"
@@ -49,7 +49,7 @@ export default function Footer() {
               <Logo size={32}/>
             </a>
             <p className="mt-6 max-w-[280px]" style={{ fontSize: '.9375rem', lineHeight: 1.75, color: 'rgba(255,255,255,.45)' }}>
-              La suite logicielle médicale conçue en Algérie, par et pour les médecins.
+              Digitaliser l'anatomopathologie pour faire reculer le cancer, en Algérie et en Afrique.
             </p>
           </motion.div>
 

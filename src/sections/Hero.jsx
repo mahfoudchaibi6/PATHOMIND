@@ -1,14 +1,13 @@
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
-import Particles from '../components/Particles'
 import CountUp from '../components/CountUp'
 import { Arrow } from '../components/ui'
 import { EASE, fadeInUp, staggerContainer, wordReveal } from '../lib/animations'
 
 // Titre : chaque ligne est une liste de mots ; `accent` = mot en dégradé violet
 const LINES = [
-  [{ w: 'La' }, { w: 'suite' }, { w: 'médicale' }, { w: 'conçue' }],
-  [{ w: 'par' }, { w: 'et' }, { w: 'pour' }, { w: 'les' }, { w: 'médecins', accent: true }],
+  [{ w: 'Faire' }, { w: 'reculer' }, { w: 'le' }, { w: 'cancer,' }],
+  [{ w: 'une', accent: true }, { w: 'lame', accent: true }, { w: 'à', accent: true }, { w: 'la', accent: true }, { w: 'fois.', accent: true }],
 ]
 
 const METRICS = [
@@ -29,10 +28,9 @@ export default function Hero({ ready = true }) {
 
   return (
     <section id="hero" ref={ref} className="relative min-h-[100svh] flex items-center overflow-hidden"
-      style={{ background: 'linear-gradient(180deg, #050810 0%, #0d0825 55%, #050810 100%)' }}>
+      style={{ background: 'transparent' }}>
 
-      {/* Fond : grille, halo radial depuis la droite, particules */}
-      <div className="absolute inset-0 pm-grid-bg pointer-events-none" aria-hidden="true"/>
+      {/* Nébuleuse violette depuis la droite (les étoiles viennent du fond global) */}
       <motion.div aria-hidden="true" className="absolute pointer-events-none"
         style={{
           right: '-18%', top: '-10%', width: '80%', height: '110%',
@@ -46,9 +44,8 @@ export default function Hero({ ready = true }) {
         left: '-20%', bottom: '-30%', width: '60%', height: '70%',
         background: 'radial-gradient(closest-side, rgba(167,139,250,.08), transparent)',
       }}/>
-      <Particles count={30}/>
       <div aria-hidden="true" className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
-        style={{ background: 'linear-gradient(to bottom, transparent, #050810)' }}/>
+        style={{ background: 'linear-gradient(to bottom, transparent, rgba(5,8,16,.6))' }}/>
 
       <motion.div style={{ y, opacity: fade }} className="relative z-10 pm-container w-full text-center pt-32 pb-24 md:pt-36 md:pb-24">
         <motion.div initial="hidden" animate={state} variants={staggerContainer(0.1, 0.1)}>
@@ -89,7 +86,7 @@ export default function Hero({ ready = true }) {
           {/* Sous-titre */}
           <motion.p variants={fadeInUp} className="mx-auto mt-9"
             style={{ fontSize: 'clamp(1.0625rem, 1.4vw, 1.1875rem)', lineHeight: 1.75, color: 'rgba(255,255,255,.6)', maxWidth: 600 }}>
-            Du laboratoire d'anatomopathologie à la téléexpertise : des logiciels pensés pour la réalité des établissements algériens.
+            Nous digitalisons l'anatomopathologie, là où commence chaque diagnostic de cancer, pour des résultats plus rapides, plus précis et accessibles dans chaque wilaya.
           </motion.p>
 
           {/* CTA */}

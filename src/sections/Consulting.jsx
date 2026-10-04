@@ -31,18 +31,18 @@ const SERVICES = [
 
 export default function Consulting() {
   return (
-    <section id="consulting" className="pm-section bg-white" style={{ color: '#0a0f1e' }}>
-      <div aria-hidden="true" className="absolute inset-x-0 top-0 pm-divider"/>
+    <section id="consulting" className="pm-section">
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 pm-divider-dark"/>
       <div className="pm-container">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.35fr] gap-16 lg:gap-20 items-start">
 
           <Stagger className="lg:sticky lg:top-32">
-            <motion.div variants={fadeInUp}><span className="pm-eyebrow">Consulting & Intégration</span></motion.div>
-            <motion.h2 variants={fadeInUp} className="pm-h2 mt-6" style={{ color: '#0a0f1e' }}>
+            <motion.div variants={fadeInUp}><span className="pm-eyebrow pm-eyebrow-light">Consulting & Intégration</span></motion.div>
+            <motion.h2 variants={fadeInUp} className="pm-h2 mt-6" style={{ color: 'rgba(255,255,255,.95)' }}>
               La technologie ne suffit pas.<br/>
-              <em className="italic pm-gradient-text-dark">On vous accompagne.</em>
+              <em className="italic pm-gradient-text">On vous accompagne.</em>
             </motion.h2>
-            <motion.p variants={fadeInUp} className="pm-lead mt-7" style={{ color: '#5a6478' }}>
+            <motion.p variants={fadeInUp} className="pm-lead mt-7" style={{ color: 'rgba(255,255,255,.55)' }}>
               Nous accompagnons les laboratoires et hôpitaux dans leur transformation digitale, de l'audit initial au support au quotidien.
             </motion.p>
             <motion.div variants={fadeInUp} className="mt-10">
@@ -54,16 +54,16 @@ export default function Consulting() {
             {SERVICES.map((s) => (
               <motion.div key={s.title} variants={fadeInUp}
                 whileHover={{ scale: 1.02 }} transition={{ type: 'spring', stiffness: 300, damping: 24 }}
-                className="pm-card-light p-8">
+                className="pm-card p-8">
                 <div className="flex items-center justify-between mb-8">
                   <span className="w-11 h-11 rounded-xl flex items-center justify-center"
-                    style={{ background: 'linear-gradient(145deg, #f5f1ff, #ede7ff)', border: '1px solid #e4dcff' }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{s.icon}</svg>
+                    style={{ background: 'rgba(124,58,237,.12)', border: '1px solid rgba(167,139,250,.2)' }}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c4b5fd" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{s.icon}</svg>
                   </span>
-                  <span className="pm-mono" style={{ fontSize: '.72rem', letterSpacing: '.18em', color: '#b7a6f5' }}>{s.n}</span>
+                  <span className="pm-mono" style={{ fontSize: '.72rem', letterSpacing: '.18em', color: 'rgba(167,139,250,.6)' }}>{s.n}</span>
                 </div>
-                <h3 className="pm-display" style={{ fontSize: '1.4rem', lineHeight: 1.25, letterSpacing: '-.02em', color: '#0a0f1e' }}>{s.title}</h3>
-                <p className="mt-3" style={{ fontSize: '.9375rem', lineHeight: 1.75, color: '#5a6478' }}>{s.desc}</p>
+                <h3 className="pm-display" style={{ fontSize: '1.4rem', lineHeight: 1.25, letterSpacing: '-.02em', color: 'rgba(255,255,255,.95)' }}>{s.title}</h3>
+                <p className="mt-3" style={{ fontSize: '.9375rem', lineHeight: 1.75, color: 'rgba(255,255,255,.5)' }}>{s.desc}</p>
               </motion.div>
             ))}
           </Stagger>

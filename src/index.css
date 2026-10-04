@@ -217,14 +217,6 @@
 .pm-navlink:hover::after { width: 100%; }
 
 /* ── Fonds ── */
-.pm-grid-bg {
-  background-image:
-    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
-  background-size: 72px 72px;
-  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 80%);
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 80%);
-}
 .pm-divider {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(124,58,237,.35), transparent);

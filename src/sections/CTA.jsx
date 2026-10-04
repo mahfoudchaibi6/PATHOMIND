@@ -61,9 +61,8 @@ export default function CTA() {
   }
 
   return (
-    <section id="contact" className="pm-section relative overflow-hidden" style={{ background: '#050810' }}>
+    <section id="contact" className="pm-section relative overflow-hidden" style={{ background: 'transparent' }}>
       <div aria-hidden="true" className="absolute inset-x-0 top-0 pm-divider-dark"/>
-      <div aria-hidden="true" className="absolute inset-0 pm-grid-bg opacity-50 pointer-events-none"/>
       <div aria-hidden="true" className="absolute pointer-events-none" style={{
         right: '-10%', top: '10%', width: '70%', height: '80%',
         background: 'radial-gradient(closest-side, rgba(124,58,237,.22), transparent)', filter: 'blur(20px)',

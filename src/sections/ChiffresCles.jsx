@@ -25,7 +25,8 @@ const PILIERS = [
 
 export default function ChiffresCles() {
   return (
-    <section className="pm-section relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #050810 0%, #0b0820 50%, #050810 100%)' }}>
+    <section className="pm-section relative overflow-hidden">
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 pm-divider-dark"/>
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{
         background: 'radial-gradient(ellipse 50% 40% at 50% 0%, rgba(124,58,237,.16), transparent 70%)',
       }}/>

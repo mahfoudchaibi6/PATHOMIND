@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { MotionConfig } from 'framer-motion'
 import SplashScreen from './components/SplashScreen'
 import Navbar from './components/Navbar'
+import Starfield from './components/Starfield'
 import Hero from './sections/Hero'
 import ChiffresCles from './sections/ChiffresCles'
 import Produits from './sections/Produits'
@@ -17,7 +18,8 @@ export default function App() {
   return (
     <MotionConfig reducedMotion="user">
       {!splashDone && <SplashScreen onComplete={() => setSplashDone(true)} />}
-      <div style={{ opacity: splashDone ? 1 : 0, transition: 'opacity .8s ease' }}>
+      <Starfield />
+      <div className="relative" style={{ zIndex: 1, opacity: splashDone ? 1 : 0, transition: 'opacity .8s ease' }}>
         <Navbar ready={splashDone} />
         <main>
           <Hero ready={splashDone} />

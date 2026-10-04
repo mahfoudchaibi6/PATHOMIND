@@ -61,28 +61,24 @@ export default function ProductVisual({ kind = 'browser', url, srcs, alt }) {
   return (
     <div className="group relative">
       {/* Halo */}
-      <div aria-hidden="true" className="absolute -inset-6 md:-inset-10 rounded-[32px] opacity-70 transition-opacity duration-700 group-hover:opacity-100"
-        style={{ background: 'radial-gradient(60% 60% at 50% 50%, rgba(124,58,237,.18), transparent 70%)', filter: 'blur(20px)' }}/>
-      <div className="relative rounded-[24px] p-3 sm:p-5 md:p-7"
+      <div aria-hidden="true" className="absolute -inset-6 md:-inset-10 rounded-[32px] opacity-60 transition-opacity duration-700 group-hover:opacity-100"
+        style={{ background: 'radial-gradient(60% 60% at 50% 50%, rgba(124,58,237,.32), transparent 70%)', filter: 'blur(30px)' }}/>
+      <div className="relative rounded-[24px] p-3 sm:p-5 md:p-6 transition-colors duration-500 group-hover:border-[rgba(124,58,237,.4)]"
         style={{
-          background: 'linear-gradient(145deg, #f6f3ff 0%, #eef0fb 50%, #f8f7fc 100%)',
-          border: '1px solid #ece8f8',
+          background: 'linear-gradient(145deg, rgba(124,58,237,.12) 0%, rgba(255,255,255,.025) 45%, rgba(255,255,255,.02) 100%)',
+          border: '1px solid rgba(255,255,255,.08)',
+          backdropFilter: 'blur(10px)',
+          WebkitBackdropFilter: 'blur(10px)',
         }}>
-        <div aria-hidden="true" className="absolute inset-0 rounded-[24px] pointer-events-none" style={{
-          backgroundImage: 'linear-gradient(rgba(124,58,237,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(124,58,237,.06) 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-          WebkitMaskImage: 'radial-gradient(ellipse at center, #000 20%, transparent 75%)',
-          maskImage: 'radial-gradient(ellipse at center, #000 20%, transparent 75%)',
-        }}/>
         <div className="relative transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)] group-hover:-translate-y-1.5">
           {kind === 'browser' ? (
-            <BrowserFrame url={url}>
-              <div style={{ aspectRatio: '16 / 9.4' }}><SmartImage srcs={srcs} alt={alt}/></div>
+            <BrowserFrame dark url={url}>
+              <div style={{ aspectRatio: '16 / 9.4' }}><SmartImage dark srcs={srcs} alt={alt}/></div>
             </BrowserFrame>
           ) : (
             <div className="rounded-[14px] overflow-hidden"
-              style={{ border: '1px solid rgba(255,255,255,.6)', boxShadow: '0 30px 60px -20px rgba(46,16,101,.3), 0 60px 120px -40px rgba(15,23,42,.2)' }}>
-              <div style={{ aspectRatio: '16 / 9' }}><SmartImage srcs={srcs} alt={alt} imgClassName="object-cover object-center"/></div>
+              style={{ border: '1px solid rgba(255,255,255,.1)', boxShadow: '0 40px 90px -30px rgba(0,0,0,.8), 0 0 0 1px rgba(167,139,250,.06)' }}>
+              <div style={{ aspectRatio: '16 / 9' }}><SmartImage dark srcs={srcs} alt={alt} imgClassName="object-cover object-center"/></div>
             </div>
           )}
         </div>

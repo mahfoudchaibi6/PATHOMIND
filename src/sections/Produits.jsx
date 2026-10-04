@@ -5,9 +5,9 @@ import { Arrow, SectionHeading, Stagger } from '../components/ui'
 import { EASE, fadeInLeft, fadeInRight, fadeInUp, inView } from '../lib/animations'
 
 const BADGES = {
-  green:  { color: '#15803d', bg: '#f0fdf4', border: '#bbf7d0', dot: '#22c55e', pulse: true },
-  violet: { color: '#6d28d9', bg: '#f5f3ff', border: '#ddd6fe', dot: '#7c3aed' },
-  blue:   { color: '#1d4ed8', bg: '#eff6ff', border: '#bfdbfe', dot: '#3b82f6' },
+  green:  { color: '#86efac', bg: 'rgba(34,197,94,.1)',  border: 'rgba(34,197,94,.28)',  dot: '#22c55e', pulse: true },
+  violet: { color: '#c4b5fd', bg: 'rgba(124,58,237,.12)', border: 'rgba(167,139,250,.28)', dot: '#a78bfa' },
+  blue:   { color: '#93c5fd', bg: 'rgba(59,130,246,.1)',  border: 'rgba(96,165,250,.28)',  dot: '#60a5fa' },
 }
 
 const PRODUITS = [
@@ -91,10 +91,10 @@ const checkV = {
 
 function Feature({ children }) {
   return (
-    <motion.li variants={itemV} className="flex items-start gap-3.5" style={{ fontSize: '1rem', lineHeight: 1.6, color: '#1f2638' }}>
+    <motion.li variants={itemV} className="flex items-start gap-3.5" style={{ fontSize: '1rem', lineHeight: 1.6, color: 'rgba(255,255,255,.82)' }}>
       <span className="flex-shrink-0 mt-[3px] w-5 h-5 rounded-full flex items-center justify-center"
-        style={{ background: '#f3efff', border: '1px solid #e4dcff' }}>
-        <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="#7c3aed" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        style={{ background: 'rgba(124,58,237,.15)', border: '1px solid rgba(167,139,250,.3)' }}>
+        <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="#c4b5fd" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <motion.path d="m3.5 8.5 3 3 6-7" variants={checkV}/>
         </svg>
       </span>
@@ -105,12 +105,16 @@ function Feature({ children }) {
 
 export default function Produits() {
   return (
-    <section id="produits" className="pm-section bg-white overflow-hidden" style={{ color: '#0a0f1e' }}>
+    <section id="produits" className="pm-section overflow-hidden">
+      <div aria-hidden="true" className="absolute pointer-events-none" style={{
+        left: '-25%', top: '20%', width: '70%', height: '60%',
+        background: 'radial-gradient(closest-side, rgba(124,58,237,.12), transparent)', filter: 'blur(20px)',
+      }}/>
       <div className="pm-container">
 
-        <SectionHeading
+        <SectionHeading dark
           eyebrow="Nos produits"
-          title={<>Une suite, trois produits.<br/><em className="italic pm-gradient-text-dark">Un seul workflow.</em></>}
+          title={<>Une suite, trois produits.<br/><em className="italic pm-gradient-text">Un seul workflow.</em></>}
           lead="Chaque produit fonctionne seul et s'intègre naturellement aux autres, du laboratoire à la téléexpertise."
           className="mb-24 md:mb-32"
         />
@@ -119,7 +123,7 @@ export default function Produits() {
           const reversed = i % 2 === 1
           return (
             <Fragment key={p.key}>
-              {i > 0 && <div className="pm-divider my-24 md:my-32" aria-hidden="true"/>}
+              {i > 0 && <div className="pm-divider-dark my-24 md:my-32" aria-hidden="true"/>}
               <article className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-center">
 
                 <motion.div {...inView} variants={reversed ? fadeInRight : fadeInLeft}
@@ -133,14 +137,14 @@ export default function Produits() {
                     <Badge {...p.badge}/>
                   </motion.div>
                   <motion.h3 variants={fadeInUp} className="pm-display mt-6"
-                    style={{ fontSize: 'clamp(2.1rem, 3.4vw, 2.75rem)', color: '#0a0f1e', lineHeight: 1.1 }}>
+                    style={{ fontSize: 'clamp(2.1rem, 3.4vw, 2.75rem)', color: 'rgba(255,255,255,.95)', lineHeight: 1.1 }}>
                     {p.name}
                   </motion.h3>
                   <motion.div variants={fadeInUp} className="pm-mono uppercase mt-4"
-                    style={{ fontSize: '.7rem', letterSpacing: '.16em', color: '#7c3aed', lineHeight: 1.6 }}>
+                    style={{ fontSize: '.7rem', letterSpacing: '.16em', color: '#a78bfa', lineHeight: 1.6 }}>
                     {p.tag}
                   </motion.div>
-                  <motion.p variants={fadeInUp} className="mt-6" style={{ fontSize: '1.0625rem', lineHeight: 1.8, color: '#5a6478' }}>
+                  <motion.p variants={fadeInUp} className="mt-6" style={{ fontSize: '1.0625rem', lineHeight: 1.8, color: 'rgba(255,255,255,.55)' }}>
                     {p.desc}
                   </motion.p>
 
@@ -150,7 +154,7 @@ export default function Produits() {
                   </motion.ul>
 
                   <motion.div variants={fadeInUp} className="mt-10">
-                    <a href="#contact" className={p.primary ? 'pm-btn' : 'pm-btn-outline'}>
+                    <a href="#contact" className={p.primary ? 'pm-btn' : 'pm-btn-ghost'}>
                       {p.cta} <Arrow size={13}/>
                     </a>
                   </motion.div>
