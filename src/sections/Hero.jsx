@@ -12,7 +12,7 @@ const LINES = [
 
 const METRICS = [
   { n: '3', l: 'Produits intégrés' },
-  { n: '58', l: 'Wilayas couvertes' },
+  { n: '24h', l: 'Délai de réponse support' },
   { n: '100%', l: 'Données hébergées en Algérie' },
 ]
 
