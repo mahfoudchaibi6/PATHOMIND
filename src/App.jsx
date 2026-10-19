@@ -9,6 +9,7 @@ import ChiffresCles from './sections/ChiffresCles'
 import Produits from './sections/Produits'
 import Boitier from './sections/Boitier'
 import ScreenshotsLab from './sections/ScreenshotsLab'
+import Tarifs from './sections/Tarifs'
 import Consulting from './sections/Consulting'
 import Fondateur from './sections/Fondateur'
 import CTA from './sections/CTA'
@@ -28,6 +29,7 @@ export default function App() {
           <Produits />
           <Boitier />
           <ScreenshotsLab />
+          <Tarifs />
           <Consulting />
           <ChiffresCles />
           <Fondateur />
