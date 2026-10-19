@@ -12,7 +12,7 @@ const VUES = [
     key: 'accueil',
     label: 'Accueil',
     url: `${LAB_HOST}/accueil`,
-    srcs: ['/screenshots/lab-accueil.png'],
+    srcs: ['/screenshots/lab-accueil.webp', '/screenshots/lab-accueil.png'],
     desc: "L'espace du pathologiste : dossiers reçus, urgences et comptes-rendus à valider, priorisés dès l'ouverture.",
   },
   {
@@ -26,7 +26,7 @@ const VUES = [
     key: 'dashboard',
     label: 'Tableau de bord',
     url: `${LAB_HOST}/tableau-de-bord`,
-    srcs: ['/screenshots/lab-tableau-de-bord.png'],
+    srcs: ['/screenshots/lab-tableau-de-bord.webp', '/screenshots/lab-tableau-de-bord.png'],
     desc: "Activité, production, délai moyen de rendu et finances du laboratoire, en temps réel.",
   },
 ]

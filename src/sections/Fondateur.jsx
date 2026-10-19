@@ -59,7 +59,7 @@ export default function Fondateur() {
             <div className="relative w-32 h-32">
               <div aria-hidden="true" className="absolute -inset-1.5 rounded-full" style={{ background: 'conic-gradient(from 140deg, #7c3aed, #c4b5fd, #4c1d95, #7c3aed)' }}/>
               <div aria-hidden="true" className="absolute -inset-0.5 rounded-full" style={{ background: '#050810' }}/>
-              <img src="/photo.jpg" alt="Dr. Mahfoud Chaibi, anatomopathologiste et fondateur de PathoMind" loading="lazy" decoding="async"
+              <img src="/photo.webp" alt="Dr. Mahfoud Chaibi, anatomopathologiste et fondateur de PathoMind" loading="lazy" decoding="async"
                 width="128" height="128" className="relative w-full h-full rounded-full object-cover"/>
             </div>
             <h3 className="pm-display mt-7" style={{ fontSize: '1.8rem', lineHeight: 1.15, color: 'rgba(255,255,255,.95)' }}>Dr. Mahfoud Chaibi</h3>

@@ -151,7 +151,7 @@ export default function SplashScreen({ onComplete }) {
 
         {/* Logo — grand format */}
         <img
-          src="/logo.png"
+          src="/logo.webp"
           alt="PathoMind"
           style={{
             width: '100%', height: '100%',

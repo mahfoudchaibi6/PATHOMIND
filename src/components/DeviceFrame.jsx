@@ -44,7 +44,7 @@ export function BrowserFrame({ url, children, dark = false }) {
         </div>
         <div className="flex-1 flex justify-center">
           <div className="pm-mono flex items-center gap-2 rounded-md px-3 py-1 w-full max-w-[340px] justify-center"
-            style={{ fontSize: '.66rem', lineHeight: 1.4, color: dark ? 'rgba(255,255,255,.45)' : '#8a8fa3', background: dark ? 'rgba(255,255,255,.05)' : '#eeedf4' }}>
+            style={{ fontSize: '.66rem', lineHeight: 1.4, color: dark ? 'rgba(255,255,255,.6)' : '#8a8fa3', background: dark ? 'rgba(255,255,255,.05)' : '#eeedf4' }}>
             <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
             <span className="truncate">{url}</span>
           </div>

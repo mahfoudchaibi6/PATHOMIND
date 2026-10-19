@@ -28,7 +28,7 @@ const PRODUITS = [
       'Éditeur de comptes-rendus avec modèles',
       'Export PDF automatique',
     ],
-    visual: { kind: 'browser', url: `${LAB_HOST}/tableau-de-bord`, srcs: ['/screenshots/lab-tableau-de-bord.png'] },
+    visual: { kind: 'browser', url: `${LAB_HOST}/tableau-de-bord`, srcs: ['/screenshots/lab-tableau-de-bord.webp', '/screenshots/lab-tableau-de-bord.png'] },
     demo: true,
   },
   {
@@ -45,7 +45,7 @@ const PRODUITS = [
       'Compatible H&E, IHC, FISH',
       'Accès multi-utilisateurs',
     ],
-    visual: { kind: 'photo', srcs: ['/products/pathomind-viewer.png'] },
+    visual: { kind: 'photo', srcs: ['/products/pathomind-viewer.webp', '/products/pathomind-viewer.png'] },
     cta: 'Être informé du lancement',
   },
   {
@@ -62,7 +62,7 @@ const PRODUITS = [
       'Deuxième avis expert',
       'Annotations collaboratives',
     ],
-    visual: { kind: 'photo', srcs: ['/products/pathomind-share.png'] },
+    visual: { kind: 'photo', srcs: ['/products/pathomind-share.webp', '/products/pathomind-share.png'] },
     cta: 'Être informé du lancement',
   },
 ]

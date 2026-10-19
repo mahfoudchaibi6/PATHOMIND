@@ -107,7 +107,7 @@ export default function Hero({ ready = true }) {
                   <div className="pm-display" style={{ fontSize: 'clamp(2rem, 3.6vw, 2.9rem)', color: '#fff', lineHeight: 1 }}>
                     <CountUp value={m.n} start={ready} delay={0.9 + i * 0.12}/>
                   </div>
-                  <div className="pm-mono uppercase mt-4 px-2" style={{ fontSize: '.66rem', letterSpacing: '.16em', color: 'rgba(167,139,250,.7)', lineHeight: 1.6 }}>
+                  <div className="pm-mono uppercase mt-4 px-2" style={{ fontSize: '.66rem', letterSpacing: '.16em', color: 'rgba(167,139,250,.92)', lineHeight: 1.6 }}>
                     {m.l}
                   </div>
                 </div>

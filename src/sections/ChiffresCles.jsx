@@ -47,7 +47,7 @@ export default function ChiffresCles() {
                   style={{ background: 'rgba(124,58,237,.12)', border: '1px solid rgba(167,139,250,.2)' }}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c4b5fd" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{c.icon}</svg>
                 </span>
-                <span className="pm-mono" style={{ fontSize: '.72rem', letterSpacing: '.18em', color: 'rgba(167,139,250,.6)' }}>{c.n}</span>
+                <span className="pm-mono" style={{ fontSize: '.72rem', letterSpacing: '.18em', color: '#a78bfa' }}>{c.n}</span>
               </div>
               <h3 className="pm-display mt-10" style={{ fontSize: '1.5rem', lineHeight: 1.25, letterSpacing: '-.02em', color: 'rgba(255,255,255,.95)' }}>{c.title}</h3>
               <p className="mt-3" style={{ fontSize: '.9375rem', lineHeight: 1.75, color: 'rgba(255,255,255,.5)' }}>{c.desc}</p>
