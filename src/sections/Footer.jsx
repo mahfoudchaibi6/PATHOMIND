@@ -2,14 +2,15 @@ import { motion } from 'framer-motion'
 import { Stagger } from '../components/ui'
 import { fadeInUp } from '../lib/animations'
 import Logo from '../components/Logo'
-import { LAB_URL } from '../lib/links'
+import { LAB_DEMO_URL } from '../lib/links'
+import { ADDRESS, EMAIL_HREF, EMAIL_LABEL, MAPS_URL, PHONE_HREF, PHONE_LABEL, WHATSAPP_HREF, WHATSAPP_LABEL } from '../lib/site'
 
 const COLS = [
   {
     title: 'Produits',
     links: [
       { label: 'PathoMind Lab', href: '#produits' },
-      { label: 'Démo PathoMind Lab ↗', href: LAB_URL, external: true },
+      { label: 'Démo PathoMind Lab ↗', href: LAB_DEMO_URL, external: true },
       { label: 'PathoMind Viewer', href: '#produits' },
       { label: 'PathoMind Share', href: '#produits' },
     ],
@@ -17,21 +18,21 @@ const COLS = [
   {
     title: 'Entreprise',
     links: [
-      { label: 'Solutions', href: '#solutions' },
+      { label: 'Installation', href: '#boitier' },
+      { label: 'Tarifs', href: '#tarifs' },
       { label: 'Consulting', href: '#consulting' },
       { label: 'Fondateur', href: '#fondateur' },
+      { label: 'FAQ', href: '#faq' },
       { label: 'Demander une démo', href: '#contact' },
     ],
   },
   {
     title: 'Contact',
     links: [
-      { label: 'pathomind2026@hotmail.com', href: 'mailto:pathomind2026@hotmail.com' },
-      {
-        label: 'Algeria Venture · Dounia Parc\nDély Ibrahim 16000, Alger',
-        href: 'https://www.google.com/maps/place//data=!4m2!3m1!1s0x128fafea06d2f2f7:0xc85fa3b9927e5616',
-        external: true,
-      },
+      { label: EMAIL_LABEL, href: EMAIL_HREF },
+      { label: PHONE_LABEL, href: PHONE_HREF },
+      { label: WHATSAPP_LABEL, href: WHATSAPP_HREF, external: true },
+      { label: ADDRESS.replace(', ', '\n'), href: MAPS_URL, external: true },
     ],
   },
 ]
@@ -50,21 +51,21 @@ export default function Footer() {
             <a href="#hero" className="inline-flex" aria-label="PathoMind — accueil">
               <Logo size={32}/>
             </a>
-            <p className="mt-6 max-w-[280px]" style={{ fontSize: '.9375rem', lineHeight: 1.75, color: 'rgba(255,255,255,.45)' }}>
+            <p className="mt-6 max-w-[280px]" style={{ fontSize: '.9375rem', lineHeight: 1.75, color: 'rgba(255,255,255,.6)' }}>
               Digitaliser l'anatomopathologie pour faire reculer le cancer, en Algérie et en Afrique.
             </p>
           </motion.div>
 
           {COLS.map((col) => (
             <motion.div key={col.title} variants={fadeInUp} className={col.title === 'Contact' ? 'col-span-2 md:col-span-1' : ''}>
-              <h5 className="pm-mono uppercase mb-6" style={{ fontSize: '.68rem', letterSpacing: '.2em', color: 'rgba(167,139,250,.75)' }}>{col.title}</h5>
+              <h5 className="pm-mono uppercase mb-6" style={{ fontSize: '.68rem', letterSpacing: '.2em', color: 'rgba(167,139,250,.9)' }}>{col.title}</h5>
               <ul className="flex flex-col gap-3 list-none">
                 {col.links.map((l) => (
                   <li key={l.label}>
-                    <a href={l.href}
+                    <a href={l.href || undefined}
                       target={l.external ? '_blank' : undefined}
                       rel={l.external ? 'noopener noreferrer' : undefined}
-                      className="whitespace-pre-line text-white/55 hover:text-white transition-colors duration-200"
+                      className="whitespace-pre-line break-words text-white/60 hover:text-white transition-colors duration-200"
                       style={{ fontSize: '.9375rem', lineHeight: 1.7 }}>
                       {l.label}
                     </a>
@@ -76,10 +77,10 @@ export default function Footer() {
         </Stagger>
 
         <div className="flex items-center justify-between flex-wrap gap-4 pt-8" style={{ borderTop: '1px solid rgba(255,255,255,.06)' }}>
-          <p className="pm-mono" style={{ fontSize: '.7rem', letterSpacing: '.06em', color: 'rgba(255,255,255,.32)' }}>
+          <p className="pm-mono" style={{ fontSize: '.7rem', letterSpacing: '.06em', color: 'rgba(255,255,255,.55)' }}>
             © {new Date().getFullYear()} PathoMind · Éditeur de logiciels médicaux · Algérie
           </p>
-          <p className="pm-mono inline-flex items-center gap-2" style={{ fontSize: '.7rem', letterSpacing: '.06em', color: 'rgba(255,255,255,.32)' }}>
+          <p className="pm-mono inline-flex items-center gap-2" style={{ fontSize: '.7rem', letterSpacing: '.06em', color: 'rgba(255,255,255,.55)' }}>
             <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#22c55e', boxShadow: '0 0 8px #22c55e' }}/>
             Incubé à Algeria Venture
           </p>

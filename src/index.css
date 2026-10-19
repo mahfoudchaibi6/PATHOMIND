@@ -263,7 +263,7 @@
   outline: none;
   transition: border-color .25s ease, box-shadow .25s ease, background .25s ease;
 }
-.pm-field::placeholder { color: rgba(255,255,255,.3); }
+.pm-field::placeholder { color: rgba(255,255,255,.5); }
 .pm-field:hover { border-color: rgba(255,255,255,.18); }
 .pm-field:focus {
   border-color: rgba(167,139,250,.6);
@@ -285,7 +285,7 @@ select.pm-field option { background: #0d0a1f; color: #fff; }
   font-size: .66rem;
   letter-spacing: .16em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.45);
+  color: rgba(255,255,255,.62);
 }
 
 /* ── Scrollbar ── */

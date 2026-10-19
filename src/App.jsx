@@ -3,6 +3,7 @@ import { MotionConfig } from 'framer-motion'
 import SplashScreen from './components/SplashScreen'
 import Navbar from './components/Navbar'
 import Starfield from './components/Starfield'
+import WhatsAppFloat from './components/WhatsAppFloat'
 import Hero from './sections/Hero'
 import ChiffresCles from './sections/ChiffresCles'
 import Produits from './sections/Produits'
@@ -31,6 +32,7 @@ export default function App() {
           <CTA />
         </main>
         <Footer />
+        <WhatsAppFloat />
       </div>
     </MotionConfig>
   )

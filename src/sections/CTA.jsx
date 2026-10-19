@@ -1,35 +1,53 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Arrow, Reveal, Stagger } from '../components/ui'
 import { EASE, fadeInRight, fadeInUp } from '../lib/animations'
+import { CONTACT_EVENT } from '../lib/contact'
+import {
+  ADDRESS, EMAIL_HREF, EMAIL_LABEL, MAPS_URL, PHONE_HREF, PHONE_LABEL, WHATSAPP_HREF, WHATSAPP_LABEL,
+} from '../lib/site'
 
 const EMAILJS_SERVICE  = 'service_b7tmm2g'
 const EMAILJS_TEMPLATE = 'template_558y11r'
 const EMAILJS_KEY      = 'UYHtFLisDfCmXL72J'
 
-const EMPTY = { name: '', email: '', org: '', product: '', message: '' }
+const EMPTY = { name: '', email: '', phone: '', org: '', city: '', product: '', subject: '', message: '' }
 
+// href null = info pas encore fournie : affichée comme texte (placeholder visible)
 const CONTACTS = [
   {
-    label: 'pathomind2026@hotmail.com',
-    href: 'mailto:pathomind2026@hotmail.com',
+    label: EMAIL_LABEL,
+    href: EMAIL_HREF,
     icon: <path d="M4 6h16v12H4zM4 7l8 6 8-6"/>,
   },
   {
-    label: 'Algeria Venture · Dounia Parc, Dély Ibrahim 16000',
-    href: 'https://www.google.com/maps/place//data=!4m2!3m1!1s0x128fafea06d2f2f7:0xc85fa3b9927e5616',
+    label: PHONE_LABEL,
+    href: PHONE_HREF,
+    icon: <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/>,
+  },
+  {
+    label: ADDRESS,
+    href: MAPS_URL,
     icon: <path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Zm0-8.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>,
   },
 ]
 
 const PROMISES = ['Réponse sous 24 h', 'Sans engagement', 'Démo adaptée à votre contexte']
 
-function Field({ label, children }) {
+function Field({ id, label, children }) {
   return (
-    <label className="block">
-      <span className="pm-label">{label}</span>
+    <div>
+      <label htmlFor={id} className="pm-label">{label}</label>
       {children}
-    </label>
+    </div>
+  )
+}
+
+export function WhatsAppIcon({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.3-.6-.4Z"/>
+    </svg>
   )
 }
 
@@ -37,6 +55,17 @@ export default function CTA() {
   const [form, setForm]     = useState(EMPTY)
   const [status, setStatus] = useState('idle')
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value })
+
+  // Pré-remplissage depuis les boutons du site (produit, objet)
+  useEffect(() => {
+    const onPrefill = (e) => {
+      const { product, subject } = e.detail || {}
+      setStatus('idle')
+      setForm((f) => ({ ...f, product: product || f.product, subject: subject || '' }))
+    }
+    window.addEventListener(CONTACT_EVENT, onPrefill)
+    return () => window.removeEventListener(CONTACT_EVENT, onPrefill)
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -51,7 +80,11 @@ export default function CTA() {
           user_id:     EMAILJS_KEY,
           template_params: {
             from_email: form.email,
-            message: `Nouvelle demande PathoMind\n\nNom : ${form.name}\nEmail : ${form.email}\nOrganisation : ${form.org}\nProduit : ${form.product}\nMessage : ${form.message}`,
+            message: `Nouvelle demande PathoMind\n\nObjet : ${form.subject || 'Demande de démonstration'}\nNom : ${form.name}\nEmail : ${form.email}\nTéléphone / WhatsApp : ${form.phone}\nOrganisation : ${form.org}\nVille : ${form.city}\nProduit : ${form.product}\nMessage : ${form.message}`,
+            // Champs aussi envoyés séparément, utilisables dans le template EmailJS
+            subject: form.subject || 'Demande de démonstration',
+            phone: form.phone,
+            city: form.city,
           },
         }),
       })
@@ -96,16 +129,29 @@ export default function CTA() {
 
             <motion.div variants={fadeInUp} className="flex flex-col gap-4">
               {CONTACTS.map((c) => {
-                const external = c.href.startsWith('http')
+                const external = c.href?.startsWith('http')
+                const Tag = c.href ? 'a' : 'span'
                 return (
-                  <a key={c.href} href={c.href} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined}
-                    className="group inline-flex items-start gap-3 transition-colors duration-200 text-white/55 hover:text-white"
+                  <Tag key={c.label} href={c.href || undefined} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined}
+                    className="group inline-flex items-start gap-3 transition-colors duration-200 text-white/60 hover:text-white break-words min-w-0"
                     style={{ fontSize: '.9375rem', lineHeight: 1.6 }}>
                     <svg className="mt-0.5 flex-shrink-0 text-[#a78bfa]" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{c.icon}</svg>
-                    {c.label}
-                  </a>
+                    <span className="min-w-0">{c.label}</span>
+                  </Tag>
                 )
               })}
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="mt-8">
+              {WHATSAPP_HREF ? (
+                <a href={WHATSAPP_HREF} target="_blank" rel="noopener noreferrer" className="pm-btn-ghost">
+                  <WhatsAppIcon size={17}/> Écrire sur WhatsApp
+                </a>
+              ) : (
+                <span className="pm-btn-ghost" aria-disabled="true" style={{ cursor: 'default' }}>
+                  <WhatsAppIcon size={17}/> {WHATSAPP_LABEL}
+                </span>
+              )}
             </motion.div>
           </Stagger>
 
@@ -122,29 +168,48 @@ export default function CTA() {
                     </svg>
                   </div>
                   <h3 className="pm-display" style={{ fontSize: '1.75rem', color: '#fff' }}>Message reçu.</h3>
-                  <p className="mt-3" style={{ fontSize: '.9375rem', color: 'rgba(255,255,255,.55)' }}>Nous vous recontactons sous 24 heures.</p>
+                  <p role="status" className="mt-3" style={{ fontSize: '.9375rem', color: 'rgba(255,255,255,.65)' }}>Merci, nous vous recontactons sous 24 h (jours ouvrés).</p>
                 </motion.div>
               ) : (
                 <motion.form key="form" onSubmit={handleSubmit} className="flex flex-col gap-5"
                   initial={{ opacity: 1 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.3 }}>
                   <div>
                     <h3 className="pm-display" style={{ fontSize: '1.6rem', lineHeight: 1.2, color: '#fff' }}>Demander une démonstration</h3>
-                    <p className="mt-2" style={{ fontSize: '.9rem', color: 'rgba(255,255,255,.45)' }}>Quelques informations pour préparer l'échange.</p>
+                    <p className="mt-2" style={{ fontSize: '.9rem', color: 'rgba(255,255,255,.6)' }}>Quelques informations pour préparer l'échange.</p>
                   </div>
 
+                  {form.subject && (
+                    <div className="flex items-center justify-between gap-3 rounded-xl px-4 py-2.5"
+                      style={{ background: 'rgba(124,58,237,.12)', border: '1px solid rgba(167,139,250,.28)' }}>
+                      <span style={{ fontSize: '.875rem', color: '#ddd6fe' }}>Objet : {form.subject}</span>
+                      <button type="button" onClick={() => setForm({ ...form, subject: '' })} aria-label="Retirer l'objet"
+                        className="text-white/60 hover:text-white p-1 -mr-1">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                      </button>
+                    </div>
+                  )}
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-2">
-                    <Field label="Nom complet">
-                      <input className="pm-field" type="text" autoComplete="name" value={form.name} onChange={set('name')} placeholder="Dr. Nom Prénom" required/>
+                    <Field id="cf-name" label="Nom complet">
+                      <input id="cf-name" name="name" className="pm-field" type="text" autoComplete="name" value={form.name} onChange={set('name')} placeholder="Dr. Nom Prénom" required/>
                     </Field>
-                    <Field label="Email professionnel">
-                      <input className="pm-field" type="email" autoComplete="email" value={form.email} onChange={set('email')} placeholder="vous@etablissement.dz" required/>
+                    <Field id="cf-email" label="Email professionnel">
+                      <input id="cf-email" name="email" className="pm-field" type="email" autoComplete="email" value={form.email} onChange={set('email')} placeholder="vous@etablissement.dz" required/>
                     </Field>
                   </div>
-                  <Field label="Établissement">
-                    <input className="pm-field" type="text" autoComplete="organization" value={form.org} onChange={set('org')} placeholder="CHU, laboratoire, clinique…"/>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <Field id="cf-phone" label="Téléphone / WhatsApp (facultatif)">
+                      <input id="cf-phone" name="phone" className="pm-field" type="tel" inputMode="tel" autoComplete="tel" value={form.phone} onChange={set('phone')} placeholder="05 XX XX XX XX"/>
+                    </Field>
+                    <Field id="cf-city" label="Ville">
+                      <input id="cf-city" name="city" className="pm-field" type="text" autoComplete="address-level2" value={form.city} onChange={set('city')} placeholder="Alger, Oran, Sétif…"/>
+                    </Field>
+                  </div>
+                  <Field id="cf-org" label="Établissement">
+                    <input id="cf-org" name="organization" className="pm-field" type="text" autoComplete="organization" value={form.org} onChange={set('org')} placeholder="CHU, laboratoire, clinique…"/>
                   </Field>
-                  <Field label="Produit qui vous intéresse">
-                    <select className="pm-field" value={form.product} onChange={set('product')} style={{ color: form.product ? '#fff' : 'rgba(255,255,255,.4)' }}>
+                  <Field id="cf-product" label="Produit qui vous intéresse">
+                    <select id="cf-product" name="product" className="pm-field" value={form.product} onChange={set('product')} style={{ color: form.product ? '#fff' : 'rgba(255,255,255,.6)' }}>
                       <option value="">Sélectionner un produit</option>
                       <option value="PathoMind Lab">PathoMind Lab — LIS d'anatomopathologie</option>
                       <option value="PathoMind Viewer">PathoMind Viewer — Lames numériques</option>
@@ -153,14 +218,14 @@ export default function CTA() {
                       <option value="Consulting & intégration">Consulting & intégration</option>
                     </select>
                   </Field>
-                  <Field label="Message (optionnel)">
-                    <textarea className="pm-field" rows={4} value={form.message} onChange={set('message')} style={{ resize: 'vertical' }}
+                  <Field id="cf-message" label="Message (optionnel)">
+                    <textarea id="cf-message" name="message" className="pm-field" rows={4} value={form.message} onChange={set('message')} style={{ resize: 'vertical' }}
                       placeholder="Votre besoin, votre établissement, vos contraintes…"/>
                   </Field>
 
                   {status === 'error' && (
                     <p role="alert" style={{ color: '#fca5a5', fontSize: '.875rem' }}>
-                      Erreur d'envoi. Écrivez-nous directement : pathomind2026@hotmail.com
+                      Erreur d'envoi. Écrivez-nous directement : {EMAIL_LABEL}
                     </p>
                   )}
 
