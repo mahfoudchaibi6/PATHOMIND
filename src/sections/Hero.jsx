@@ -11,9 +11,9 @@ const LINES = [
 ]
 
 const METRICS = [
-  { n: '3', l: 'Produits intégrés' },
+  { n: '100%', l: 'Vos données restent dans votre laboratoire' },
+  { n: '0', l: 'Connexion Internet nécessaire au quotidien' },
   { n: '24h', l: 'Délai de réponse support' },
-  { n: '100%', l: 'Données hébergées en Algérie' },
 ]
 
 export default function Hero({ ready = true }) {

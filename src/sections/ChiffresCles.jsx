@@ -12,7 +12,7 @@ const PILIERS = [
   {
     n: '02',
     title: 'Souveraineté des données',
-    desc: 'Hébergement en Algérie, conforme aux exigences du Ministère de la Santé.',
+    desc: "Vos données restent chez vous. PathoMind Lab est installé sur un serveur dans votre laboratoire, pas dans un cloud. Personne d'autre n'y a accès. Données de santé traitées localement, accès par compte personnel, journal d'audit de chaque action.",
     icon: <path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Zm-3 9 2 2 4-4"/>,
   },
   {
