@@ -8,7 +8,7 @@ const LINKS = [
   { href: '#boitier', label: 'Installation' },
   { href: '#tarifs', label: 'Tarifs' },
   { href: '#consulting', label: 'Consulting' },
-  { href: '#fondateur', label: 'Fondateur' },
+  { href: '#faq', label: 'FAQ' },
   { href: '#contact', label: 'Contact' },
 ]
 
@@ -69,7 +69,7 @@ export default function Navbar({ ready = true }) {
             <Logo size={30}/>
           </a>
 
-          <ul className="hidden lg:flex items-center gap-9 list-none">
+          <ul className="hidden lg:flex items-center gap-7 list-none">
             {LINKS.map((l) => {
               const isActive = active === l.href
               return (

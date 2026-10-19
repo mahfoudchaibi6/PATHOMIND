@@ -13,6 +13,7 @@ import Tarifs from './sections/Tarifs'
 import Consulting from './sections/Consulting'
 import Partenaires, { Pilotes } from './sections/Partenaires'
 import Fondateur from './sections/Fondateur'
+import FAQ from './sections/FAQ'
 import CTA from './sections/CTA'
 import Footer from './sections/Footer'
 
@@ -36,6 +37,7 @@ export default function App() {
           <Partenaires />
           <Pilotes />
           <Fondateur />
+          <FAQ />
           <CTA />
         </main>
         <Footer />
