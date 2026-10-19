@@ -6,8 +6,8 @@ import { BOX_OWNERSHIP, BOX_SPECS, INCLUDED, TEXT } from '../lib/site'
 
 // Photo du boîtier : WebP puis PNG de repli ; tant qu'aucune n'est présente, emplacement neutre aux mêmes dimensions
 const BOX_SRCS = ['/images/pathomind-boitier.webp', '/images/pathomind-boitier.png']
-const BOX_W = 800
-const BOX_H = 600
+const BOX_W = 1200
+const BOX_H = 900
 
 const ETAPES = [
   {
