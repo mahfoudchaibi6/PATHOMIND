@@ -7,6 +7,7 @@ import WhatsAppFloat from './components/WhatsAppFloat'
 import Hero from './sections/Hero'
 import ChiffresCles from './sections/ChiffresCles'
 import Produits from './sections/Produits'
+import Boitier from './sections/Boitier'
 import ScreenshotsLab from './sections/ScreenshotsLab'
 import Consulting from './sections/Consulting'
 import Fondateur from './sections/Fondateur'
@@ -25,6 +26,7 @@ export default function App() {
         <main>
           <Hero ready={splashDone} />
           <Produits />
+          <Boitier />
           <ScreenshotsLab />
           <Consulting />
           <ChiffresCles />
