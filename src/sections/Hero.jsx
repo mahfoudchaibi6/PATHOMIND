@@ -7,7 +7,7 @@ import { EASE, fadeInUp, staggerContainer, wordReveal } from '../lib/animations'
 // Titre : chaque ligne est une liste de mots ; `accent` = mot en dégradé violet
 const LINES = [
   [{ w: 'Faire' }, { w: 'reculer' }, { w: 'le' }, { w: 'cancer,' }],
-  [{ w: 'une', accent: true }, { w: 'lame', accent: true }, { w: 'à', accent: true }, { w: 'la', accent: true }, { w: 'fois.', accent: true }],
+  [{ w: 'chaque', accent: true }, { w: 'jour', accent: true }, { w: 'un', accent: true }, { w: 'peu', accent: true }, { w: 'plus.', accent: true }],
 ]
 
 const METRICS = [
