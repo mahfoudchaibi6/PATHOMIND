@@ -1,8 +1,10 @@
 import { Fragment } from 'react'
 import { motion } from 'framer-motion'
 import ProductVisual from '../components/DeviceFrame'
-import { Arrow, External, SectionHeading, Stagger } from '../components/ui'
-import { LAB_HOST, LAB_URL } from '../lib/links'
+import { Arrow, SectionHeading, Stagger } from '../components/ui'
+import { LAB_HOST } from '../lib/links'
+import { contactLink } from '../lib/contact'
+import { DemoActions } from './ScreenshotsLab'
 import { EASE, fadeInLeft, fadeInRight, fadeInUp, inView } from '../lib/animations'
 
 const BADGES = {
@@ -27,17 +29,15 @@ const PRODUITS = [
       'Export PDF automatique',
     ],
     visual: { kind: 'browser', url: `${LAB_HOST}/tableau-de-bord`, srcs: ['/screenshots/lab-tableau-de-bord.png'] },
-    cta: 'Accéder à la démo',
-    href: LAB_URL,
-    primary: true,
+    demo: true,
   },
   {
     key: 'viewer',
     index: '02',
     name: 'PathoMind Viewer',
     tag: 'La visionneuse de lames numériques',
-    badge: { label: 'En déploiement', tone: 'violet' },
-    desc: "Visualisez, annotez et analysez vos lames histologiques en haute résolution depuis n'importe quel navigateur, sans installation et sans limite de taille.",
+    badge: { label: 'En pilote', tone: 'violet' },
+    desc: "Visualisez, annotez et analysez vos lames histologiques en haute résolution depuis un simple navigateur.",
     features: [
       'Visionneuse WSI haute résolution',
       'Zoom multi-niveaux (×2 à ×40)',
@@ -46,14 +46,14 @@ const PRODUITS = [
       'Accès multi-utilisateurs',
     ],
     visual: { kind: 'photo', srcs: ['/products/pathomind-viewer.png'] },
-    cta: 'En savoir plus',
+    cta: 'Être informé du lancement',
   },
   {
     key: 'share',
     index: '03',
     name: 'PathoMind Share',
     tag: 'La téléexpertise pathologique sécurisée',
-    badge: { label: 'En déploiement', tone: 'blue' },
+    badge: { label: 'En pilote', tone: 'blue' },
     desc: 'Partagez vos cas, invitez des experts et organisez vos réunions de concertation pluridisciplinaire, en temps réel et en toute sécurité.',
     features: [
       'Cas partagés & téléexpertise',
@@ -63,7 +63,7 @@ const PRODUITS = [
       'Annotations collaboratives',
     ],
     visual: { kind: 'photo', srcs: ['/products/pathomind-share.png'] },
-    cta: 'En savoir plus',
+    cta: 'Être informé du lancement',
   },
 ]
 
@@ -155,20 +155,15 @@ export default function Produits() {
                     {p.features.map((f) => <Feature key={f}>{f}</Feature>)}
                   </motion.ul>
 
-                  <motion.div variants={fadeInUp} className="mt-10 flex flex-wrap items-center gap-3">
-                    {p.href ? (
-                      <>
-                        <a href={p.href} target="_blank" rel="noopener noreferrer" className="pm-btn">
-                          {p.cta} <External/>
-                        </a>
-                        <a href="#contact" className="pm-btn-ghost">Nous contacter</a>
-                      </>
-                    ) : (
-                      <a href="#contact" className={p.primary ? 'pm-btn' : 'pm-btn-ghost'}>
+                  {p.demo ? (
+                    <DemoActions center={false} className="mt-10"/>
+                  ) : (
+                    <motion.div variants={fadeInUp} className="mt-10">
+                      <a {...contactLink({ product: p.name, subject: 'Être informé du lancement' })} className="pm-btn-ghost">
                         {p.cta} <Arrow size={13}/>
                       </a>
-                    )}
-                  </motion.div>
+                    </motion.div>
+                  )}
                 </Stagger>
               </article>
             </Fragment>

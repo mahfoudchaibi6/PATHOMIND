@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { BrowserFrame, SmartImage } from '../components/DeviceFrame'
-import { External, Reveal, SectionHeading } from '../components/ui'
-import { LAB_HOST, LAB_URL } from '../lib/links'
+import { Arrow, External, Reveal, SectionHeading } from '../components/ui'
+import { LAB_DEMO_URL, LAB_HOST } from '../lib/links'
+import { contactLink, GUIDED_DEMO } from '../lib/contact'
+import { DEMO_VIDEO_URL } from '../lib/site'
 import { EASE, scaleIn } from '../lib/animations'
 
 const VUES = [
@@ -101,15 +103,39 @@ export default function ScreenshotsLab() {
           </AnimatePresence>
         </div>
 
-        <Reveal className="flex flex-col items-center gap-4 mt-10">
-          <a href={LAB_URL} target="_blank" rel="noopener noreferrer" className="pm-btn">
-            Essayer PathoMind Lab en ligne <External/>
-          </a>
-          <span className="pm-mono" style={{ fontSize: '.7rem', letterSpacing: '.12em', color: 'rgba(255,255,255,.4)' }}>
-            {LAB_HOST} · démo sur invitation
-          </span>
-        </Reveal>
+        {DEMO_VIDEO_URL && (
+          <Reveal className="mt-14 mx-auto max-w-[760px]">
+            <div className="relative rounded-[14px] overflow-hidden" style={{ aspectRatio: '16 / 9', border: '1px solid rgba(255,255,255,.1)' }}>
+              <iframe src={DEMO_VIDEO_URL} title="PathoMind Lab en 2 minutes" loading="lazy"
+                className="absolute inset-0 w-full h-full" allow="encrypted-media; picture-in-picture" allowFullScreen/>
+            </div>
+          </Reveal>
+        )}
+
+        <DemoActions className="mt-10"/>
       </div>
     </section>
+  )
+}
+
+// Parcours démo : accès libre (données fictives) ou démo guidée — réutilisé dans Produits
+export function DemoActions({ className = '', center = true }) {
+  return (
+    <Reveal className={`flex flex-col ${center ? 'items-center text-center' : 'items-start'} gap-4 ${className}`}>
+      <div className={`flex flex-wrap gap-3 ${center ? 'justify-center' : ''}`}>
+        <a href={LAB_DEMO_URL} target="_blank" rel="noopener noreferrer" className="pm-btn">
+          Demander un accès à la démo <External/>
+        </a>
+        <a {...contactLink(GUIDED_DEMO)} className="pm-btn-ghost">
+          Démo guidée avec un pathologiste <Arrow size={13}/>
+        </a>
+      </div>
+      <span className="pm-mono" style={{ fontSize: '.7rem', letterSpacing: '.12em', color: 'rgba(255,255,255,.6)' }}>
+        {LAB_HOST} · Accès envoyé sous 24 h · données fictives
+      </span>
+      <p style={{ fontSize: '.8rem', lineHeight: 1.6, color: 'rgba(255,255,255,.55)', maxWidth: 460 }}>
+        La démo en ligne utilise uniquement des données fictives. En production, PathoMind Lab tourne sur le serveur installé dans votre laboratoire.
+      </p>
+    </Reveal>
   )
 }
