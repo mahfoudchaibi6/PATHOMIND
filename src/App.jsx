@@ -11,6 +11,7 @@ import Boitier from './sections/Boitier'
 import ScreenshotsLab from './sections/ScreenshotsLab'
 import Tarifs from './sections/Tarifs'
 import Consulting from './sections/Consulting'
+import Partenaires, { Pilotes } from './sections/Partenaires'
 import Fondateur from './sections/Fondateur'
 import CTA from './sections/CTA'
 import Footer from './sections/Footer'
@@ -32,6 +33,8 @@ export default function App() {
           <Tarifs />
           <Consulting />
           <ChiffresCles />
+          <Partenaires />
+          <Pilotes />
           <Fondateur />
           <CTA />
         </main>

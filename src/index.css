@@ -298,3 +298,6 @@ select.pm-field option { background: #0d0a1f; color: #fff; }
   html { scroll-behavior: auto; }
   .pm-btn:hover::after, .pm-pulse::before, .pm-skeleton, .pm-skeleton-dark { animation: none; }
 }
+
+/* Accordéons <details> : sans marqueur natif */
+.pm-summary::-webkit-details-marker { display: none; }
