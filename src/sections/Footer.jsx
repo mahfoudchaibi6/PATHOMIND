@@ -3,7 +3,7 @@ import { Stagger } from '../components/ui'
 import { fadeInUp } from '../lib/animations'
 import Logo from '../components/Logo'
 import { LAB_DEMO_URL } from '../lib/links'
-import { ADDRESS, EMAIL_HREF, EMAIL_LABEL, MAPS_URL, PHONE_HREF, PHONE_LABEL, WHATSAPP_HREF, WHATSAPP_LABEL } from '../lib/site'
+import { ADDRESS, EMAIL, EMAIL_HREF, MAPS_URL, PHONE, PHONE_HREF, WHATSAPP_HREF } from '../lib/site'
 
 const COLS = [
   {
@@ -29,11 +29,11 @@ const COLS = [
   {
     title: 'Contact',
     links: [
-      { label: EMAIL_LABEL, href: EMAIL_HREF },
-      { label: PHONE_LABEL, href: PHONE_HREF },
-      { label: WHATSAPP_LABEL, href: WHATSAPP_HREF, external: true },
+      { label: EMAIL, href: EMAIL_HREF },
+      PHONE && { label: PHONE, href: PHONE_HREF },
+      WHATSAPP_HREF && { label: 'WhatsApp', href: WHATSAPP_HREF, external: true },
       { label: ADDRESS.replace(', ', '\n'), href: MAPS_URL, external: true },
-    ],
+    ].filter(Boolean),
   },
 ]
 

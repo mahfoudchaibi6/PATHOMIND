@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { SectionHeading, Stagger } from '../components/ui'
 import { fadeInUp } from '../lib/animations'
-import { ONSITE_COVERAGE } from '../lib/site'
 
 const PILIERS = [
   {
@@ -19,7 +18,7 @@ const PILIERS = [
   {
     n: '03',
     title: 'Support local',
-    desc: `Basés à Alger (Algeria Venture). Installation et formation sur site : ${ONSITE_COVERAGE}. Assistance en français et en arabe.`,
+    desc: 'Basés à Alger, à Algeria Venture. Installation et formation sur site, assistance en français et en arabe.',
     icon: <path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Zm0-8.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>,
   },
 ]

@@ -1,27 +1,25 @@
 import { motion } from 'framer-motion'
 import { SectionHeading, Stagger } from '../components/ui'
 import { fadeInUp } from '../lib/animations'
-import {
-  BACKUP_SUPPORT, EXPORT_FORMATS, PRICE_MONTHLY, PRICE_SETUP, PRICE_TODO, REPLACEMENT_DELAY, UPDATES_MODE, UPS_POLICY,
-} from '../lib/site'
+import { PRICE_MONTHLY, PRICE_SETUP, PRICES_CONFIRMED, TEXT, UPDATES_MODE } from '../lib/site'
 
 // Réponses courtes, alignées sur les sections Boîtier et Tarifs (mêmes constantes)
 const QUESTIONS = [
   {
     q: 'Faut-il une connexion Internet ?',
-    a: `Non. PathoMind Lab tourne sur le boîtier installé dans votre laboratoire et vos postes s'y connectent par le réseau local. Le labo continue de travailler si Internet coupe. Mises à jour : ${UPDATES_MODE}.`,
+    a: `Non. PathoMind Lab tourne sur le boîtier installé dans votre laboratoire et vos postes s'y connectent par le réseau local. Le labo continue de travailler si Internet coupe. ${UPDATES_MODE ? `Mises à jour du logiciel : ${UPDATES_MODE}.` : 'Une connexion ne sert que ponctuellement, pour les mises à jour.'}`,
   },
   {
     q: 'Où sont stockées les données des patients ?',
-    a: `Sur le boîtier PathoMind, dans votre laboratoire, pas dans un cloud. Personne d'autre n'y a accès. Sauvegardes automatiques quotidiennes ${BACKUP_SUPPORT}.`,
+    a: `Sur le boîtier PathoMind, dans votre laboratoire, pas dans un cloud. Personne d'autre n'y a accès. ${TEXT.backups}`,
   },
   {
     q: 'Que se passe-t-il si le boîtier tombe en panne ?',
-    a: `Les données sont sauvegardées chaque jour. Remplacement et restauration sous ${REPLACEMENT_DELAY}.`,
+    a: TEXT.failure,
   },
   {
     q: 'Et en cas de coupure de courant ?',
-    a: `${UPS_POLICY}. Au redémarrage, tout reprend là où c'était.`,
+    a: TEXT.power,
   },
   {
     q: 'Combien de postes peut-on connecter ?',
@@ -29,11 +27,13 @@ const QUESTIONS = [
   },
   {
     q: 'Combien ça coûte ?',
-    a: `À partir de ${PRICE_MONTHLY} / mois ${PRICE_TODO}, plus une mise en service de ${PRICE_SETUP} ${PRICE_TODO}. Grands laboratoires, CHU, plusieurs sites : sur devis.`,
+    a: PRICES_CONFIRMED
+      ? `À partir de ${PRICE_MONTHLY} / mois, plus une mise en service de ${PRICE_SETUP}. Grands laboratoires, CHU, plusieurs sites : sur devis.`
+      : 'Un abonnement mensuel et une mise en service unique, selon la taille du laboratoire et le nombre de postes. Demandez votre devis : réponse sous 24 h.',
   },
   {
     q: "Mes données m'appartiennent-elles si j'arrête ?",
-    a: `Oui. Vos données vous appartiennent : export complet ${EXPORT_FORMATS}.`,
+    a: `Oui. ${TEXT.exit}`,
   },
   {
     q: "Comment se passent l'installation et la formation ?",

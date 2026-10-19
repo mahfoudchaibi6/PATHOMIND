@@ -4,7 +4,7 @@ import { Arrow, Reveal, Stagger } from '../components/ui'
 import { EASE, fadeInRight, fadeInUp } from '../lib/animations'
 import { CONTACT_EVENT } from '../lib/contact'
 import {
-  ADDRESS, EMAIL_HREF, EMAIL_LABEL, MAPS_URL, PHONE_HREF, PHONE_LABEL, WHATSAPP_HREF, WHATSAPP_LABEL,
+  ADDRESS, EMAIL, EMAIL_HREF, MAPS_URL, PHONE, PHONE_HREF, WHATSAPP_HREF,
 } from '../lib/site'
 
 const EMAILJS_SERVICE  = 'service_b7tmm2g'
@@ -13,15 +13,15 @@ const EMAILJS_KEY      = 'UYHtFLisDfCmXL72J'
 
 const EMPTY = { name: '', email: '', phone: '', org: '', city: '', product: '', subject: '', message: '' }
 
-// href null = info pas encore fournie : affichée comme texte (placeholder visible)
+// Les coordonnées non renseignées (lib/site.js) ne sont pas affichées
 const CONTACTS = [
   {
-    label: EMAIL_LABEL,
+    label: EMAIL,
     href: EMAIL_HREF,
     icon: <path d="M4 6h16v12H4zM4 7l8 6 8-6"/>,
   },
   {
-    label: PHONE_LABEL,
+    label: PHONE,
     href: PHONE_HREF,
     icon: <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/>,
   },
@@ -30,7 +30,7 @@ const CONTACTS = [
     href: MAPS_URL,
     icon: <path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Zm0-8.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>,
   },
-]
+].filter((c) => c.label)
 
 const PROMISES = ['Réponse sous 24 h', 'Sans engagement', 'Démo adaptée à votre contexte']
 
@@ -142,17 +142,13 @@ export default function CTA() {
               })}
             </motion.div>
 
-            <motion.div variants={fadeInUp} className="mt-8">
-              {WHATSAPP_HREF ? (
+            {WHATSAPP_HREF && (
+              <motion.div variants={fadeInUp} className="mt-8">
                 <a href={WHATSAPP_HREF} target="_blank" rel="noopener noreferrer" className="pm-btn-ghost">
                   <WhatsAppIcon size={17}/> Écrire sur WhatsApp
                 </a>
-              ) : (
-                <span className="pm-btn-ghost max-w-full" aria-disabled="true" style={{ cursor: 'default', whiteSpace: 'normal', textAlign: 'left' }}>
-                  <WhatsAppIcon size={17}/> {WHATSAPP_LABEL}
-                </span>
-              )}
-            </motion.div>
+              </motion.div>
+            )}
           </Stagger>
 
           {/* Formulaire */}
@@ -225,7 +221,7 @@ export default function CTA() {
 
                   {status === 'error' && (
                     <p role="alert" style={{ color: '#fca5a5', fontSize: '.875rem' }}>
-                      Erreur d'envoi. Écrivez-nous directement : {EMAIL_LABEL}
+                      Erreur d'envoi. Écrivez-nous directement : {EMAIL}
                     </p>
                   )}
 

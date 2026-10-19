@@ -2,9 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Reveal, Stagger } from '../components/ui'
 import { fadeInLeft, fadeInUp } from '../lib/animations'
-import {
-  BOX_OWNERSHIP, EXPORT_FORMATS, INCLUDED, REPLACEMENT_DELAY, UPS_POLICY,
-} from '../lib/site'
+import { BOX_OWNERSHIP, BOX_SPECS, INCLUDED, TEXT } from '../lib/site'
 
 // Photo du boîtier : WebP puis PNG de repli ; tant qu'aucune n'est présente, emplacement neutre aux mêmes dimensions
 const BOX_SRCS = ['/images/pathomind-boitier.webp', '/images/pathomind-boitier.png']
@@ -31,19 +29,21 @@ const ETAPES = [
 
 const ET_SI = [
   { q: '…Internet coupe ?', a: 'Rien ne change, le labo continue de travailler.' },
-  { q: '…le courant coupe ?', a: `${UPS_POLICY}. Au redémarrage, tout reprend là où c'était.` },
-  { q: '…le boîtier tombe en panne ?', a: `Les données sont sauvegardées chaque jour. Remplacement et restauration sous ${REPLACEMENT_DELAY}.` },
-  { q: '…je veux arrêter ?', a: `Vos données vous appartiennent : export complet ${EXPORT_FORMATS}.` },
+  { q: '…le courant coupe ?', a: TEXT.power },
+  { q: '…le boîtier tombe en panne ?', a: TEXT.failure },
+  { q: '…je veux arrêter ?', a: TEXT.exit },
 ]
 
+// Lignes vides retirées ; la fiche entière n'apparaît qu'une fois les caractéristiques matérielles renseignées
+const SHOW_FICHE = Boolean(BOX_SPECS.format && BOX_SPECS.cpuRam && BOX_SPECS.storage)
 const FICHE = [
-  ['Format', 'Mini-PC [À COMPLÉTER : dimensions]'],
-  ['Processeur / mémoire', '[À COMPLÉTER]'],
-  ['Stockage', '[À COMPLÉTER]'],
-  ['Consommation', '[À COMPLÉTER]'],
+  ['Format', BOX_SPECS.format],
+  ['Processeur / mémoire', BOX_SPECS.cpuRam],
+  ['Stockage', BOX_SPECS.storage],
+  ['Consommation', BOX_SPECS.power],
   ['Postes connectés', 'Autant que nécessaire sur le réseau du labo'],
   ['Propriété du boîtier', BOX_OWNERSHIP],
-]
+].filter(([, v]) => v)
 
 const muted = 'rgba(255,255,255,.6)'
 
@@ -170,7 +170,7 @@ export default function Boitier() {
         </div>
 
         {/* Fiche technique : repliable sur mobile */}
-        <Reveal className="mt-20 max-w-[720px]">
+        {SHOW_FICHE && <Reveal className="mt-20 max-w-[720px]">
           <button type="button" onClick={() => setFicheOpen((o) => !o)} aria-expanded={ficheOpen} aria-controls="fiche-technique"
             className="md:hidden w-full flex items-center justify-between py-3"
             style={{ borderBottom: '1px solid rgba(255,255,255,.08)' }}>
@@ -192,10 +192,10 @@ export default function Boitier() {
               </tbody>
             </table>
           </div>
-        </Reveal>
+        </Reveal>}
 
         <Reveal>
-          <p className="mt-12 max-w-[720px]" style={{ fontSize: '.875rem', lineHeight: 1.7, color: muted }}>
+          <p className="mt-16 max-w-[720px]" style={{ fontSize: '.875rem', lineHeight: 1.7, color: muted }}>
             Le boîtier concerne PathoMind Lab. PathoMind Viewer (lames numériques) nécessite une installation dimensionnée selon votre volume de lames : nous consulter.
           </p>
         </Reveal>
