@@ -148,7 +148,7 @@ export default function CTA() {
                   <WhatsAppIcon size={17}/> Écrire sur WhatsApp
                 </a>
               ) : (
-                <span className="pm-btn-ghost" aria-disabled="true" style={{ cursor: 'default' }}>
+                <span className="pm-btn-ghost max-w-full" aria-disabled="true" style={{ cursor: 'default', whiteSpace: 'normal', textAlign: 'left' }}>
                   <WhatsAppIcon size={17}/> {WHATSAPP_LABEL}
                 </span>
               )}
