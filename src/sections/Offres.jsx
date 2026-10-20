@@ -99,7 +99,7 @@ function Interrupteur({ annuel, setAnnuel }) {
         {opt(false, 'Mensuel')}
         {opt(true, 'Annuel')}
       </div>
-      <span style={{ fontSize: '.8125rem', color: '#c4b5fd' }}>Annuel : {ANNUEL_MENTION}</span>
+      <span style={{ fontSize: '.8125rem', color: '#c4b5fd' }}>Paiement annuel : {ANNUEL_MENTION} sur l'abonnement</span>
     </div>
   )
 }
