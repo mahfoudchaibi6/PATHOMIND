@@ -30,7 +30,7 @@ const ETAPES = [
 const ET_SI = [
   { q: '…Internet coupe ?', a: 'Rien ne change, le labo continue de travailler.' },
   { q: '…le courant coupe ?', a: TEXT.power },
-  { q: '…le boîtier tombe en panne ?', a: TEXT.failure },
+  { q: '…le serveur tombe en panne ?', a: TEXT.failure },
   { q: '…je veux arrêter ?', a: TEXT.exit },
 ]
 
@@ -119,6 +119,10 @@ export default function Boitier() {
             </motion.h2>
             <motion.p variants={fadeInUp} className="pm-lead mt-7" style={{ color: muted }}>
               PathoMind Lab tourne sur un mini-PC serveur installé chez vous. Vos postes s'y connectent par le réseau local du laboratoire, sans Internet.
+            </motion.p>
+            <motion.p variants={fadeInUp} className="mt-5" style={{ fontSize: '.9375rem', lineHeight: 1.7, color: 'rgba(255,255,255,.8)' }}>
+              Le boîtier est fourni dans l'offre Sérénité et disponible en achat dans l'offre Cabinet. L'offre Essentiel s'installe sur le PC du laboratoire.{' '}
+              <a href="#offres" className="underline underline-offset-4 text-[#c4b5fd] hover:text-white whitespace-nowrap">Voir les offres</a>
             </motion.p>
             <motion.div variants={fadeInUp} className="mt-10">
               <Label className="mb-5">Ce qui est inclus</Label>

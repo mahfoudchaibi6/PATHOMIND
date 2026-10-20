@@ -1,9 +1,9 @@
-// Ouvre le formulaire de contact (#contact) avec un produit et/ou un objet pré-remplis.
+// Ouvre le formulaire de contact (#contact) avec une offre, un produit et/ou un objet pré-remplis.
 // Le formulaire (sections/CTA.jsx) écoute l'événement 'pm:contact'.
 export const CONTACT_EVENT = 'pm:contact'
 
-export function openContact({ product = '', subject = '' } = {}) {
-  window.dispatchEvent(new CustomEvent(CONTACT_EVENT, { detail: { product, subject } }))
+export function openContact({ offer = '', product = '', subject = '' } = {}) {
+  window.dispatchEvent(new CustomEvent(CONTACT_EVENT, { detail: { offer, product, subject } }))
   document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
 

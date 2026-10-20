@@ -1,20 +1,47 @@
 import { motion } from 'framer-motion'
 import { SectionHeading, Stagger } from '../components/ui'
 import { fadeInUp } from '../lib/animations'
-import { PRICE_MONTHLY, PRICE_SETUP, PRICES_CONFIRMED, TEXT, UPDATES_MODE } from '../lib/site'
+import { TEXT, UPDATES_MODE } from '../lib/site'
+import { INSTITUTION, OFFRES, PILOTE, formatDA } from '../data/offres'
 
-// Réponses courtes, alignées sur les sections Boîtier et Tarifs (mêmes constantes)
+const [ESSENTIEL, CABINET, SERENITE] = OFFRES
+
+// Réponses courtes, alignées sur les sections Boîtier et Offres (mêmes données)
 const QUESTIONS = [
   {
+    q: 'Quelle offre choisir ?',
+    a: `${ESSENTIEL.nom} pour un pathologiste seul, ${CABINET.nom} pour 2 à 4 pathologistes, ${SERENITE.nom} si vous ne voulez gérer aucun matériel.`,
+  },
+  {
+    q: 'Combien ça coûte ?',
+    a: `${OFFRES.map((o) => `${o.nom} : ${formatDA(o.mensuel)} / mois (mise en service ${formatDA(o.miseEnService)})`).join(' ; ')}. ${INSTITUTION.texte}`,
+  },
+  {
+    q: 'Que comprend la mise en service ?',
+    a: `Installation sur site, configuration (comptes, en-tête du laboratoire, tarifs), formation de l'équipe. Pour ${SERENITE.nom}, le boîtier est compris.`,
+  },
+  {
+    q: "Puis-je changer d'offre ?",
+    a: 'Oui, à tout moment, sans nouveaux frais de mise en service.',
+  },
+  {
+    q: "Que se passe-t-il si j'arrête ?",
+    a: "Vous récupérez l'export complet de vos données (PDF des comptes rendus, Excel). Rien n'est supprimé sans votre accord.",
+  },
+  {
+    q: 'Comment fonctionne le programme pilote ?',
+    a: `${PILOTE.jours} jours gratuits pour ${PILOTE.labos} laboratoires ; −${PILOTE.remise} % si vous poursuivez.`,
+  },
+  {
     q: 'Faut-il une connexion Internet ?',
-    a: `Non. PathoMind Lab tourne sur le boîtier installé dans votre laboratoire et vos postes s'y connectent par le réseau local. Le labo continue de travailler si Internet coupe. ${UPDATES_MODE ? `Mises à jour du logiciel : ${UPDATES_MODE}.` : 'Une connexion ne sert que ponctuellement, pour les mises à jour.'}`,
+    a: `Non. PathoMind Lab tourne sur le serveur installé dans votre laboratoire (PC du labo ou boîtier PathoMind) et vos postes s'y connectent par le réseau local. Le labo continue de travailler si Internet coupe. ${UPDATES_MODE ? `Mises à jour du logiciel : ${UPDATES_MODE}.` : 'Une connexion ne sert que ponctuellement, pour les mises à jour.'}`,
   },
   {
     q: 'Où sont stockées les données des patients ?',
-    a: `Sur le boîtier PathoMind, dans votre laboratoire, pas dans un cloud. Personne d'autre n'y a accès. ${TEXT.backups}`,
+    a: `Sur le serveur de votre laboratoire, pas dans un cloud. Personne d'autre n'y a accès. ${TEXT.backups}`,
   },
   {
-    q: 'Que se passe-t-il si le boîtier tombe en panne ?',
+    q: 'Que se passe-t-il si le serveur tombe en panne ?',
     a: TEXT.failure,
   },
   {
@@ -23,21 +50,7 @@ const QUESTIONS = [
   },
   {
     q: 'Combien de postes peut-on connecter ?',
-    a: "Autant que nécessaire sur le réseau du labo : secrétariat, salle technique, pathologistes, comptabilité. Un navigateur suffit, rien à installer sur les postes.",
-  },
-  {
-    q: 'Combien ça coûte ?',
-    a: PRICES_CONFIRMED
-      ? `À partir de ${PRICE_MONTHLY} / mois, plus une mise en service de ${PRICE_SETUP}. Grands laboratoires, CHU, plusieurs sites : sur devis.`
-      : 'Un abonnement mensuel et une mise en service unique, selon la taille du laboratoire et le nombre de postes. Demandez votre devis : réponse sous 24 h.',
-  },
-  {
-    q: "Mes données m'appartiennent-elles si j'arrête ?",
-    a: `Oui. ${TEXT.exit}`,
-  },
-  {
-    q: "Comment se passent l'installation et la formation ?",
-    a: "Nous livrons et installons le boîtier préconfiguré sur site, configurons les comptes, l'en-tête du labo et les tarifs, puis formons votre équipe sur place.",
+    a: `${OFFRES.map((o) => `${o.nom} : ${o.postes.charAt(0).toLowerCase()}${o.postes.slice(1)}`).join(', ')}. Un navigateur suffit, rien à installer sur les postes.`,
   },
 ]
 

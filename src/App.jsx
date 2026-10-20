@@ -9,7 +9,7 @@ import ChiffresCles from './sections/ChiffresCles'
 import Produits from './sections/Produits'
 import Boitier from './sections/Boitier'
 import ScreenshotsLab from './sections/ScreenshotsLab'
-import Tarifs from './sections/Tarifs'
+import Offres from './sections/Offres'
 import Consulting from './sections/Consulting'
 import Partenaires, { Pilotes } from './sections/Partenaires'
 import Fondateur from './sections/Fondateur'
@@ -30,8 +30,8 @@ export default function App() {
           <Hero ready={splashDone} />
           <Produits />
           <Boitier />
+          <Offres />
           <ScreenshotsLab />
-          <Tarifs />
           <Consulting />
           <ChiffresCles />
           <Partenaires />

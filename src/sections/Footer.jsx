@@ -19,7 +19,7 @@ const COLS = [
     title: 'Entreprise',
     links: [
       { label: 'Installation', href: '#boitier' },
-      { label: 'Tarifs', href: '#tarifs' },
+      { label: 'Offres', href: '#offres' },
       { label: 'Consulting', href: '#consulting' },
       { label: 'Fondateur', href: '#fondateur' },
       { label: 'FAQ', href: '#faq' },

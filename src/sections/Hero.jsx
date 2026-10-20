@@ -95,6 +95,10 @@ export default function Hero({ ready = true }) {
               Découvrir nos produits <Arrow/>
             </a>
             <a href="#contact" className="pm-btn-ghost">Demander une démo</a>
+            <a href="#offres" className="inline-flex items-center gap-2 px-2 py-3 text-white/75 hover:text-white underline underline-offset-4 decoration-white/30 hover:decoration-[#a78bfa] transition-colors duration-200"
+              style={{ fontSize: '.9375rem', fontWeight: 500 }}>
+              Voir les offres
+            </a>
           </motion.div>
 
           {/* Métriques */}

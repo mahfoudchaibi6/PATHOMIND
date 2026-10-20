@@ -4,14 +4,23 @@ import { Arrow, Reveal, Stagger } from '../components/ui'
 import { EASE, fadeInRight, fadeInUp } from '../lib/animations'
 import { CONTACT_EVENT } from '../lib/contact'
 import {
-  ADDRESS, EMAIL, EMAIL_HREF, MAPS_URL, PHONE, PHONE_HREF, WHATSAPP_HREF,
+  ADDRESS, EMAIL, EMAIL_HREF, MAPS_URL, PHONE, PHONE_HREF, whatsappHref,
 } from '../lib/site'
+import { CHOIX_FORMULAIRE, CHOIX_PATHOLOGISTES, PILOTE } from '../data/offres'
 
 const EMAILJS_SERVICE  = 'service_b7tmm2g'
 const EMAILJS_TEMPLATE = 'template_558y11r'
 const EMAILJS_KEY      = 'UYHtFLisDfCmXL72J'
 
-const EMPTY = { name: '', email: '', phone: '', org: '', city: '', product: '', subject: '', message: '' }
+// `product` : produit transmis par un bouton du site (ex. PathoMind Viewer), envoyé dans l'e-mail sans être affiché
+const EMPTY = { name: '', email: '', phone: '', org: '', city: '', offer: '', pathologists: '', product: '', subject: '', message: '' }
+
+// Message WhatsApp pré-rempli avec l'offre sélectionnée, s'il y en a une
+function waText(offer) {
+  if (offer === PILOTE.nom) return `Bonjour, je suis intéressé(e) par le ${PILOTE.nom} de PathoMind Lab`
+  if (offer && offer !== 'Je ne sais pas encore') return `Bonjour, je suis intéressé(e) par l'offre ${offer.replace(' (sur devis)', '')} de PathoMind Lab`
+  return 'Bonjour, je suis intéressé(e) par les offres de PathoMind Lab'
+}
 
 // Les coordonnées non renseignées (lib/site.js) ne sont pas affichées
 const CONTACTS = [
@@ -55,13 +64,14 @@ export default function CTA() {
   const [form, setForm]     = useState(EMPTY)
   const [status, setStatus] = useState('idle')
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value })
+  const wa = whatsappHref(waText(form.offer))
 
-  // Pré-remplissage depuis les boutons du site (produit, objet)
+  // Pré-remplissage depuis les boutons du site (offre, produit, objet)
   useEffect(() => {
     const onPrefill = (e) => {
-      const { product, subject } = e.detail || {}
+      const { offer, product, subject } = e.detail || {}
       setStatus('idle')
-      setForm((f) => ({ ...f, product: product || f.product, subject: subject || '' }))
+      setForm((f) => ({ ...f, offer: offer || f.offer, product: product || '', subject: subject || '' }))
     }
     window.addEventListener(CONTACT_EVENT, onPrefill)
     return () => window.removeEventListener(CONTACT_EVENT, onPrefill)
@@ -80,11 +90,13 @@ export default function CTA() {
           user_id:     EMAILJS_KEY,
           template_params: {
             from_email: form.email,
-            message: `Nouvelle demande PathoMind\n\nObjet : ${form.subject || 'Demande de démonstration'}\nNom : ${form.name}\nEmail : ${form.email}\nTéléphone / WhatsApp : ${form.phone}\nOrganisation : ${form.org}\nVille : ${form.city}\nProduit : ${form.product}\nMessage : ${form.message}`,
+            message: `Nouvelle demande PathoMind\n\nObjet : ${form.subject || 'Demande de démonstration'}\nNom : ${form.name}\nEmail : ${form.email}\nTéléphone / WhatsApp : ${form.phone}\nOrganisation : ${form.org}\nVille : ${form.city}\nOffre : ${form.offer || 'Non précisée'}\nNombre de pathologistes : ${form.pathologists || 'Non précisé'}${form.product ? `\nProduit : ${form.product}` : ''}\nMessage : ${form.message}`,
             // Champs aussi envoyés séparément, utilisables dans le template EmailJS
             subject: form.subject || 'Demande de démonstration',
             phone: form.phone,
             city: form.city,
+            offre: form.offer || 'Non précisée',
+            pathologistes: form.pathologists || 'Non précisé',
           },
         }),
       })
@@ -142,9 +154,9 @@ export default function CTA() {
               })}
             </motion.div>
 
-            {WHATSAPP_HREF && (
+            {wa && (
               <motion.div variants={fadeInUp} className="mt-8">
-                <a href={WHATSAPP_HREF} target="_blank" rel="noopener noreferrer" className="pm-btn-ghost">
+                <a href={wa} target="_blank" rel="noopener noreferrer" className="pm-btn-ghost">
                   <WhatsAppIcon size={17}/> Écrire sur WhatsApp
                 </a>
               </motion.div>
@@ -204,16 +216,20 @@ export default function CTA() {
                   <Field id="cf-org" label="Établissement">
                     <input id="cf-org" name="organization" className="pm-field" type="text" autoComplete="organization" value={form.org} onChange={set('org')} placeholder="CHU, laboratoire, clinique…"/>
                   </Field>
-                  <Field id="cf-product" label="Produit qui vous intéresse">
-                    <select id="cf-product" name="product" className="pm-field" value={form.product} onChange={set('product')} style={{ color: form.product ? '#fff' : 'rgba(255,255,255,.6)' }}>
-                      <option value="">Sélectionner un produit</option>
-                      <option value="PathoMind Lab">PathoMind Lab — LIS d'anatomopathologie</option>
-                      <option value="PathoMind Viewer">PathoMind Viewer — Lames numériques</option>
-                      <option value="PathoMind Share">PathoMind Share — Téléexpertise</option>
-                      <option value="Suite complète">Suite complète</option>
-                      <option value="Consulting & intégration">Consulting & intégration</option>
-                    </select>
-                  </Field>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <Field id="cf-offer" label="Offre qui vous intéresse">
+                      <select id="cf-offer" name="offer" className="pm-field" value={form.offer} onChange={set('offer')} style={{ color: form.offer ? '#fff' : 'rgba(255,255,255,.6)' }}>
+                        <option value="">Sélectionner une offre</option>
+                        {CHOIX_FORMULAIRE.map((o) => <option key={o} value={o}>{o}</option>)}
+                      </select>
+                    </Field>
+                    <Field id="cf-patho" label="Nombre de pathologistes (facultatif)">
+                      <select id="cf-patho" name="pathologists" className="pm-field" value={form.pathologists} onChange={set('pathologists')} style={{ color: form.pathologists ? '#fff' : 'rgba(255,255,255,.6)' }}>
+                        <option value="">Sélectionner</option>
+                        {CHOIX_PATHOLOGISTES.map((o) => <option key={o} value={o}>{o}</option>)}
+                      </select>
+                    </Field>
+                  </div>
                   <Field id="cf-message" label="Message (optionnel)">
                     <textarea id="cf-message" name="message" className="pm-field" rows={4} value={form.message} onChange={set('message')} style={{ resize: 'vertical' }}
                       placeholder="Votre besoin, votre établissement, vos contraintes…"/>
