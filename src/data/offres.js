@@ -3,7 +3,7 @@
 // Prix en dinars, nombres entiers (ex. 15000). L'affichage « 15 000 DA » est calculé.
 
 // ── Programme Centre pilote ──────────────────────────────────────────────
-// [À COMPLÉTER] places réellement restantes. À 0, le bandeau disparaît automatiquement.
+// Places restantes au programme pilote. À 0, le bandeau disparaît automatiquement.
 export const PILOTE_PLACES_RESTANTES = 3
 
 export const PILOTE = {

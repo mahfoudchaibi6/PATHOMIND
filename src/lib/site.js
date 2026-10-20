@@ -8,7 +8,7 @@ import { OFFRES, PANNE } from '../data/offres'
 // Adresse publique. Passer à 'contact@pathomind.org' dès que la boîte existe et reçoit bien les messages.
 export const EMAIL = 'pathomind2026@hotmail.com'
 export const PHONE = ''            // ex. '+213 5 XX XX XX XX' (affiché tel quel)
-export const WHATSAPP = ''         // [À COMPLÉTER] format international sans « + » ni espaces, ex. '2135XXXXXXXX'
+export const WHATSAPP = ''         // vide pour l'instant (boutons WhatsApp masqués) ; format international sans « + » ni espaces, ex. '2135XXXXXXXX'
 
 export const EMAIL_HREF = `mailto:${EMAIL}`
 export const PHONE_HREF = PHONE ? `tel:${PHONE.replace(/[^\d+]/g, '')}` : null
