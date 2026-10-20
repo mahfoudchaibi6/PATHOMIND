@@ -11,8 +11,8 @@ export const PILOTE = {
   labos: 3,
   ville: 'Alger',
   jours: 45,
-  remise: 30,        // en %, si le laboratoire poursuit
-  garantieMois: 36,  // prix garanti après le pilote
+  remise: 25,        // en %, si le laboratoire poursuit
+  garantieMois: 12,  // prix garanti après le pilote
 }
 
 // ── Offres ───────────────────────────────────────────────────────────────
